@@ -1,0 +1,522 @@
+package feather
+
+import (
+    "fmt"
+	"github.com/influxdata/arrow"
+)
+
+type FeatherColumn interface {
+    Name() string
+    Length() int
+    Type() int8
+    TypeString() string
+    Meta() FeatherColumn
+}
+
+var (
+    // BitMask[i] == (1 << i)
+	BitMask        = [8]byte{1, 2, 4, 8, 16, 32, 64, 128}
+)
+
+func bitIsSet(buf []byte, i int) bool {
+    return (buf[uint(i)/8] & BitMask[i%8]) != 0
+}
+
+{{range .In}}
+
+// {{.Name}}Column is a type which represents an immutable sequence of {{ .name }} values.
+type {{.Name}}Column struct {
+    name           string
+    values         *fbs.PrimitiveArray
+    meta           FeatherColumn
+    nNull          int64
+    src            *Source
+    typE          int8
+    offset, length int64
+}
+
+
+// New{{.Name}}Column constructs a new {{.Name}}Column given the Source and column description from flatbuffers metadata
+func New{{.Name}}Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) * {{.Name}}Column {
+    // TODO: typecheck for col.Values().TypE to match {{.Name}}
+    if vals.TypE() != fbs.{{.fbsType}} {
+        panic("Expected type {{.name}}, but found something else...")
+    }
+    return &{{.Name}}Column{
+        name: name,
+        values: vals,
+        meta: meta,
+        nNull: vals.NullCount(),
+        src: src,
+        typE: vals.TypE(),
+        offset: vals.Offset(),
+        length: vals.Length(),
+    }
+}
+
+{{if and (ne .Name "String") (ne .Name "Bool")}}
+
+// Value extracts a single value from location i and whether that value is
+// non-null. If null, then the result will be (0, false)
+func (a *{{.Name}}Column) Value(i int) ({{ .name }}, bool) {
+    off := a.offset
+    if a.nNull > 0 {
+        // There might be nulls -- need to check bit
+        thebyte := a.src.Data.At(int(off) + int(uint(i)/8))  // read single byte
+        if (thebyte & BitMask[i%8]) == 0 {  // check if bit is set in byte
+            return 0, false
+        }
+        off += a.src.getoutputlength(a.length / 8)
+    }
+    var out {{ .name }}
+    buf := make([]byte, {{.size}})
+    off += int64(i) * {{.size}}
+    a.src.Data.ReadAt(buf, off)
+
+
+    binary.Read(bytes.NewBuffer(buf), binary.LittleEndian, &out)
+    return out, true
+}
+
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
+func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
+    out_vals := make([]{{.name}}, a.length)
+    off := a.offset
+
+    var out_null []bool
+    var bitmaskLength int64
+
+    if a.nNull > 0 {
+        out_null = make([]bool, a.length)
+        bitmaskLength = a.src.getoutputlength(a.length / 8)
+        thebyte := make([]byte, bitmaskLength)
+        a.src.Data.ReadAt(thebyte, off)
+        for i := 0; i < int(a.length); i++ {
+            out_null[i] = bitIsSet(thebyte, i)
+        }
+    }
+
+    off += bitmaskLength
+
+    valbuf := make([]byte, a.length*{{.size}})
+    a.src.Data.ReadAt(valbuf, off)
+    binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+
+    return out_vals, out_null
+}
+
+{{end}}
+
+// Name returns the name of the column
+func (a *{{.Name}}Column) Name() string { return a.name }
+
+// Length returns the number of rows in the column
+func (a *{{.Name}}Column) Length() int { return int(a.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *{{.Name}}Column) Type() int8 { return a.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *{{.Name}}Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+
+// Meta returns the Metadata for this column
+func (a *{{.Name}}Column) Meta() FeatherColumn { return a.meta }
+
+
+
+
+
+
+
+
+// {{.Name}}Column is a type which represents an immutable sequence of {{ .name }} values with no missing data
+type {{.Name}}FullColumn struct {
+    name           string
+    values         *fbs.PrimitiveArray
+    meta           FeatherColumn
+    src            *Source
+    typE          int8
+    offset, length int64
+}
+
+
+// New{{.Name}}FullColumn constructs a new {{.Name}}FullColumn given the Source and column description from flatbuffers metadata
+func New{{.Name}}FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) * {{.Name}}FullColumn {
+    // TODO: typecheck for col.Values().TypE to match {{.Name}}
+    if vals.TypE() != fbs.{{.fbsType}} {
+        panic("Expected type {{.name}}, but found something else...")
+    }
+    return &{{.Name}}FullColumn{
+        name: name,
+        values: vals,
+        meta: meta,
+        src: src,
+        typE: vals.TypE(),
+        offset: vals.Offset(),
+        length: vals.Length(),
+    }
+}
+
+{{if and (ne .Name "String") (ne .Name "Bool")}}
+
+// Value extracts a single value from location i and whether
+func (a *{{.Name}}FullColumn) Value(i int) {{ .name }} {
+    off := a.offset
+    var out {{ .name }}
+    buf := make([]byte, {{.size}})
+    off += int64(i) * {{.size}}
+    a.src.Data.ReadAt(buf, off)
+
+    binary.Read(bytes.NewBuffer(buf), binary.LittleEndian, &out)
+    return out
+}
+
+// Values extracts slices of all values in the column
+func (a *{{.Name}}FullColumn) Values() []{{.name}} {
+    out_vals := make([]{{.name}}, a.length)
+    valbuf := make([]byte, a.length*{{.size}})
+    a.src.Data.ReadAt(valbuf, a.offset)
+    binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+
+    return out_vals
+}
+
+{{end}}
+
+func (a *{{.Name}}Column) ToFullColumn() (*{{.Name}}FullColumn, error) {
+    if a.nNull > 0 {
+        return nil, errors.New("Nulls present, cannot convert to full column")
+    }
+    out := &{{.Name}}FullColumn{
+        name: a.name,
+        values: a.values,
+        meta: a.meta,
+        src: a.src,
+        typE: a.typE,
+        offset: a.offset,
+        length: a.length,
+    }
+    return out, nil
+}
+
+func (a *{{.Name}}FullColumn) ToFullColumn() (*{{.Name}}FullColumn, error) {
+    return a, nil
+}
+
+// Name returns the name of the column
+func (a *{{.Name}}FullColumn) Name() string { return a.name }
+
+// Length returns the number of rows in the column
+func (a *{{.Name}}FullColumn) Length() int { return int(a.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *{{.Name}}FullColumn) Type() int8 { return a.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *{{.Name}}FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+
+// Meta returns the Metadata for this column
+func (a *{{.Name}}FullColumn) Meta() FeatherColumn { return a.meta }
+
+
+{{end}}
+
+// NOTE: we need to special case Value and Values for StringColumn, that's
+// why we have that if ne .Name "String" above. Below is the implementation
+
+// Value extracts a single value from location i and whether that value is
+// non-null. If null, then the result will be (0, false)
+func (a *StringColumn) Value(i int) (string, bool) {
+    off := a.offset
+    if a.nNull > 0 {
+        // There might be nulls -- need to check bit
+        bitbyte := a.src.Data.At(int(off) + int(uint(i)/8))  // read single byte
+        if (bitbyte & BitMask[i%8]) == 0 {  // check if bit is set in byte
+            return "", false
+        }
+        off += a.src.getoutputlength(a.length/8)
+    }
+
+    // need to compute offset start and end
+    offsets := make([]int32, 2)
+    buf := make([]byte, 8)
+    a.src.Data.ReadAt(buf, off + int64(i*4))
+    binary.Read(bytes.NewBuffer(buf), binary.LittleEndian, &offsets)
+
+    // seek forward to end of offset portion of buffer
+    off += getoutputlength(a.src.Ctable.Version(), 4*(a.length+1))
+
+    // now need to extract value bytes from
+    valbuf := make([]byte, offsets[1] - offsets[0])
+    a.src.Data.ReadAt(valbuf, off + int64(offsets[0]))
+    return string(valbuf), true
+}
+
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
+func (a *StringColumn) Values() ([]string, []bool) {
+    off := a.offset
+    length := a.length
+
+    out_vals := make([]string, length)
+    var out_null []bool
+    var bitmaskLength int64
+
+    if a.nNull > 0 {
+        out_null = make([]bool, length)
+        bitmaskLength = a.src.getoutputlength(length / 8)
+        bitmask := make([]byte, bitmaskLength)
+        a.src.Data.ReadAt(bitmask, off)
+        for i := 0; i < int(length); i++ {
+            out_null[i] = bitIsSet(bitmask, i)
+        }
+    }
+    off += bitmaskLength
+
+    // read offsets
+    offsetbuf := make([]byte, 4*(length+1))
+    a.src.Data.ReadAt(offsetbuf, off)
+    offsets := make([]int32, length+1)
+    binary.Read(bytes.NewBuffer(offsetbuf), binary.LittleEndian, &offsets)
+
+    // move offset forward
+    off += getoutputlength(a.src.Ctable.Version(), 4*(length+1))
+
+    // read in values
+    for i := 0; i < int(length); i++ {
+        bytes := make([]byte, offsets[i+1] - offsets[i])
+        a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
+        out_vals[i] = string(bytes)
+    }
+    return out_vals, out_null
+}
+
+// Value extracts a single value from location i and whether that value is
+// non-null. If null, then the result will be (0, false)
+func (a *StringFullColumn) Value(i int) string {
+    off := a.offset
+
+    // need to compute offset start and end
+    offsets := make([]int32, 2)
+    buf := make([]byte, 8)
+    a.src.Data.ReadAt(buf, off + int64(i*4))
+    binary.Read(bytes.NewBuffer(buf), binary.LittleEndian, &offsets)
+
+    // seek forward to end of offset portion of buffer
+    off += getoutputlength(a.src.Ctable.Version(), 4*(a.length+1))
+
+    // now need to extract value bytes from
+    valbuf := make([]byte, offsets[1] - offsets[0])
+    a.src.Data.ReadAt(valbuf, off + int64(offsets[0]))
+    return string(valbuf)
+}
+
+// Values extracts a slice of all values
+func (a *StringFullColumn) Values() []string {
+    off := a.offset
+    length := a.length
+
+    out_vals := make([]string, length)
+
+    // read offsets
+    offsetbuf := make([]byte, 4*(length+1))
+    a.src.Data.ReadAt(offsetbuf, off)
+    offsets := make([]int32, length+1)
+    binary.Read(bytes.NewBuffer(offsetbuf), binary.LittleEndian, &offsets)
+
+    // move offset forward
+    off += getoutputlength(a.src.Ctable.Version(), 4*(length+1))
+
+    // read in values
+    for i := 0; i < int(length); i++ {
+        bytes := make([]byte, offsets[i+1] - offsets[i])
+        a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
+        out_vals[i] = string(bytes)
+    }
+    return out_vals
+}
+
+// Value extracts a single value from location i and whether that value is
+// non-null. If null, then the result will be (false, false)
+func (a *BoolColumn) Value(i int) (bool, bool) {
+    var bitbyte byte
+    off := a.offset
+    if a.nNull > 0 {
+        // There might be nulls -- need to check bit
+        bitbyte = a.src.Data.At(int(off) + int(uint(i)/8))  // read single byte
+        if (bitbyte & BitMask[i%8]) == 0 {  // check if bit is set in byte
+            return false, false
+        }
+        off += a.src.getoutputlength(a.length/8)
+    }
+
+    bitbyte = a.src.Data.At(int(off) + int(uint(i)/8))  // read single byte
+    return bitbyte & BitMask[i%8] > 0, true
+}
+
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
+func (a *BoolColumn) Values() ([]bool, []bool) {
+    off := a.offset
+    length := a.length
+
+    out_vals := make([]bool, length)
+    var out_null []bool
+    var bitmaskLength int64
+
+    if a.nNull > 0 {
+        out_null = make([]bool, length)
+        bitmaskLength = a.src.getoutputlength(length / 8)
+        bitmask := make([]byte, bitmaskLength)
+        a.src.Data.ReadAt(bitmask, off)
+        for i := 0; i < int(length); i++ {
+            out_null[i] = bitIsSet(bitmask, i)
+        }
+    }
+    off += bitmaskLength
+
+    bitmask := make([]byte, a.src.getoutputlength(length / 8))
+    a.src.Data.ReadAt(bitmask, off)
+    for i := 0; i < int(length); i++ {
+        out_vals[i] = bitIsSet(bitmask, i)
+    }
+
+    return out_vals, out_null
+}
+
+// Value extracts a single value from location i and whether that value is
+// non-null. If null, then the result will be (false, false)
+func (a *BoolFullColumn) Value(i int) bool {
+    off := a.offset
+    bitbyte := a.src.Data.At(int(off) + int(uint(i)/8))  // read single byte
+    return bitbyte & BitMask[i%8] > 0
+}
+
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
+func (a *BoolFullColumn) Values() []bool {
+    off := a.offset
+    length := a.length
+    out_vals := make([]bool, length)
+    bitmask := make([]byte, a.src.getoutputlength(length / 8))
+    a.src.Data.ReadAt(bitmask, off)
+    for i := 0; i < int(length); i++ {
+        out_vals[i] = bitIsSet(bitmask, i)
+    }
+
+    return out_vals
+}
+
+//
+func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) FeatherColumn {
+    switch vals.TypE(){
+    {{range .In}}
+    case fbs.{{.fbsType}}:
+        return New{{.Name}}Column(src, vals, name, meta)
+    {{end}}
+    case fbs.TypECATEGORY:
+        fmt.Println("Have TypECATEGORY")
+        return nil
+    case fbs.TypETIMESTAMP:
+        fmt.Println("Have TypETIMESTAMP")
+        return nil
+    case fbs.TypEDATE:
+        fmt.Println("Have TypEDATE")
+        return nil
+    case fbs.TypETIME:
+        fmt.Println("Have TypETIME")
+        return nil
+    default:
+        fmt.Println("No ideas what I just saw...")
+        return nil
+    }
+}
+
+// Constructor given src and Column
+func NewColumnCol(src *Source, col *fbs.Column) FeatherColumn {
+    vals := col.Values(nil)
+    name := string(col.Name())
+    meta := metadataForCol(src, col)
+    return NewColumnArray(src, vals, name, meta)
+}
+
+func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) (FeatherColumn, error) {
+    if vals.NullCount() > 0 {
+        err := errors.New("This column has null values, use `NewColumnArray instead`")
+        return nil, err
+    }
+    switch vals.TypE(){
+    {{range .In}}
+    case fbs.{{.fbsType}}:
+        return New{{.Name}}FullColumn(src, vals, name, meta), nil
+    {{end}}
+    case fbs.TypECATEGORY:
+        fmt.Println("Have TypECATEGORY")
+        return nil, nil
+    case fbs.TypETIMESTAMP:
+        fmt.Println("Have TypETIMESTAMP")
+        return nil, nil
+    case fbs.TypEDATE:
+        fmt.Println("Have TypEDATE")
+        return nil, nil
+    case fbs.TypETIME:
+        fmt.Println("Have TypETIME")
+        return nil, nil
+    default:
+        fmt.Println("No ideas what I just saw...")
+        return nil, nil
+    }
+}
+
+// Constructor given src and Column
+func NewFullColumnCol(src *Source, col *fbs.Column) (FeatherColumn, error) {
+    vals := col.Values(nil)
+    name := string(col.Name())
+    meta := metadataForCol(src, col)
+    return NewFullColumnArray(src, vals, name, meta)
+}
+
+func metadataForCol(src *Source, col *fbs.Column) FeatherColumn {
+	// Now work on metadta
+	switch col.MetadataType() {
+	case fbs.TypeMetadataNONE:
+		return nil // correct behavior
+	case fbs.TypeMetadataCategoryMetadata:
+		return NewCategoryMetadata(src, col)
+	case fbs.TypeMetadataTimestampMetadata:
+		fmt.Println("Have TypeMetadataTimestampMetadata")
+	case fbs.TypeMetadataDateMetadata:
+		fmt.Println("Have TypeMetadataDateMetadata")
+	case fbs.TypeMetadataTimeMetadata:
+		fmt.Println("Have TypeMetadataTimeMetadata")
+	}
+	return nil
+}
+
+
+func NewCategoryMetadata(src *Source, col *fbs.Column) FeatherColumn {
+    if col.MetadataType() != fbs.TypeMetadataCategoryMetadata {
+		return nil
+	}
+	var _catMeta flatbuffers.Table
+	inited := col.Metadata(&_catMeta)
+	if !inited {
+		panic("couldn't load metadata")
+	}
+
+	var catmeta fbs.CategoryMetadata
+	catmeta.Init(_catMeta.Bytes, _catMeta.Pos)
+	lvls := catmeta.Levels(nil)
+    return NewColumnArray(src, lvls, "", nil)
+}
+
+// TODO: need to do category, timestamp, date, time, binary

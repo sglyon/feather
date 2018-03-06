@@ -1,0 +1,74 @@
+[
+    {
+        "fbsType": "TypEINT8",
+        "Name": "Int8",
+        "name": "int8",
+        "size": "1"
+    },
+    {
+        "fbsType": "TypEINT16",
+        "Name": "Int16",
+        "name": "int16",
+        "size": "2"
+    },
+    {
+        "fbsType": "TypEINT32",
+        "Name": "Int32",
+        "name": "int32",
+        "size": "4"
+    },
+    {
+        "fbsType": "TypEINT64",
+        "Name": "Int64",
+        "name": "int64",
+        "size": "8"
+    },
+    {
+        "fbsType": "TypEUINT8",
+        "Name": "Uint8",
+        "name": "uint8",
+        "size": "1"
+    },
+    {
+        "fbsType": "TypEUINT16",
+        "Name": "Uint16",
+        "name": "uint16",
+        "size": "2"
+    },
+    {
+        "fbsType": "TypEUINT32",
+        "Name": "Uint32",
+        "name": "uint32",
+        "size": "4"
+    },
+    {
+        "fbsType": "TypEUINT64",
+        "Name": "Uint64",
+        "name": "uint64",
+        "size": "8"
+    },
+    {
+        "fbsType": "TypEFLOAT",
+        "Name": "Float32",
+        "name": "float32",
+        "size": "4"
+    },
+    {
+        "fbsType": "TypEDOUBLE",
+        "Name": "Float64",
+        "name": "float64",
+        "size": "8"
+    },
+    {
+        "fbsType": "TypEUTF8",
+        "Name": "String",
+        "name": "string",
+        "size": "DOES NOT MATTER"
+    },
+    {
+        "fbsType": "TypEBOOL",
+        "Name": "Bool",
+        "name": "bool",
+        "size": "DOES NOT MATTER"
+    }
+]
