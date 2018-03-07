@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+	"sync"
 
 	flatbuffers "github.com/google/flatbuffers/go"
 	"github.com/influxdata/arrow/array"
@@ -73,20 +74,26 @@ func Read(fn string) *Source {
 	vals := make(map[string]array.Interface, numColumns)
 	src := Source{file, ctable, cols, colnames, vals}
 
-	// TODO: map cannot accept concurrent writes...
-	// wg := &sync.WaitGroup{}
+	// Parse all the columns in parallel -- use a sync.Mutex to protect
+	// write to the vals map
+	var mutex sync.Mutex
+	wg := &sync.WaitGroup{}
+
 	for ix := 0; ix < numColumns; ix++ {
-		// wg.Add(1)
-		// go func(ii int) {
-		// defer wg.Done()
-		col := new(fbs.Column)
-		ctable.Columns(col, ix)
-		cols[ix] = col
-		colnames[ix] = string(col.Name())
-		vals[colnames[ix]] = parseCol(&src, cols[ix])
-		// }(ix)
+		wg.Add(1)
+		go func(ii int) {
+			defer wg.Done()
+			col := new(fbs.Column)
+			ctable.Columns(col, ii)
+			cols[ii] = col
+			colnames[ii] = string(col.Name())
+			parsed := parseCol(&src, cols[ii])
+			mutex.Lock()
+			vals[colnames[ii]] = parsed
+			mutex.Unlock()
+		}(ix)
 	}
-	// wg.Wait()
+	wg.Wait()
 
 	// TODO: NullCount
 	return &src
