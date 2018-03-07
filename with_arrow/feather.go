@@ -38,6 +38,7 @@ type Source struct {
 	Columns    map[string]array.Interface
 }
 
+// Read reads a feather file, parses metadata, and returns a Source
 func Read(fn string) *Source {
 	file, err := mmap.Open(fn)
 	if err != nil {
@@ -103,6 +104,64 @@ func (src *Source) getoutputlength(x int64) int64 {
 	return getoutputlength(src.Ctable.Version(), x)
 }
 
+func ensureInt32Data(in array.Interface) *array.Int32 {
+	switch v := in.(type) {
+	case *array.Int32:
+		return v
+	case *array.Int8:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	case *array.Int16:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	case *array.Int64:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	case *array.Uint8:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	case *array.Uint16:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	case *array.Uint32:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	case *array.Uint64:
+		mem := memory.NewCheckedAllocator(memory.NewGoAllocator())
+		ab := array.NewInt32Builder(mem)
+		for ix := 0; ix < v.Len(); ix++ {
+			ab.Append(int32(v.Value(ix)))
+		}
+		return ab.NewInt32Array()
+	default:
+		panic("Can only convert integer like columns to Int32")
+	}
+}
+
 func parseCol(src *Source, col *fbs.Column) array.Interface {
 
 	switch col.MetadataType() {
@@ -111,7 +170,7 @@ func parseCol(src *Source, col *fbs.Column) array.Interface {
 	case fbs.TypeMetadataCategoryMetadata:
 		vals := arrayForPrimitive(src, col.Values(nil))
 		meta := metadataForCol(src, col)
-		return array.MakeDictFromData(vals.Data(), meta.Data())
+		return array.MakeDictFromData(ensureInt32Data(vals).Data(), meta.Data())
 
 	case fbs.TypeMetadataTimestampMetadata:
 		fmt.Println("Have TypeMetadataTimestampMetadata")
