@@ -36,7 +36,7 @@ function main()
     x_string[9] = missing
 
     test2missing = DataFrame(
-        # x_Bool=Union{Bool,Missing}[1, 1, missing, 1, 1, 1, 0, 0, missing, 1],
+        x_Bool=Union{Bool,Missing}[1, 1, missing, 1, 1, 1, 0, 0, missing, 1],
         x_Int8=convert(Array{Union{Int8,Missing}}, x.+0),
         x_Int32=convert(Array{Union{Int32,Missing}}, x.+1),
         x_Int16=convert(Array{Union{Int16,Missing}}, x.+2),

@@ -19,6 +19,7 @@ type FeatherColumn interface {
 	Type() int8
 	TypeString() string
 	Meta() FeatherColumn
+	NullN() int64
 }
 
 var (
@@ -30,7 +31,7 @@ func bitIsSet(buf []byte, i int) bool {
 	return (buf[uint(i)/8] & BitMask[i%8]) != 0
 }
 
-// Int8Column is a type which represents an immutable sequence of int8 values.
+// Int8Column is a type that represents an immutable sequence of int8 values.
 type Int8Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -125,7 +126,10 @@ func (a *Int8Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)]
 // Meta returns the Metadata for this column
 func (a *Int8Column) Meta() FeatherColumn { return a.meta }
 
-// Int8Column is a type which represents an immutable sequence of int8 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Int8Column) NullN() int64 { return a.nNull }
+
+// Int8FullColumn is a type that represents an immutable sequence of int8 values with no missing data
 type Int8FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -209,7 +213,10 @@ func (a *Int8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.ty
 // Meta returns the Metadata for this column
 func (a *Int8FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Int16Column is a type which represents an immutable sequence of int16 values.
+// NullN returns how many null values there are in the column
+func (a *Int8FullColumn) NullN() int64 { return 0 }
+
+// Int16Column is a type that represents an immutable sequence of int16 values.
 type Int16Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -304,7 +311,10 @@ func (a *Int16Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)
 // Meta returns the Metadata for this column
 func (a *Int16Column) Meta() FeatherColumn { return a.meta }
 
-// Int16Column is a type which represents an immutable sequence of int16 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Int16Column) NullN() int64 { return a.nNull }
+
+// Int16FullColumn is a type that represents an immutable sequence of int16 values with no missing data
 type Int16FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -388,7 +398,10 @@ func (a *Int16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.t
 // Meta returns the Metadata for this column
 func (a *Int16FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Int32Column is a type which represents an immutable sequence of int32 values.
+// NullN returns how many null values there are in the column
+func (a *Int16FullColumn) NullN() int64 { return 0 }
+
+// Int32Column is a type that represents an immutable sequence of int32 values.
 type Int32Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -483,7 +496,10 @@ func (a *Int32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)
 // Meta returns the Metadata for this column
 func (a *Int32Column) Meta() FeatherColumn { return a.meta }
 
-// Int32Column is a type which represents an immutable sequence of int32 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Int32Column) NullN() int64 { return a.nNull }
+
+// Int32FullColumn is a type that represents an immutable sequence of int32 values with no missing data
 type Int32FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -567,7 +583,10 @@ func (a *Int32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.t
 // Meta returns the Metadata for this column
 func (a *Int32FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Int64Column is a type which represents an immutable sequence of int64 values.
+// NullN returns how many null values there are in the column
+func (a *Int32FullColumn) NullN() int64 { return 0 }
+
+// Int64Column is a type that represents an immutable sequence of int64 values.
 type Int64Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -662,7 +681,10 @@ func (a *Int64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)
 // Meta returns the Metadata for this column
 func (a *Int64Column) Meta() FeatherColumn { return a.meta }
 
-// Int64Column is a type which represents an immutable sequence of int64 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Int64Column) NullN() int64 { return a.nNull }
+
+// Int64FullColumn is a type that represents an immutable sequence of int64 values with no missing data
 type Int64FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -746,7 +768,10 @@ func (a *Int64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.t
 // Meta returns the Metadata for this column
 func (a *Int64FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Uint8Column is a type which represents an immutable sequence of uint8 values.
+// NullN returns how many null values there are in the column
+func (a *Int64FullColumn) NullN() int64 { return 0 }
+
+// Uint8Column is a type that represents an immutable sequence of uint8 values.
 type Uint8Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -841,7 +866,10 @@ func (a *Uint8Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)
 // Meta returns the Metadata for this column
 func (a *Uint8Column) Meta() FeatherColumn { return a.meta }
 
-// Uint8Column is a type which represents an immutable sequence of uint8 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Uint8Column) NullN() int64 { return a.nNull }
+
+// Uint8FullColumn is a type that represents an immutable sequence of uint8 values with no missing data
 type Uint8FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -925,7 +953,10 @@ func (a *Uint8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.t
 // Meta returns the Metadata for this column
 func (a *Uint8FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Uint16Column is a type which represents an immutable sequence of uint16 values.
+// NullN returns how many null values there are in the column
+func (a *Uint8FullColumn) NullN() int64 { return 0 }
+
+// Uint16Column is a type that represents an immutable sequence of uint16 values.
 type Uint16Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1020,7 +1051,10 @@ func (a *Uint16Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE
 // Meta returns the Metadata for this column
 func (a *Uint16Column) Meta() FeatherColumn { return a.meta }
 
-// Uint16Column is a type which represents an immutable sequence of uint16 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Uint16Column) NullN() int64 { return a.nNull }
+
+// Uint16FullColumn is a type that represents an immutable sequence of uint16 values with no missing data
 type Uint16FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1104,7 +1138,10 @@ func (a *Uint16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.
 // Meta returns the Metadata for this column
 func (a *Uint16FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Uint32Column is a type which represents an immutable sequence of uint32 values.
+// NullN returns how many null values there are in the column
+func (a *Uint16FullColumn) NullN() int64 { return 0 }
+
+// Uint32Column is a type that represents an immutable sequence of uint32 values.
 type Uint32Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1199,7 +1236,10 @@ func (a *Uint32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE
 // Meta returns the Metadata for this column
 func (a *Uint32Column) Meta() FeatherColumn { return a.meta }
 
-// Uint32Column is a type which represents an immutable sequence of uint32 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Uint32Column) NullN() int64 { return a.nNull }
+
+// Uint32FullColumn is a type that represents an immutable sequence of uint32 values with no missing data
 type Uint32FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1283,7 +1323,10 @@ func (a *Uint32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.
 // Meta returns the Metadata for this column
 func (a *Uint32FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Uint64Column is a type which represents an immutable sequence of uint64 values.
+// NullN returns how many null values there are in the column
+func (a *Uint32FullColumn) NullN() int64 { return 0 }
+
+// Uint64Column is a type that represents an immutable sequence of uint64 values.
 type Uint64Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1378,7 +1421,10 @@ func (a *Uint64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE
 // Meta returns the Metadata for this column
 func (a *Uint64Column) Meta() FeatherColumn { return a.meta }
 
-// Uint64Column is a type which represents an immutable sequence of uint64 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Uint64Column) NullN() int64 { return a.nNull }
+
+// Uint64FullColumn is a type that represents an immutable sequence of uint64 values with no missing data
 type Uint64FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1462,7 +1508,10 @@ func (a *Uint64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.
 // Meta returns the Metadata for this column
 func (a *Uint64FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Float32Column is a type which represents an immutable sequence of float32 values.
+// NullN returns how many null values there are in the column
+func (a *Uint64FullColumn) NullN() int64 { return 0 }
+
+// Float32Column is a type that represents an immutable sequence of float32 values.
 type Float32Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1557,7 +1606,10 @@ func (a *Float32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typ
 // Meta returns the Metadata for this column
 func (a *Float32Column) Meta() FeatherColumn { return a.meta }
 
-// Float32Column is a type which represents an immutable sequence of float32 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Float32Column) NullN() int64 { return a.nNull }
+
+// Float32FullColumn is a type that represents an immutable sequence of float32 values with no missing data
 type Float32FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1641,7 +1693,10 @@ func (a *Float32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a
 // Meta returns the Metadata for this column
 func (a *Float32FullColumn) Meta() FeatherColumn { return a.meta }
 
-// Float64Column is a type which represents an immutable sequence of float64 values.
+// NullN returns how many null values there are in the column
+func (a *Float32FullColumn) NullN() int64 { return 0 }
+
+// Float64Column is a type that represents an immutable sequence of float64 values.
 type Float64Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1736,7 +1791,10 @@ func (a *Float64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typ
 // Meta returns the Metadata for this column
 func (a *Float64Column) Meta() FeatherColumn { return a.meta }
 
-// Float64Column is a type which represents an immutable sequence of float64 values with no missing data
+// NullN returns how many null values there are in the column
+func (a *Float64Column) NullN() int64 { return a.nNull }
+
+// Float64FullColumn is a type that represents an immutable sequence of float64 values with no missing data
 type Float64FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1820,7 +1878,10 @@ func (a *Float64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a
 // Meta returns the Metadata for this column
 func (a *Float64FullColumn) Meta() FeatherColumn { return a.meta }
 
-// StringColumn is a type which represents an immutable sequence of string values.
+// NullN returns how many null values there are in the column
+func (a *Float64FullColumn) NullN() int64 { return 0 }
+
+// StringColumn is a type that represents an immutable sequence of string values.
 type StringColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1864,7 +1925,10 @@ func (a *StringColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE
 // Meta returns the Metadata for this column
 func (a *StringColumn) Meta() FeatherColumn { return a.meta }
 
-// StringColumn is a type which represents an immutable sequence of string values with no missing data
+// NullN returns how many null values there are in the column
+func (a *StringColumn) NullN() int64 { return a.nNull }
+
+// StringFullColumn is a type that represents an immutable sequence of string values with no missing data
 type StringFullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1926,7 +1990,10 @@ func (a *StringFullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.
 // Meta returns the Metadata for this column
 func (a *StringFullColumn) Meta() FeatherColumn { return a.meta }
 
-// BoolColumn is a type which represents an immutable sequence of bool values.
+// NullN returns how many null values there are in the column
+func (a *StringFullColumn) NullN() int64 { return 0 }
+
+// BoolColumn is a type that represents an immutable sequence of bool values.
 type BoolColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -1970,7 +2037,10 @@ func (a *BoolColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)]
 // Meta returns the Metadata for this column
 func (a *BoolColumn) Meta() FeatherColumn { return a.meta }
 
-// BoolColumn is a type which represents an immutable sequence of bool values with no missing data
+// NullN returns how many null values there are in the column
+func (a *BoolColumn) NullN() int64 { return a.nNull }
+
+// BoolFullColumn is a type that represents an immutable sequence of bool values with no missing data
 type BoolFullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
@@ -2031,6 +2101,9 @@ func (a *BoolFullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.ty
 
 // Meta returns the Metadata for this column
 func (a *BoolFullColumn) Meta() FeatherColumn { return a.meta }
+
+// NullN returns how many null values there are in the column
+func (a *BoolFullColumn) NullN() int64 { return 0 }
 
 // NOTE: we need to special case Value and Values for StringColumn, that's
 // why we have that if ne .Name "String" above. Below is the implementation
@@ -2283,7 +2356,7 @@ func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 }
 
 // Constructor given src and Column
-func NewColumnCol(src *Source, col *fbs.Column) FeatherColumn {
+func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
 	vals := col.Values(nil)
 	name := string(col.Name())
 	meta := metadataForCol(src, col)
@@ -2352,7 +2425,7 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta
 }
 
 // Constructor given src and Column
-func NewFullColumnCol(src *Source, col *fbs.Column) (FeatherColumn, error) {
+func NewFullColumnFbsColumn(src *Source, col *fbs.Column) (FeatherColumn, error) {
 	vals := col.Values(nil)
 	name := string(col.Name())
 	meta := metadataForCol(src, col)

@@ -416,37 +416,37 @@ func TestTest2MissingFeather(t *testing.T) {
 			t.Errorf("Row %v, Col 0 error. want0[ix] = %v and val0 = %v and vals0[ix] = %v and isvalid0 = %v and valids0[ix] = %v", ix, want0[ix], val0, vals0[ix], isvalid0, valids0[ix])
 		}
 		if want1[ix] != val1 || vals1[ix] != want1[ix] || isvalid1 != valids1[ix] {
-			t.Errorf("Row %v, Col 1 error. want1[ix] = %v and val1 = %v and vals1[ix] = %v and isvalid1 = %v and valids1[ix] = %v", ix, want1[ix], val1, vals0[ix], isvalid0, valids1[ix])
+			t.Errorf("Row %v, Col 1 error. want1[ix] = %v and val1 = %v and vals1[ix] = %v and isvalid1 = %v and valids1[ix] = %v", ix, want1[ix], val1, vals1[ix], isvalid1, valids1[ix])
 		}
 		if want2[ix] != val2 || vals2[ix] != want2[ix] || isvalid2 != valids2[ix] {
-			t.Errorf("Row %v, Col 2 error. want2[ix] = %v and val2 = %v and vals2[ix] = %v and isvalid2 = %v and valids2[ix] = %v", ix, want2[ix], val2, vals0[ix], isvalid0, valids2[ix])
+			t.Errorf("Row %v, Col 2 error. want2[ix] = %v and val2 = %v and vals2[ix] = %v and isvalid2 = %v and valids2[ix] = %v", ix, want2[ix], val2, vals2[ix], isvalid2, valids2[ix])
 		}
 		if want3[ix] != val3 || vals3[ix] != want3[ix] || isvalid3 != valids3[ix] {
-			t.Errorf("Row %v, Col 3 error. want3[ix] = %v and val3 = %v and vals3[ix] = %v and isvalid3 = %v and valids3[ix] = %v", ix, want3[ix], val3, vals0[ix], isvalid0, valids3[ix])
+			t.Errorf("Row %v, Col 3 error. want3[ix] = %v and val3 = %v and vals3[ix] = %v and isvalid3 = %v and valids3[ix] = %v", ix, want3[ix], val3, vals3[ix], isvalid3, valids3[ix])
 		}
 		if want4[ix] != val4 || vals4[ix] != want4[ix] || isvalid4 != valids4[ix] {
-			t.Errorf("Row %v, Col 4 error. want4[ix] = %v and val4 = %v and vals4[ix] = %v and isvalid4 = %v and valids4[ix] = %v", ix, want4[ix], val4, vals0[ix], isvalid0, valids4[ix])
+			t.Errorf("Row %v, Col 4 error. want4[ix] = %v and val4 = %v and vals4[ix] = %v and isvalid4 = %v and valids4[ix] = %v", ix, want4[ix], val4, vals4[ix], isvalid4, valids4[ix])
 		}
 		if want5[ix] != val5 || vals5[ix] != want5[ix] || isvalid5 != valids5[ix] {
-			t.Errorf("Row %v, Col 5 error. want5[ix] = %v and val5 = %v and vals5[ix] = %v and isvalid5 = %v and valids5[ix] = %v", ix, want5[ix], val5, vals0[ix], isvalid0, valids5[ix])
+			t.Errorf("Row %v, Col 5 error. want5[ix] = %v and val5 = %v and vals5[ix] = %v and isvalid5 = %v and valids5[ix] = %v", ix, want5[ix], val5, vals5[ix], isvalid5, valids5[ix])
 		}
 		if want6[ix] != val6 || vals6[ix] != want6[ix] || isvalid6 != valids6[ix] {
-			t.Errorf("Row %v, Col 6 error. want6[ix] = %v and val6 = %v and vals6[ix] = %v and isvalid6 = %v and valids6[ix] = %v", ix, want6[ix], val6, vals0[ix], isvalid0, valids6[ix])
+			t.Errorf("Row %v, Col 6 error. want6[ix] = %v and val6 = %v and vals6[ix] = %v and isvalid6 = %v and valids6[ix] = %v", ix, want6[ix], val6, vals6[ix], isvalid6, valids6[ix])
 		}
 		if want7[ix] != val7 || vals7[ix] != want7[ix] || isvalid7 != valids7[ix] {
-			t.Errorf("Row %v, Col 7 error. want7[ix] = %v and val7 = %v and vals7[ix] = %v and isvalid7 = %v and valids7[ix] = %v", ix, want7[ix], val7, vals0[ix], isvalid0, valids7[ix])
+			t.Errorf("Row %v, Col 7 error. want7[ix] = %v and val7 = %v and vals7[ix] = %v and isvalid7 = %v and valids7[ix] = %v", ix, want7[ix], val7, vals7[ix], isvalid7, valids7[ix])
 		}
 		if want8[ix] != val8 || vals8[ix] != want8[ix] || isvalid8 != valids8[ix] {
-			t.Errorf("Row %v, Col 8 error. want8[ix] = %v and val8 = %v and vals8[ix] = %v and isvalid8 = %v and valids8[ix] = %v", ix, want8[ix], val8, vals0[ix], isvalid0, valids8[ix])
+			t.Errorf("Row %v, Col 8 error. want8[ix] = %v and val8 = %v and vals8[ix] = %v and isvalid8 = %v and valids8[ix] = %v", ix, want8[ix], val8, vals8[ix], isvalid8, valids8[ix])
 		}
 		if want9[ix] != val9 || vals9[ix] != want9[ix] || isvalid9 != valids9[ix] {
-			t.Errorf("Row %v, Col 9 error. want9[ix] = %v and val9 = %v and vals9[ix] = %v and isvalid9 = %v and valids9[ix] = %v", ix, want9[ix], val9, vals0[ix], isvalid0, valids9[ix])
+			t.Errorf("Row %v, Col 9 error. want9[ix] = %v and val9 = %v and vals9[ix] = %v and isvalid9 = %v and valids9[ix] = %v", ix, want9[ix], val9, vals9[ix], isvalid9, valids9[ix])
 		}
 		if want10[ix] != val10 || vals10[ix] != want10[ix] || isvalid10 != valids10[ix] {
-			t.Errorf("Row %v, Col 10 error. want10[ix] = %v and val10 = %v and vals10[ix] = %v and isvalid10 = %v and valids10[ix] = %v", ix, want10[ix], val10, vals0[ix], isvalid0, valids10[ix])
+			t.Errorf("Row %v, Col 10 error. want10[ix] = %v and val10 = %v and vals10[ix] = %v and isvalid10 = %v and valids10[ix] = %v", ix, want10[ix], val10, vals10[ix], isvalid10, valids10[ix])
 		}
 		if want11[ix] != val11 || vals11[ix] != want11[ix] || isvalid11 != valids11[ix] {
-			t.Errorf("Row %v, Col 11 error. want11[ix] = %v and val11 = %v and vals11[ix] = %v and isvalid11 = %v and valids11[ix] = %v", ix, want11[ix], val11, vals0[ix], isvalid0, valids11[ix])
+			t.Errorf("Row %v, Col 11 error. want11[ix] = %v and val11 = %v and vals11[ix] = %v and isvalid11 = %v and valids11[ix] = %v", ix, want11[ix], val11, vals11[ix], isvalid11, valids11[ix])
 		}
 	}
 }

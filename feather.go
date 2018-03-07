@@ -104,7 +104,7 @@ func Read(fn string) (*Source, error) {
 			ctable.Columns(col, ii)
 			// TODO how does NewFullColumnCol fit in here? Should we check
 			// the number of nulls and choose for the user??
-			cols[ii] = NewColumnCol(src, col)
+			cols[ii] = NewColumnFbsColumn(src, col)
 		}(ix)
 	}
 	wg.Wait()
