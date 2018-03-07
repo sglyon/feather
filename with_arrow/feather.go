@@ -3,6 +3,7 @@ package arrow_feather
 import (
 	"bytes"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"sync"
 
@@ -36,13 +37,28 @@ type Source struct {
 	fbsColumns []*fbs.Column
 	ColNames   []string
 	Columns    map[string]array.Interface
+	fileName   string
+}
+
+func (src Source) String() string {
+	return fmt.Sprintf("%v has %d rows and %d columns", src.fileName, src.NumRows(), src.NumCols())
+}
+
+// NumRows returns the number of rows in the file
+func (src *Source) NumRows() int {
+	return int(src.Ctable.NumRows())
+}
+
+// NumCols returns the number of columns in the file
+func (src *Source) NumCols() int {
+	return src.Ctable.ColumnsLength()
 }
 
 // Read reads a feather file, parses metadata, and returns a Source
-func Read(fn string) *Source {
+func Read(fn string) (*Source, error) {
 	file, err := mmap.Open(fn)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	length := int64(file.Len())
 
@@ -50,12 +66,12 @@ func Read(fn string) *Source {
 
 	file.ReadAt(magic, 0)
 	if string(magic) != "FEA1" {
-		panic("didn't find magic bytes in header")
+		return nil, errors.New("didn't find magic bytes in header")
 	}
 
 	file.ReadAt(magic, length)
 	if string(magic) != "FEA1" {
-		panic("didn't find magic bytes in footer")
+		return nil, errors.New("didn't find magic bytes in footer")
 	}
 
 	// Read metadata
@@ -73,7 +89,7 @@ func Read(fn string) *Source {
 	cols := make([]*fbs.Column, numColumns)
 	colnames := make([]string, numColumns)
 	vals := make(map[string]array.Interface, numColumns)
-	src := Source{file, ctable, cols, colnames, vals}
+	src := Source{file, ctable, cols, colnames, vals, fn}
 
 	// Parse all the columns in parallel -- use a sync.Mutex to protect
 	// write to the vals map
@@ -97,7 +113,7 @@ func Read(fn string) *Source {
 	wg.Wait()
 
 	// TODO: NullCount
-	return &src
+	return &src, nil
 }
 
 func (src *Source) getoutputlength(x int64) int64 {
