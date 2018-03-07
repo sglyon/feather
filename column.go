@@ -10,6 +10,7 @@ import (
 	"fmt"
 
 	flatbuffers "github.com/google/flatbuffers/go"
+	"github.com/influxdata/arrow"
 	"github.com/sglyon/feather/fbs"
 )
 
@@ -86,7 +87,6 @@ func (a *Int8Column) Value(i int) (int8, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Int8Column) Values() ([]int8, []bool) {
-	out_vals := make([]int8, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -106,7 +106,7 @@ func (a *Int8Column) Values() ([]int8, []bool) {
 
 	valbuf := make([]byte, a.length*1)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Int8Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -170,12 +170,9 @@ func (a *Int8FullColumn) Value(i int) int8 {
 
 // Values extracts slices of all values in the column
 func (a *Int8FullColumn) Values() []int8 {
-	out_vals := make([]int8, a.length)
 	valbuf := make([]byte, a.length*1)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Int8Traits.CastFromBytes(valbuf)
 }
 
 func (a *Int8Column) ToFullColumn() (*Int8FullColumn, error) {
@@ -271,7 +268,6 @@ func (a *Int16Column) Value(i int) (int16, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Int16Column) Values() ([]int16, []bool) {
-	out_vals := make([]int16, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -291,7 +287,7 @@ func (a *Int16Column) Values() ([]int16, []bool) {
 
 	valbuf := make([]byte, a.length*2)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Int16Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -355,12 +351,9 @@ func (a *Int16FullColumn) Value(i int) int16 {
 
 // Values extracts slices of all values in the column
 func (a *Int16FullColumn) Values() []int16 {
-	out_vals := make([]int16, a.length)
 	valbuf := make([]byte, a.length*2)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Int16Traits.CastFromBytes(valbuf)
 }
 
 func (a *Int16Column) ToFullColumn() (*Int16FullColumn, error) {
@@ -456,7 +449,6 @@ func (a *Int32Column) Value(i int) (int32, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Int32Column) Values() ([]int32, []bool) {
-	out_vals := make([]int32, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -476,7 +468,7 @@ func (a *Int32Column) Values() ([]int32, []bool) {
 
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Int32Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -540,12 +532,9 @@ func (a *Int32FullColumn) Value(i int) int32 {
 
 // Values extracts slices of all values in the column
 func (a *Int32FullColumn) Values() []int32 {
-	out_vals := make([]int32, a.length)
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Int32Traits.CastFromBytes(valbuf)
 }
 
 func (a *Int32Column) ToFullColumn() (*Int32FullColumn, error) {
@@ -641,7 +630,6 @@ func (a *Int64Column) Value(i int) (int64, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Int64Column) Values() ([]int64, []bool) {
-	out_vals := make([]int64, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -661,7 +649,7 @@ func (a *Int64Column) Values() ([]int64, []bool) {
 
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Int64Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -725,12 +713,9 @@ func (a *Int64FullColumn) Value(i int) int64 {
 
 // Values extracts slices of all values in the column
 func (a *Int64FullColumn) Values() []int64 {
-	out_vals := make([]int64, a.length)
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Int64Traits.CastFromBytes(valbuf)
 }
 
 func (a *Int64Column) ToFullColumn() (*Int64FullColumn, error) {
@@ -826,7 +811,6 @@ func (a *Uint8Column) Value(i int) (uint8, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Uint8Column) Values() ([]uint8, []bool) {
-	out_vals := make([]uint8, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -846,7 +830,7 @@ func (a *Uint8Column) Values() ([]uint8, []bool) {
 
 	valbuf := make([]byte, a.length*1)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Uint8Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -910,12 +894,9 @@ func (a *Uint8FullColumn) Value(i int) uint8 {
 
 // Values extracts slices of all values in the column
 func (a *Uint8FullColumn) Values() []uint8 {
-	out_vals := make([]uint8, a.length)
 	valbuf := make([]byte, a.length*1)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Uint8Traits.CastFromBytes(valbuf)
 }
 
 func (a *Uint8Column) ToFullColumn() (*Uint8FullColumn, error) {
@@ -1011,7 +992,6 @@ func (a *Uint16Column) Value(i int) (uint16, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Uint16Column) Values() ([]uint16, []bool) {
-	out_vals := make([]uint16, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -1031,7 +1011,7 @@ func (a *Uint16Column) Values() ([]uint16, []bool) {
 
 	valbuf := make([]byte, a.length*2)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Uint16Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -1095,12 +1075,9 @@ func (a *Uint16FullColumn) Value(i int) uint16 {
 
 // Values extracts slices of all values in the column
 func (a *Uint16FullColumn) Values() []uint16 {
-	out_vals := make([]uint16, a.length)
 	valbuf := make([]byte, a.length*2)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Uint16Traits.CastFromBytes(valbuf)
 }
 
 func (a *Uint16Column) ToFullColumn() (*Uint16FullColumn, error) {
@@ -1196,7 +1173,6 @@ func (a *Uint32Column) Value(i int) (uint32, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Uint32Column) Values() ([]uint32, []bool) {
-	out_vals := make([]uint32, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -1216,7 +1192,7 @@ func (a *Uint32Column) Values() ([]uint32, []bool) {
 
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Uint32Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -1280,12 +1256,9 @@ func (a *Uint32FullColumn) Value(i int) uint32 {
 
 // Values extracts slices of all values in the column
 func (a *Uint32FullColumn) Values() []uint32 {
-	out_vals := make([]uint32, a.length)
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Uint32Traits.CastFromBytes(valbuf)
 }
 
 func (a *Uint32Column) ToFullColumn() (*Uint32FullColumn, error) {
@@ -1381,7 +1354,6 @@ func (a *Uint64Column) Value(i int) (uint64, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Uint64Column) Values() ([]uint64, []bool) {
-	out_vals := make([]uint64, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -1401,7 +1373,7 @@ func (a *Uint64Column) Values() ([]uint64, []bool) {
 
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Uint64Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -1465,12 +1437,9 @@ func (a *Uint64FullColumn) Value(i int) uint64 {
 
 // Values extracts slices of all values in the column
 func (a *Uint64FullColumn) Values() []uint64 {
-	out_vals := make([]uint64, a.length)
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Uint64Traits.CastFromBytes(valbuf)
 }
 
 func (a *Uint64Column) ToFullColumn() (*Uint64FullColumn, error) {
@@ -1566,7 +1535,6 @@ func (a *Float32Column) Value(i int) (float32, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Float32Column) Values() ([]float32, []bool) {
-	out_vals := make([]float32, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -1586,7 +1554,7 @@ func (a *Float32Column) Values() ([]float32, []bool) {
 
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Float32Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -1650,12 +1618,9 @@ func (a *Float32FullColumn) Value(i int) float32 {
 
 // Values extracts slices of all values in the column
 func (a *Float32FullColumn) Values() []float32 {
-	out_vals := make([]float32, a.length)
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Float32Traits.CastFromBytes(valbuf)
 }
 
 func (a *Float32Column) ToFullColumn() (*Float32FullColumn, error) {
@@ -1751,7 +1716,6 @@ func (a *Float64Column) Value(i int) (float64, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *Float64Column) Values() ([]float64, []bool) {
-	out_vals := make([]float64, a.length)
 	off := a.offset
 
 	var out_null []bool
@@ -1771,7 +1735,7 @@ func (a *Float64Column) Values() ([]float64, []bool) {
 
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, off)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+	out_vals := arrow.Float64Traits.CastFromBytes(valbuf)
 
 	return out_vals, out_null
 }
@@ -1835,12 +1799,9 @@ func (a *Float64FullColumn) Value(i int) float64 {
 
 // Values extracts slices of all values in the column
 func (a *Float64FullColumn) Values() []float64 {
-	out_vals := make([]float64, a.length)
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, a.offset)
-	binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-	return out_vals
+	return arrow.Float64Traits.CastFromBytes(valbuf)
 }
 
 func (a *Float64Column) ToFullColumn() (*Float64FullColumn, error) {
@@ -2162,8 +2123,7 @@ func (a *StringColumn) Values() ([]string, []bool) {
 	// read offsets
 	offsetbuf := make([]byte, 4*(length+1))
 	a.src.Data.ReadAt(offsetbuf, off)
-	offsets := make([]int32, length+1)
-	binary.Read(bytes.NewBuffer(offsetbuf), binary.LittleEndian, &offsets)
+	offsets := arrow.Int32Traits.CastFromBytes(offsetbuf)
 
 	// move offset forward
 	off += getoutputlength(a.src.Ctable.Version(), 4*(length+1))

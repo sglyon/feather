@@ -84,7 +84,6 @@ func (a *{{.Name}}Column) Value(i int) ({{ .name }}, bool) {
 // nil. An entry of false in the second slice indicates that the corresponding
 // value is null
 func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
-    out_vals := make([]{{.name}}, a.length)
     off := a.offset
 
     var out_null []bool
@@ -104,7 +103,7 @@ func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
 
     valbuf := make([]byte, a.length*{{.size}})
     a.src.Data.ReadAt(valbuf, off)
-    binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
+    out_vals := arrow.{{.Name}}Traits.CastFromBytes(valbuf)
 
     return out_vals, out_null
 }
@@ -179,12 +178,9 @@ func (a *{{.Name}}FullColumn) Value(i int) {{ .name }} {
 
 // Values extracts slices of all values in the column
 func (a *{{.Name}}FullColumn) Values() []{{.name}} {
-    out_vals := make([]{{.name}}, a.length)
     valbuf := make([]byte, a.length*{{.size}})
     a.src.Data.ReadAt(valbuf, a.offset)
-    binary.Read(bytes.NewBuffer(valbuf), binary.LittleEndian, &out_vals)
-
-    return out_vals
+    return arrow.{{.Name}}Traits.CastFromBytes(valbuf)
 }
 
 {{end}}
@@ -287,8 +283,7 @@ func (a *StringColumn) Values() ([]string, []bool) {
     // read offsets
     offsetbuf := make([]byte, 4*(length+1))
     a.src.Data.ReadAt(offsetbuf, off)
-    offsets := make([]int32, length+1)
-    binary.Read(bytes.NewBuffer(offsetbuf), binary.LittleEndian, &offsets)
+    offsets := arrow.Int32Traits.CastFromBytes(offsetbuf)
 
     // move offset forward
     off += getoutputlength(a.src.Ctable.Version(), 4*(length+1))
