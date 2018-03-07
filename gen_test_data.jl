@@ -17,7 +17,7 @@ function main()
         x_Float64=map(Float64, 10:19),
         x_String=[*(('A':'Z')[x]...) for x in [((i-1)*2 + 1):2i for i in 1:10]]
     )
-    Feather.write(_path("test2.feather"))
+    Feather.write(_path("test2.feather"), test2)
 
     nms = names(test2)
     for col in 1:length(nms)
@@ -36,7 +36,7 @@ function main()
     x_string[9] = missing
 
     test2missing = DataFrame(
-        x_Bool=Union{Bool,Missing}[1, 1, missing, 1, 1, 1, 0, 0, missing, 1],
+        # x_Bool=Union{Bool,Missing}[1, 1, missing, 1, 1, 1, 0, 0, missing, 1],
         x_Int8=convert(Array{Union{Int8,Missing}}, x.+0),
         x_Int32=convert(Array{Union{Int32,Missing}}, x.+1),
         x_Int16=convert(Array{Union{Int16,Missing}}, x.+2),
@@ -49,15 +49,17 @@ function main()
         x_Float64=convert(Array{Union{Float64,Missing}}, x.+9),
         x_String=x_string
     )
-    Feather.write(_path("test2missing.feather"))
+    Feather.write(_path("test2missing.feather"), test2missing)
 
     cats = DataFrame(
         cat_Float32=CategoricalArray(Union{Float32,Missing}[1, 2, 3, 1, 1, 2, 2, 3, 3, missing]),
         cat_String=CategoricalArray(["a", "b", "c", "a", "a", "b", "b", "c", "c", "b"])
     )
-    Feather.write(_path("cats.feather"))
+    Feather.write(_path("cats.feather"), cats)
 
-    mybytes = read(_path("cats.feather"))
+    mybytes = open(_path("cats.feather"), "w") do f
+        read(f)
+    end
     open(_path("missing_fea1_start.feather"), "w") do f
         write(f, mybytes[5:end])
     end
