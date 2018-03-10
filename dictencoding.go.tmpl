@@ -18,17 +18,23 @@ func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Value(i int) ({{ $pool.name }}, 
     var out {{ $pool.name }}
     if isValid {
         out, _ = a.pool.Value(int(ref))
+        return out, true
     }
     return out, false
 }
 
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Values() ([]{{ $pool.name }}, []bool) {
     refs, valids := a.refs.Values()
-    // TODO: pick up here
     out := make([]{{$pool.name}}, len(refs))
     poolvals, _ := a.pool.Values()
-    for ix := 0; ix < len(refs); ix++ {
-        if valids[ix] {
+    if valids != nil {
+        for ix := 0; ix < len(refs); ix++ {
+            if valids[ix] {
+                out[ix] = poolvals[refs[ix]]
+            }
+        }
+    } else {
+        for ix := 0; ix < len(refs); ix++ {
             out[ix] = poolvals[refs[ix]]
         }
     }

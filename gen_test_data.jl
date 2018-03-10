@@ -52,10 +52,16 @@ function main()
     Feather.write(_path("test2missing.feather"), test2missing)
 
     cats = DataFrame(
-        cat_Float32=CategoricalArray(Union{Float32,Missing}[1, 2, 3, 1, 1, 2, 2, 3, 3, missing]),
+        cat_Float32=CategoricalArray(Float32[1, 2, 3, 1, 1, 2, 2, 3, 3, 2]),
         cat_String=CategoricalArray(["a", "b", "c", "a", "a", "b", "b", "c", "c", "b"])
     )
     Feather.write(_path("cats.feather"), cats)
+
+    cats_missing = DataFrame(
+        cat_Float32=CategoricalArray(Union{Float32,Missing}[1, 2, 3, 1, 1, 2, 2, 3, 3, missing]),
+        cat_String=CategoricalArray(Union{String,Missing}["a", "b", "c", "a", "a", "b", "b", missing, "c", "b"])
+    )
+    Feather.write(_path("cats_missing.feather"), cats_missing)
 
     mybytes = open(_path("cats.feather"), "w") do f
         read(f)

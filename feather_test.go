@@ -228,7 +228,6 @@ func TestTest2MissingFeather(t *testing.T) {
 
 	want0 := []bool{true, true, false, true, true, true, false, false, false, true}
 	col0 := src.Columns[0].(*BoolColumn)
-	println(col0.nNull)
 	full0, errfull0 := col0.ToFullColumn()
 	vals0, valids0 := col0.Values()
 
@@ -465,5 +464,89 @@ func TestNoFile(t *testing.T) {
 	_, err := Read("foobar")
 	if err == nil {
 		t.Fail()
+	}
+}
+
+func TestDictEncoding(t *testing.T) {
+	fn := "test_data/cats.feather"
+	src, err := Read(fn)
+	if err != nil {
+		t.Error("failed to read cats.feather")
+	}
+	if src.NumCols() != 2 {
+		t.Error("Expected 2 columns in cats.feather")
+	}
+
+	if src.NumRows() != 10 {
+		t.Error("Expected 10 columns in cats.feather")
+	}
+
+	want0 := []float32{1, 2, 3, 1, 1, 2, 2, 3, 3, 2}
+	col0 := src.Columns[0].(*Float32Int32DictColumn)
+	vals0, valids0 := col0.Values()
+	want1 := []string{"a", "b", "c", "a", "a", "b", "b", "c", "c", "b"}
+	col1 := src.Columns[1].(*StringInt32DictColumn)
+	vals1, valids1 := col1.Values()
+
+	if valids0 != nil {
+		t.Error("Expected no nulls in column0, but valids0 is not null")
+	}
+
+	if valids1 != nil {
+		t.Error("Expected no nulls in column0, but valids0 is not null")
+	}
+
+	for ix := 0; ix < src.NumRows(); ix++ {
+		val0, _ := col0.Value(ix)
+		if want0[ix] != val0 || vals0[ix] != want0[ix] {
+			t.Errorf("In col 0, row %v expected %v  but found %v and %v", ix, want0[ix], val0, vals0[ix])
+		}
+		val1, _ := col1.Value(ix)
+		if want1[ix] != val1 || vals1[ix] != want1[ix] {
+			t.Errorf("In col 1, row %v expected %v  but found %v and %v", ix, want1[ix], val1, vals1[ix])
+		}
+	}
+}
+
+func TestDictEncodingMissing(t *testing.T) {
+	fn := "test_data/cats_missing.feather"
+	src, err := Read(fn)
+	if err != nil {
+		t.Error("failed to read cats.feather")
+	}
+	if src.NumCols() != 2 {
+		t.Error("Expected 2 columns in cats.feather")
+	}
+
+	if src.NumRows() != 10 {
+		t.Error("Expected 10 columns in cats.feather")
+	}
+
+	want0 := []float32{1, 2, 3, 1, 1, 2, 2, 3, 3, 0}
+	actualValids0 := []bool{true, true, true, true, true, true, true, true, true, false}
+	col0 := src.Columns[0].(*Float32Int32DictColumn)
+	vals0, valids0 := col0.Values()
+
+	want1 := []string{"a", "b", "c", "a", "a", "b", "b", "", "c", "b"}
+	actualValids1 := []bool{true, true, true, true, true, true, true, false, true, true}
+	col1 := src.Columns[1].(*StringInt32DictColumn)
+	vals1, valids1 := col1.Values()
+
+	for ix := 0; ix < src.NumRows(); ix++ {
+		val0, valid0 := col0.Value(ix)
+		if want0[ix] != val0 || vals0[ix] != want0[ix] {
+			t.Errorf("In col 0, row %v expected %v  but found %v and %v", ix, want0[ix], val0, vals0[ix])
+		}
+		if valids0[ix] != actualValids0[ix] || actualValids0[ix] != valid0 {
+			t.Errorf("In col 0, row %v expected valid to be %v, but found %v", ix, actualValids0[ix], valid0)
+		}
+
+		val1, valid1 := col1.Value(ix)
+		if want1[ix] != val1 || vals1[ix] != want1[ix] {
+			t.Errorf("In col 1, row %v expected %v  but found %v and %v", ix, want1[ix], val1, vals1[ix])
+		}
+		if valids1[ix] != actualValids1[ix] || actualValids1[ix] != valid1 {
+			t.Errorf("In col 1, row %v expected valid to be %v, but found %v", ix, actualValids1[ix], valid1)
+		}
 	}
 }

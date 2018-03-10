@@ -19,17 +19,23 @@ func (a *Int8Int8DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Int8DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -53,17 +59,23 @@ func (a *Int8Int16DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Int16DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -87,17 +99,23 @@ func (a *Int8Int32DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Int32DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -121,17 +139,23 @@ func (a *Int8Int64DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Int64DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -155,17 +179,23 @@ func (a *Int8Uint8DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Uint8DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -189,17 +219,23 @@ func (a *Int8Uint16DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Uint16DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -223,17 +259,23 @@ func (a *Int8Uint32DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Uint32DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -257,17 +299,23 @@ func (a *Int8Uint64DictColumn) Value(i int) (int8, bool) {
 	var out int8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int8Uint64DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -291,17 +339,23 @@ func (a *Int16Int8DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Int8DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -325,17 +379,23 @@ func (a *Int16Int16DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Int16DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -359,17 +419,23 @@ func (a *Int16Int32DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Int32DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -393,17 +459,23 @@ func (a *Int16Int64DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Int64DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -427,17 +499,23 @@ func (a *Int16Uint8DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Uint8DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -461,17 +539,23 @@ func (a *Int16Uint16DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Uint16DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -495,17 +579,23 @@ func (a *Int16Uint32DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Uint32DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -529,17 +619,23 @@ func (a *Int16Uint64DictColumn) Value(i int) (int16, bool) {
 	var out int16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int16Uint64DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -563,17 +659,23 @@ func (a *Int32Int8DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Int8DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -597,17 +699,23 @@ func (a *Int32Int16DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Int16DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -631,17 +739,23 @@ func (a *Int32Int32DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Int32DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -665,17 +779,23 @@ func (a *Int32Int64DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Int64DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -699,17 +819,23 @@ func (a *Int32Uint8DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Uint8DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -733,17 +859,23 @@ func (a *Int32Uint16DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Uint16DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -767,17 +899,23 @@ func (a *Int32Uint32DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Uint32DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -801,17 +939,23 @@ func (a *Int32Uint64DictColumn) Value(i int) (int32, bool) {
 	var out int32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int32Uint64DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -835,17 +979,23 @@ func (a *Int64Int8DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Int8DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -869,17 +1019,23 @@ func (a *Int64Int16DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Int16DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -903,17 +1059,23 @@ func (a *Int64Int32DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Int32DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -937,17 +1099,23 @@ func (a *Int64Int64DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Int64DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -971,17 +1139,23 @@ func (a *Int64Uint8DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Uint8DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1005,17 +1179,23 @@ func (a *Int64Uint16DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Uint16DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1039,17 +1219,23 @@ func (a *Int64Uint32DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Uint32DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1073,17 +1259,23 @@ func (a *Int64Uint64DictColumn) Value(i int) (int64, bool) {
 	var out int64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Int64Uint64DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]int64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1107,17 +1299,23 @@ func (a *Uint8Int8DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Int8DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1141,17 +1339,23 @@ func (a *Uint8Int16DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Int16DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1175,17 +1379,23 @@ func (a *Uint8Int32DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Int32DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1209,17 +1419,23 @@ func (a *Uint8Int64DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Int64DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1243,17 +1459,23 @@ func (a *Uint8Uint8DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Uint8DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1277,17 +1499,23 @@ func (a *Uint8Uint16DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Uint16DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1311,17 +1539,23 @@ func (a *Uint8Uint32DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Uint32DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1345,17 +1579,23 @@ func (a *Uint8Uint64DictColumn) Value(i int) (uint8, bool) {
 	var out uint8
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint8Uint64DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint8, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1379,17 +1619,23 @@ func (a *Uint16Int8DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Int8DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1413,17 +1659,23 @@ func (a *Uint16Int16DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Int16DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1447,17 +1699,23 @@ func (a *Uint16Int32DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Int32DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1481,17 +1739,23 @@ func (a *Uint16Int64DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Int64DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1515,17 +1779,23 @@ func (a *Uint16Uint8DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Uint8DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1549,17 +1819,23 @@ func (a *Uint16Uint16DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Uint16DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1583,17 +1859,23 @@ func (a *Uint16Uint32DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Uint32DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1617,17 +1899,23 @@ func (a *Uint16Uint64DictColumn) Value(i int) (uint16, bool) {
 	var out uint16
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint16Uint64DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint16, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1651,17 +1939,23 @@ func (a *Uint32Int8DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Int8DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1685,17 +1979,23 @@ func (a *Uint32Int16DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Int16DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1719,17 +2019,23 @@ func (a *Uint32Int32DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Int32DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1753,17 +2059,23 @@ func (a *Uint32Int64DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Int64DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1787,17 +2099,23 @@ func (a *Uint32Uint8DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Uint8DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1821,17 +2139,23 @@ func (a *Uint32Uint16DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Uint16DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1855,17 +2179,23 @@ func (a *Uint32Uint32DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Uint32DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1889,17 +2219,23 @@ func (a *Uint32Uint64DictColumn) Value(i int) (uint32, bool) {
 	var out uint32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint32Uint64DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1923,17 +2259,23 @@ func (a *Uint64Int8DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Int8DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1957,17 +2299,23 @@ func (a *Uint64Int16DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Int16DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -1991,17 +2339,23 @@ func (a *Uint64Int32DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Int32DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2025,17 +2379,23 @@ func (a *Uint64Int64DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Int64DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2059,17 +2419,23 @@ func (a *Uint64Uint8DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Uint8DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2093,17 +2459,23 @@ func (a *Uint64Uint16DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Uint16DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2127,17 +2499,23 @@ func (a *Uint64Uint32DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Uint32DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2161,17 +2539,23 @@ func (a *Uint64Uint64DictColumn) Value(i int) (uint64, bool) {
 	var out uint64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Uint64Uint64DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]uint64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2195,17 +2579,23 @@ func (a *Float32Int8DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Int8DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2229,17 +2619,23 @@ func (a *Float32Int16DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Int16DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2263,17 +2659,23 @@ func (a *Float32Int32DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Int32DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2297,17 +2699,23 @@ func (a *Float32Int64DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Int64DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2331,17 +2739,23 @@ func (a *Float32Uint8DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Uint8DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2365,17 +2779,23 @@ func (a *Float32Uint16DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Uint16DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2399,17 +2819,23 @@ func (a *Float32Uint32DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Uint32DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2433,17 +2859,23 @@ func (a *Float32Uint64DictColumn) Value(i int) (float32, bool) {
 	var out float32
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float32Uint64DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float32, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2467,17 +2899,23 @@ func (a *Float64Int8DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Int8DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2501,17 +2939,23 @@ func (a *Float64Int16DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Int16DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2535,17 +2979,23 @@ func (a *Float64Int32DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Int32DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2569,17 +3019,23 @@ func (a *Float64Int64DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Int64DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2603,17 +3059,23 @@ func (a *Float64Uint8DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Uint8DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2637,17 +3099,23 @@ func (a *Float64Uint16DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Uint16DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2671,17 +3139,23 @@ func (a *Float64Uint32DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Uint32DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2705,17 +3179,23 @@ func (a *Float64Uint64DictColumn) Value(i int) (float64, bool) {
 	var out float64
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *Float64Uint64DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]float64, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2739,17 +3219,23 @@ func (a *StringInt8DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringInt8DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2773,17 +3259,23 @@ func (a *StringInt16DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringInt16DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2807,17 +3299,23 @@ func (a *StringInt32DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringInt32DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2841,17 +3339,23 @@ func (a *StringInt64DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringInt64DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2875,17 +3379,23 @@ func (a *StringUint8DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringUint8DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2909,17 +3419,23 @@ func (a *StringUint16DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringUint16DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2943,17 +3459,23 @@ func (a *StringUint32DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringUint32DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -2977,17 +3499,23 @@ func (a *StringUint64DictColumn) Value(i int) (string, bool) {
 	var out string
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *StringUint64DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]string, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3011,17 +3539,23 @@ func (a *BoolInt8DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolInt8DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3045,17 +3579,23 @@ func (a *BoolInt16DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolInt16DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3079,17 +3619,23 @@ func (a *BoolInt32DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolInt32DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3113,17 +3659,23 @@ func (a *BoolInt64DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolInt64DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3147,17 +3699,23 @@ func (a *BoolUint8DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolUint8DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3181,17 +3739,23 @@ func (a *BoolUint16DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolUint16DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3215,17 +3779,23 @@ func (a *BoolUint32DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolUint32DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
@@ -3249,17 +3819,23 @@ func (a *BoolUint64DictColumn) Value(i int) (bool, bool) {
 	var out bool
 	if isValid {
 		out, _ = a.pool.Value(int(ref))
+		return out, true
 	}
 	return out, false
 }
 
 func (a *BoolUint64DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
-	// TODO: pick up here
 	out := make([]bool, len(refs))
 	poolvals, _ := a.pool.Values()
-	for ix := 0; ix < len(refs); ix++ {
-		if valids[ix] {
+	if valids != nil {
+		for ix := 0; ix < len(refs); ix++ {
+			if valids[ix] {
+				out[ix] = poolvals[refs[ix]]
+			}
+		}
+	} else {
+		for ix := 0; ix < len(refs); ix++ {
 			out[ix] = poolvals[refs[ix]]
 		}
 	}
