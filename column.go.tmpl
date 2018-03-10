@@ -10,7 +10,6 @@ type FeatherColumn interface {
     Length() int
     Type() int8
     TypeString() string
-    Meta() FeatherColumn
     NullN() int64
 }
 
@@ -29,7 +28,6 @@ func bitIsSet(buf []byte, i int) bool {
 type {{.Name}}Column struct {
     name           string
     values         *fbs.PrimitiveArray
-    meta           FeatherColumn
     nNull          int64
     src            *Source
     typE           int8
@@ -38,7 +36,7 @@ type {{.Name}}Column struct {
 
 
 // New{{.Name}}Column constructs a new {{.Name}}Column given the Source and column description from flatbuffers metadata
-func New{{.Name}}Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) * {{.Name}}Column {
+func New{{.Name}}Column(src *Source, vals *fbs.PrimitiveArray, name string) * {{.Name}}Column {
     // TODO: typecheck for col.Values().TypE to match {{.Name}}
     if vals.TypE() != fbs.{{.fbsType}} {
         panic("Expected type {{.name}}, but found something else...")
@@ -46,7 +44,6 @@ func New{{.Name}}Column(src *Source, vals *fbs.PrimitiveArray, name string, meta
     return &{{.Name}}Column{
         name: name,
         values: vals,
-        meta: meta,
         nNull: vals.NullCount(),
         src: src,
         typE: vals.TypE(),
@@ -122,9 +119,6 @@ func (a *{{.Name}}Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *{{.Name}}Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *{{.Name}}Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *{{.Name}}Column) NullN() int64 { return a.nNull }
 
@@ -138,7 +132,6 @@ func (a *{{.Name}}Column) NullN() int64 { return a.nNull }
 type {{.Name}}FullColumn struct {
     name           string
     values         *fbs.PrimitiveArray
-    meta           FeatherColumn
     src            *Source
     typE          int8
     offset, length int64
@@ -146,7 +139,7 @@ type {{.Name}}FullColumn struct {
 
 
 // New{{.Name}}FullColumn constructs a new {{.Name}}FullColumn given the Source and column description from flatbuffers metadata
-func New{{.Name}}FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) * {{.Name}}FullColumn {
+func New{{.Name}}FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) * {{.Name}}FullColumn {
     // TODO: typecheck for col.Values().TypE to match {{.Name}}
     if vals.TypE() != fbs.{{.fbsType}} {
         panic("Expected type {{.name}}, but found something else...")
@@ -154,7 +147,6 @@ func New{{.Name}}FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, 
     return &{{.Name}}FullColumn{
         name: name,
         values: vals,
-        meta: meta,
         src: src,
         typE: vals.TypE(),
         offset: vals.Offset(),
@@ -192,7 +184,6 @@ func (a *{{.Name}}Column) ToFullColumn() (*{{.Name}}FullColumn, error) {
     out := &{{.Name}}FullColumn{
         name: a.name,
         values: a.values,
-        meta: a.meta,
         src: a.src,
         typE: a.typE,
         offset: a.offset,
@@ -216,9 +207,6 @@ func (a *{{.Name}}FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
 func (a *{{.Name}}FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
-
-// Meta returns the Metadata for this column
-func (a *{{.Name}}FullColumn) Meta() FeatherColumn { return a.meta }
 
 // NullN returns how many null values there are in the column
 func (a *{{.Name}}FullColumn) NullN() int64 { return 0 }
@@ -418,11 +406,11 @@ func (a *BoolFullColumn) Values() []bool {
 }
 
 //
-func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) FeatherColumn {
+func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) FeatherColumn {
     switch vals.TypE(){
     {{range .In}}
     case fbs.{{.fbsType}}:
-        return New{{.Name}}Column(src, vals, name, meta)
+        return New{{.Name}}Column(src, vals, name)
     {{end}}
     case fbs.TypECATEGORY:
         fmt.Println("Have TypECATEGORY")
@@ -446,11 +434,25 @@ func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
     vals := col.Values(nil)
     name := string(col.Name())
-    meta := metadataForCol(src, col)
-    return NewColumnArray(src, vals, name, meta)
+    column := NewColumnArray(src, vals, name)
+    switch col.MetadataType() {
+	case fbs.TypeMetadataNONE:
+		return column // correct behavior
+	case fbs.TypeMetadataCategoryMetadata:
+		pool := NewCategoryMetadata(src, col)
+        return DictColumn(column, pool)
+	case fbs.TypeMetadataTimestampMetadata:
+		fmt.Println("Have TypeMetadataTimestampMetadata")
+	case fbs.TypeMetadataDateMetadata:
+		fmt.Println("Have TypeMetadataDateMetadata")
+	case fbs.TypeMetadataTimeMetadata:
+		fmt.Println("Have TypeMetadataTimeMetadata")
+	}
+    // meta := metadataForCol(src, col)
+    return column
 }
 
-func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) (FeatherColumn, error) {
+func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) (FeatherColumn, error) {
     if vals.NullCount() > 0 {
         err := errors.New("This column has null values, use `NewColumnArray instead`")
         return nil, err
@@ -458,7 +460,7 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta
     switch vals.TypE(){
     {{range .In}}
     case fbs.{{.fbsType}}:
-        return New{{.Name}}FullColumn(src, vals, name, meta), nil
+        return New{{.Name}}FullColumn(src, vals, name), nil
     {{end}}
     case fbs.TypECATEGORY:
         fmt.Println("Have TypECATEGORY")
@@ -482,8 +484,8 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta
 func NewFullColumnFbsColumn(src *Source, col *fbs.Column) (FeatherColumn, error) {
     vals := col.Values(nil)
     name := string(col.Name())
-    meta := metadataForCol(src, col)
-    return NewFullColumnArray(src, vals, name, meta)
+    // meta := metadataForCol(src, col)
+    return NewFullColumnArray(src, vals, name)
 }
 
 func metadataForCol(src *Source, col *fbs.Column) FeatherColumn {
@@ -517,7 +519,7 @@ func NewCategoryMetadata(src *Source, col *fbs.Column) FeatherColumn {
 	var catmeta fbs.CategoryMetadata
 	catmeta.Init(_catMeta.Bytes, _catMeta.Pos)
 	lvls := catmeta.Levels(nil)
-    return NewColumnArray(src, lvls, "", nil)
+    return NewColumnArray(src, lvls, "")
 }
 
 // TODO: need to do category, timestamp, date, time, binary

@@ -4,53 +4,24 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"text/tabwriter"
 
 	"github.com/sglyon/feather"
 )
 
-func printRowCol(src *feather.Source, row, col int) string {
-	val := src.Columns[col]
-	switch v := val.(type) {
-	case *feather.BoolColumn:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Int64Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Uint64Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Float64Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Int32Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Uint32Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Float32Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Int16Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Uint16Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Int8Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.Uint8Column:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	case *feather.StringColumn:
-		val, _ := v.Value(row)
-		return fmt.Sprintf("%v\t", val)
-	default:
-		return fmt.Sprintf("???\t")
+func invoke(any interface{}, name string, args ...interface{}) []reflect.Value {
+	inputs := make([]reflect.Value, len(args))
+	for i := range args {
+		inputs[i] = reflect.ValueOf(args[i])
 	}
+	return reflect.ValueOf(any).MethodByName(name).Call(inputs)
+}
+
+func printRowCol(src *feather.Source, row, col int) string {
+	column := src.Columns[col]
+	outputs := invoke(column, "Value", row)
+	return fmt.Sprintf("%v\t", outputs[0])
 }
 
 func describe(src *feather.Source) {

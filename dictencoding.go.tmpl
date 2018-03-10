@@ -1,0 +1,78 @@
+package feather
+
+{{$input := .In}}
+
+{{range $pool := .In}}
+{{range $ref := $input}}
+{{if $ref.canBeRef}}
+
+type {{$pool.Name}}{{$ref.Name}}DictColumn struct {
+    refs *{{$ref.Name}}Column
+    pool *{{$pool.Name}}Column
+}
+
+
+
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Value(i int) ({{ $pool.name }}, bool) {
+    ref, isValid := a.refs.Value(i)
+    var out {{ $pool.name }}
+    if isValid {
+        out, _ = a.pool.Value(int(ref))
+    }
+    return out, false
+}
+
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Values() ([]{{ $pool.name }}, []bool) {
+    refs, valids := a.refs.Values()
+    // TODO: pick up here
+    out := make([]{{$pool.name}}, len(refs))
+    poolvals, _ := a.pool.Values()
+    for ix := 0; ix < len(refs); ix++ {
+        if valids[ix] {
+            out[ix] = poolvals[refs[ix]]
+        }
+    }
+    return out, valids
+}
+
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Name() string { return a.refs.name }
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Length() int { return int(a.refs.length) }
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Type() int8 { return a.pool.typE }
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Meta() FeatherColumn { return nil }
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) NullN() int64 { return a.refs.nNull }
+
+{{end}}
+{{end}}
+{{end}}
+
+func DictColumn(refs, pool FeatherColumn) FeatherColumn {
+    switch refs.Type() {
+    {{range $ref := $input}}
+    {{if $ref.canBeRef}}
+    case fbs.{{$ref.fbsType}}:
+        switch pool.Type() {
+        {{range $pool := $input}}
+        case fbs.{{$pool.fbsType}}:
+        return &{{$pool.Name}}{{$ref.Name}}DictColumn{refs.(*{{$ref.Name}}Column), pool.(*{{$pool.Name}}Column)}{{end}}
+        }
+    {{end}}
+    {{end}}
+    case fbs.TypECATEGORY:
+        fmt.Println("Have TypECATEGORY")
+        return nil
+    case fbs.TypETIMESTAMP:
+        fmt.Println("Have TypETIMESTAMP")
+        return nil
+    case fbs.TypEDATE:
+        fmt.Println("Have TypEDATE")
+        return nil
+    case fbs.TypETIME:
+        fmt.Println("Have TypETIME")
+        return nil
+    default:
+        fmt.Println("No ideas what I just saw...")
+        return nil
+    }
+    return nil
+}

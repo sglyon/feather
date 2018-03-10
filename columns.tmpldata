@@ -1,72 +1,84 @@
 [
     {
         "fbsType": "TypEINT8",
+        "canBeRef": true,
         "Name": "Int8",
         "name": "int8",
         "size": "1"
     },
     {
         "fbsType": "TypEINT16",
+        "canBeRef": true,
         "Name": "Int16",
         "name": "int16",
         "size": "2"
     },
     {
         "fbsType": "TypEINT32",
+        "canBeRef": true,
         "Name": "Int32",
         "name": "int32",
         "size": "4"
     },
     {
         "fbsType": "TypEINT64",
+        "canBeRef": true,
         "Name": "Int64",
         "name": "int64",
         "size": "8"
     },
     {
         "fbsType": "TypEUINT8",
+        "canBeRef": true,
         "Name": "Uint8",
         "name": "uint8",
         "size": "1"
     },
     {
         "fbsType": "TypEUINT16",
+        "canBeRef": true,
         "Name": "Uint16",
         "name": "uint16",
         "size": "2"
     },
     {
         "fbsType": "TypEUINT32",
+        "canBeRef": true,
         "Name": "Uint32",
         "name": "uint32",
         "size": "4"
     },
     {
         "fbsType": "TypEUINT64",
+        "canBeRef": true,
         "Name": "Uint64",
         "name": "uint64",
         "size": "8"
     },
     {
         "fbsType": "TypEFLOAT",
+        "canBeRef": false,
         "Name": "Float32",
         "name": "float32",
         "size": "4"
     },
     {
         "fbsType": "TypEDOUBLE",
+        "canBeRef": false,
         "Name": "Float64",
         "name": "float64",
         "size": "8"
     },
     {
         "fbsType": "TypEUTF8",
+        "canBeRef": false,
         "Name": "String",
         "name": "string",
         "size": "DOES NOT MATTER"
     },
     {
         "fbsType": "TypEBOOL",
+        "canBeRef": false,
         "Name": "Bool",
         "name": "bool",
         "size": "DOES NOT MATTER"

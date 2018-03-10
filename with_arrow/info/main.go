@@ -4,64 +4,24 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"text/tabwriter"
 
-	"github.com/influxdata/arrow/array"
 	arrow_feather "github.com/sglyon/feather/with_arrow"
 )
 
+func invoke(any interface{}, name string, args ...interface{}) []reflect.Value {
+	inputs := make([]reflect.Value, len(args))
+	for i := range args {
+		inputs[i] = reflect.ValueOf(args[i])
+	}
+	return reflect.ValueOf(any).MethodByName(name).Call(inputs)
+}
+
 func printRowCol(src *arrow_feather.Source, row, col int) string {
 	val := src.Columns[src.ColNames[col]]
-	switch v := val.(type) {
-	case *array.Boolean:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int64:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint64:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Float64:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int32:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint32:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Float32:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int16:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint16:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int8:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint8:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Timestamp:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int64Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint64Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Float64Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int32Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint32Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Float32Dict:
-		return fmt.Sprintf("%v\t", v.Refs[row])
-	case *array.Int16Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint16Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Int8Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.Uint8Dict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	case *array.TimestampDict:
-		return fmt.Sprintf("%v\t", v.Value(row))
-	default:
-		return fmt.Sprintf("???\t")
-	}
+	outputs := invoke(val, "Value", row)
+	return fmt.Sprintf("%v\t", outputs[0])
 }
 
 func describe(src *arrow_feather.Source) {

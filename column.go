@@ -19,7 +19,6 @@ type FeatherColumn interface {
 	Length() int
 	Type() int8
 	TypeString() string
-	Meta() FeatherColumn
 	NullN() int64
 }
 
@@ -36,7 +35,6 @@ func bitIsSet(buf []byte, i int) bool {
 type Int8Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -44,7 +42,7 @@ type Int8Column struct {
 }
 
 // NewInt8Column constructs a new Int8Column given the Source and column description from flatbuffers metadata
-func NewInt8Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int8Column {
+func NewInt8Column(src *Source, vals *fbs.PrimitiveArray, name string) *Int8Column {
 	// TODO: typecheck for col.Values().TypE to match Int8
 	if vals.TypE() != fbs.TypEINT8 {
 		panic("Expected type int8, but found something else...")
@@ -52,7 +50,6 @@ func NewInt8Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Feat
 	return &Int8Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -123,9 +120,6 @@ func (a *Int8Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int8Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int8Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int8Column) NullN() int64 { return a.nNull }
 
@@ -133,14 +127,13 @@ func (a *Int8Column) NullN() int64 { return a.nNull }
 type Int8FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewInt8FullColumn constructs a new Int8FullColumn given the Source and column description from flatbuffers metadata
-func NewInt8FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int8FullColumn {
+func NewInt8FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Int8FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Int8
 	if vals.TypE() != fbs.TypEINT8 {
 		panic("Expected type int8, but found something else...")
@@ -148,7 +141,6 @@ func NewInt8FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta 
 	return &Int8FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -182,7 +174,6 @@ func (a *Int8Column) ToFullColumn() (*Int8FullColumn, error) {
 	out := &Int8FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -207,9 +198,6 @@ func (a *Int8FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int8FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int8FullColumn) NullN() int64 { return 0 }
 
@@ -217,7 +205,6 @@ func (a *Int8FullColumn) NullN() int64 { return 0 }
 type Int16Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -225,7 +212,7 @@ type Int16Column struct {
 }
 
 // NewInt16Column constructs a new Int16Column given the Source and column description from flatbuffers metadata
-func NewInt16Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int16Column {
+func NewInt16Column(src *Source, vals *fbs.PrimitiveArray, name string) *Int16Column {
 	// TODO: typecheck for col.Values().TypE to match Int16
 	if vals.TypE() != fbs.TypEINT16 {
 		panic("Expected type int16, but found something else...")
@@ -233,7 +220,6 @@ func NewInt16Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 	return &Int16Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -304,9 +290,6 @@ func (a *Int16Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int16Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int16Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int16Column) NullN() int64 { return a.nNull }
 
@@ -314,14 +297,13 @@ func (a *Int16Column) NullN() int64 { return a.nNull }
 type Int16FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewInt16FullColumn constructs a new Int16FullColumn given the Source and column description from flatbuffers metadata
-func NewInt16FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int16FullColumn {
+func NewInt16FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Int16FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Int16
 	if vals.TypE() != fbs.TypEINT16 {
 		panic("Expected type int16, but found something else...")
@@ -329,7 +311,6 @@ func NewInt16FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta
 	return &Int16FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -363,7 +344,6 @@ func (a *Int16Column) ToFullColumn() (*Int16FullColumn, error) {
 	out := &Int16FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -388,9 +368,6 @@ func (a *Int16FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int16FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int16FullColumn) NullN() int64 { return 0 }
 
@@ -398,7 +375,6 @@ func (a *Int16FullColumn) NullN() int64 { return 0 }
 type Int32Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -406,7 +382,7 @@ type Int32Column struct {
 }
 
 // NewInt32Column constructs a new Int32Column given the Source and column description from flatbuffers metadata
-func NewInt32Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int32Column {
+func NewInt32Column(src *Source, vals *fbs.PrimitiveArray, name string) *Int32Column {
 	// TODO: typecheck for col.Values().TypE to match Int32
 	if vals.TypE() != fbs.TypEINT32 {
 		panic("Expected type int32, but found something else...")
@@ -414,7 +390,6 @@ func NewInt32Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 	return &Int32Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -485,9 +460,6 @@ func (a *Int32Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int32Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int32Column) NullN() int64 { return a.nNull }
 
@@ -495,14 +467,13 @@ func (a *Int32Column) NullN() int64 { return a.nNull }
 type Int32FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewInt32FullColumn constructs a new Int32FullColumn given the Source and column description from flatbuffers metadata
-func NewInt32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int32FullColumn {
+func NewInt32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Int32FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Int32
 	if vals.TypE() != fbs.TypEINT32 {
 		panic("Expected type int32, but found something else...")
@@ -510,7 +481,6 @@ func NewInt32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta
 	return &Int32FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -544,7 +514,6 @@ func (a *Int32Column) ToFullColumn() (*Int32FullColumn, error) {
 	out := &Int32FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -569,9 +538,6 @@ func (a *Int32FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int32FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int32FullColumn) NullN() int64 { return 0 }
 
@@ -579,7 +545,6 @@ func (a *Int32FullColumn) NullN() int64 { return 0 }
 type Int64Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -587,7 +552,7 @@ type Int64Column struct {
 }
 
 // NewInt64Column constructs a new Int64Column given the Source and column description from flatbuffers metadata
-func NewInt64Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int64Column {
+func NewInt64Column(src *Source, vals *fbs.PrimitiveArray, name string) *Int64Column {
 	// TODO: typecheck for col.Values().TypE to match Int64
 	if vals.TypE() != fbs.TypEINT64 {
 		panic("Expected type int64, but found something else...")
@@ -595,7 +560,6 @@ func NewInt64Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 	return &Int64Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -666,9 +630,6 @@ func (a *Int64Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int64Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int64Column) NullN() int64 { return a.nNull }
 
@@ -676,14 +637,13 @@ func (a *Int64Column) NullN() int64 { return a.nNull }
 type Int64FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewInt64FullColumn constructs a new Int64FullColumn given the Source and column description from flatbuffers metadata
-func NewInt64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Int64FullColumn {
+func NewInt64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Int64FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Int64
 	if vals.TypE() != fbs.TypEINT64 {
 		panic("Expected type int64, but found something else...")
@@ -691,7 +651,6 @@ func NewInt64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta
 	return &Int64FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -725,7 +684,6 @@ func (a *Int64Column) ToFullColumn() (*Int64FullColumn, error) {
 	out := &Int64FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -750,9 +708,6 @@ func (a *Int64FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Int64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Int64FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Int64FullColumn) NullN() int64 { return 0 }
 
@@ -760,7 +715,6 @@ func (a *Int64FullColumn) NullN() int64 { return 0 }
 type Uint8Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -768,7 +722,7 @@ type Uint8Column struct {
 }
 
 // NewUint8Column constructs a new Uint8Column given the Source and column description from flatbuffers metadata
-func NewUint8Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint8Column {
+func NewUint8Column(src *Source, vals *fbs.PrimitiveArray, name string) *Uint8Column {
 	// TODO: typecheck for col.Values().TypE to match Uint8
 	if vals.TypE() != fbs.TypEUINT8 {
 		panic("Expected type uint8, but found something else...")
@@ -776,7 +730,6 @@ func NewUint8Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 	return &Uint8Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -847,9 +800,6 @@ func (a *Uint8Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint8Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint8Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint8Column) NullN() int64 { return a.nNull }
 
@@ -857,14 +807,13 @@ func (a *Uint8Column) NullN() int64 { return a.nNull }
 type Uint8FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewUint8FullColumn constructs a new Uint8FullColumn given the Source and column description from flatbuffers metadata
-func NewUint8FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint8FullColumn {
+func NewUint8FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Uint8FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Uint8
 	if vals.TypE() != fbs.TypEUINT8 {
 		panic("Expected type uint8, but found something else...")
@@ -872,7 +821,6 @@ func NewUint8FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta
 	return &Uint8FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -906,7 +854,6 @@ func (a *Uint8Column) ToFullColumn() (*Uint8FullColumn, error) {
 	out := &Uint8FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -931,9 +878,6 @@ func (a *Uint8FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint8FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint8FullColumn) NullN() int64 { return 0 }
 
@@ -941,7 +885,6 @@ func (a *Uint8FullColumn) NullN() int64 { return 0 }
 type Uint16Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -949,7 +892,7 @@ type Uint16Column struct {
 }
 
 // NewUint16Column constructs a new Uint16Column given the Source and column description from flatbuffers metadata
-func NewUint16Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint16Column {
+func NewUint16Column(src *Source, vals *fbs.PrimitiveArray, name string) *Uint16Column {
 	// TODO: typecheck for col.Values().TypE to match Uint16
 	if vals.TypE() != fbs.TypEUINT16 {
 		panic("Expected type uint16, but found something else...")
@@ -957,7 +900,6 @@ func NewUint16Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fe
 	return &Uint16Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1028,9 +970,6 @@ func (a *Uint16Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint16Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint16Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint16Column) NullN() int64 { return a.nNull }
 
@@ -1038,14 +977,13 @@ func (a *Uint16Column) NullN() int64 { return a.nNull }
 type Uint16FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewUint16FullColumn constructs a new Uint16FullColumn given the Source and column description from flatbuffers metadata
-func NewUint16FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint16FullColumn {
+func NewUint16FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Uint16FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Uint16
 	if vals.TypE() != fbs.TypEUINT16 {
 		panic("Expected type uint16, but found something else...")
@@ -1053,7 +991,6 @@ func NewUint16FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, met
 	return &Uint16FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -1087,7 +1024,6 @@ func (a *Uint16Column) ToFullColumn() (*Uint16FullColumn, error) {
 	out := &Uint16FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -1112,9 +1048,6 @@ func (a *Uint16FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint16FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint16FullColumn) NullN() int64 { return 0 }
 
@@ -1122,7 +1055,6 @@ func (a *Uint16FullColumn) NullN() int64 { return 0 }
 type Uint32Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -1130,7 +1062,7 @@ type Uint32Column struct {
 }
 
 // NewUint32Column constructs a new Uint32Column given the Source and column description from flatbuffers metadata
-func NewUint32Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint32Column {
+func NewUint32Column(src *Source, vals *fbs.PrimitiveArray, name string) *Uint32Column {
 	// TODO: typecheck for col.Values().TypE to match Uint32
 	if vals.TypE() != fbs.TypEUINT32 {
 		panic("Expected type uint32, but found something else...")
@@ -1138,7 +1070,6 @@ func NewUint32Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fe
 	return &Uint32Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1209,9 +1140,6 @@ func (a *Uint32Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint32Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint32Column) NullN() int64 { return a.nNull }
 
@@ -1219,14 +1147,13 @@ func (a *Uint32Column) NullN() int64 { return a.nNull }
 type Uint32FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewUint32FullColumn constructs a new Uint32FullColumn given the Source and column description from flatbuffers metadata
-func NewUint32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint32FullColumn {
+func NewUint32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Uint32FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Uint32
 	if vals.TypE() != fbs.TypEUINT32 {
 		panic("Expected type uint32, but found something else...")
@@ -1234,7 +1161,6 @@ func NewUint32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, met
 	return &Uint32FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -1268,7 +1194,6 @@ func (a *Uint32Column) ToFullColumn() (*Uint32FullColumn, error) {
 	out := &Uint32FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -1293,9 +1218,6 @@ func (a *Uint32FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint32FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint32FullColumn) NullN() int64 { return 0 }
 
@@ -1303,7 +1225,6 @@ func (a *Uint32FullColumn) NullN() int64 { return 0 }
 type Uint64Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -1311,7 +1232,7 @@ type Uint64Column struct {
 }
 
 // NewUint64Column constructs a new Uint64Column given the Source and column description from flatbuffers metadata
-func NewUint64Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint64Column {
+func NewUint64Column(src *Source, vals *fbs.PrimitiveArray, name string) *Uint64Column {
 	// TODO: typecheck for col.Values().TypE to match Uint64
 	if vals.TypE() != fbs.TypEUINT64 {
 		panic("Expected type uint64, but found something else...")
@@ -1319,7 +1240,6 @@ func NewUint64Column(src *Source, vals *fbs.PrimitiveArray, name string, meta Fe
 	return &Uint64Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1390,9 +1310,6 @@ func (a *Uint64Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint64Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint64Column) NullN() int64 { return a.nNull }
 
@@ -1400,14 +1317,13 @@ func (a *Uint64Column) NullN() int64 { return a.nNull }
 type Uint64FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewUint64FullColumn constructs a new Uint64FullColumn given the Source and column description from flatbuffers metadata
-func NewUint64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Uint64FullColumn {
+func NewUint64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Uint64FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Uint64
 	if vals.TypE() != fbs.TypEUINT64 {
 		panic("Expected type uint64, but found something else...")
@@ -1415,7 +1331,6 @@ func NewUint64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, met
 	return &Uint64FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -1449,7 +1364,6 @@ func (a *Uint64Column) ToFullColumn() (*Uint64FullColumn, error) {
 	out := &Uint64FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -1474,9 +1388,6 @@ func (a *Uint64FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Uint64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Uint64FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Uint64FullColumn) NullN() int64 { return 0 }
 
@@ -1484,7 +1395,6 @@ func (a *Uint64FullColumn) NullN() int64 { return 0 }
 type Float32Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -1492,7 +1402,7 @@ type Float32Column struct {
 }
 
 // NewFloat32Column constructs a new Float32Column given the Source and column description from flatbuffers metadata
-func NewFloat32Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Float32Column {
+func NewFloat32Column(src *Source, vals *fbs.PrimitiveArray, name string) *Float32Column {
 	// TODO: typecheck for col.Values().TypE to match Float32
 	if vals.TypE() != fbs.TypEFLOAT {
 		panic("Expected type float32, but found something else...")
@@ -1500,7 +1410,6 @@ func NewFloat32Column(src *Source, vals *fbs.PrimitiveArray, name string, meta F
 	return &Float32Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1571,9 +1480,6 @@ func (a *Float32Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Float32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Float32Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Float32Column) NullN() int64 { return a.nNull }
 
@@ -1581,14 +1487,13 @@ func (a *Float32Column) NullN() int64 { return a.nNull }
 type Float32FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewFloat32FullColumn constructs a new Float32FullColumn given the Source and column description from flatbuffers metadata
-func NewFloat32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Float32FullColumn {
+func NewFloat32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Float32FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Float32
 	if vals.TypE() != fbs.TypEFLOAT {
 		panic("Expected type float32, but found something else...")
@@ -1596,7 +1501,6 @@ func NewFloat32FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, me
 	return &Float32FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -1630,7 +1534,6 @@ func (a *Float32Column) ToFullColumn() (*Float32FullColumn, error) {
 	out := &Float32FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -1655,9 +1558,6 @@ func (a *Float32FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Float32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Float32FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Float32FullColumn) NullN() int64 { return 0 }
 
@@ -1665,7 +1565,6 @@ func (a *Float32FullColumn) NullN() int64 { return 0 }
 type Float64Column struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -1673,7 +1572,7 @@ type Float64Column struct {
 }
 
 // NewFloat64Column constructs a new Float64Column given the Source and column description from flatbuffers metadata
-func NewFloat64Column(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Float64Column {
+func NewFloat64Column(src *Source, vals *fbs.PrimitiveArray, name string) *Float64Column {
 	// TODO: typecheck for col.Values().TypE to match Float64
 	if vals.TypE() != fbs.TypEDOUBLE {
 		panic("Expected type float64, but found something else...")
@@ -1681,7 +1580,6 @@ func NewFloat64Column(src *Source, vals *fbs.PrimitiveArray, name string, meta F
 	return &Float64Column{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1752,9 +1650,6 @@ func (a *Float64Column) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Float64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Float64Column) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Float64Column) NullN() int64 { return a.nNull }
 
@@ -1762,14 +1657,13 @@ func (a *Float64Column) NullN() int64 { return a.nNull }
 type Float64FullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewFloat64FullColumn constructs a new Float64FullColumn given the Source and column description from flatbuffers metadata
-func NewFloat64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *Float64FullColumn {
+func NewFloat64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Float64FullColumn {
 	// TODO: typecheck for col.Values().TypE to match Float64
 	if vals.TypE() != fbs.TypEDOUBLE {
 		panic("Expected type float64, but found something else...")
@@ -1777,7 +1671,6 @@ func NewFloat64FullColumn(src *Source, vals *fbs.PrimitiveArray, name string, me
 	return &Float64FullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -1811,7 +1704,6 @@ func (a *Float64Column) ToFullColumn() (*Float64FullColumn, error) {
 	out := &Float64FullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -1836,9 +1728,6 @@ func (a *Float64FullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *Float64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *Float64FullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *Float64FullColumn) NullN() int64 { return 0 }
 
@@ -1846,7 +1735,6 @@ func (a *Float64FullColumn) NullN() int64 { return 0 }
 type StringColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -1854,7 +1742,7 @@ type StringColumn struct {
 }
 
 // NewStringColumn constructs a new StringColumn given the Source and column description from flatbuffers metadata
-func NewStringColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *StringColumn {
+func NewStringColumn(src *Source, vals *fbs.PrimitiveArray, name string) *StringColumn {
 	// TODO: typecheck for col.Values().TypE to match String
 	if vals.TypE() != fbs.TypEUTF8 {
 		panic("Expected type string, but found something else...")
@@ -1862,7 +1750,6 @@ func NewStringColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta Fe
 	return &StringColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1883,9 +1770,6 @@ func (a *StringColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *StringColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *StringColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *StringColumn) NullN() int64 { return a.nNull }
 
@@ -1893,14 +1777,13 @@ func (a *StringColumn) NullN() int64 { return a.nNull }
 type StringFullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewStringFullColumn constructs a new StringFullColumn given the Source and column description from flatbuffers metadata
-func NewStringFullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *StringFullColumn {
+func NewStringFullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *StringFullColumn {
 	// TODO: typecheck for col.Values().TypE to match String
 	if vals.TypE() != fbs.TypEUTF8 {
 		panic("Expected type string, but found something else...")
@@ -1908,7 +1791,6 @@ func NewStringFullColumn(src *Source, vals *fbs.PrimitiveArray, name string, met
 	return &StringFullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -1923,7 +1805,6 @@ func (a *StringColumn) ToFullColumn() (*StringFullColumn, error) {
 	out := &StringFullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -1948,9 +1829,6 @@ func (a *StringFullColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *StringFullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *StringFullColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *StringFullColumn) NullN() int64 { return 0 }
 
@@ -1958,7 +1836,6 @@ func (a *StringFullColumn) NullN() int64 { return 0 }
 type BoolColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	nNull          int64
 	src            *Source
 	typE           int8
@@ -1966,7 +1843,7 @@ type BoolColumn struct {
 }
 
 // NewBoolColumn constructs a new BoolColumn given the Source and column description from flatbuffers metadata
-func NewBoolColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *BoolColumn {
+func NewBoolColumn(src *Source, vals *fbs.PrimitiveArray, name string) *BoolColumn {
 	// TODO: typecheck for col.Values().TypE to match Bool
 	if vals.TypE() != fbs.TypEBOOL {
 		panic("Expected type bool, but found something else...")
@@ -1974,7 +1851,6 @@ func NewBoolColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta Feat
 	return &BoolColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		nNull:  vals.NullCount(),
 		src:    src,
 		typE:   vals.TypE(),
@@ -1995,9 +1871,6 @@ func (a *BoolColumn) Type() int8 { return a.typE }
 // TypeString returns a string describing the data typed contained by the column
 func (a *BoolColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
 
-// Meta returns the Metadata for this column
-func (a *BoolColumn) Meta() FeatherColumn { return a.meta }
-
 // NullN returns how many null values there are in the column
 func (a *BoolColumn) NullN() int64 { return a.nNull }
 
@@ -2005,14 +1878,13 @@ func (a *BoolColumn) NullN() int64 { return a.nNull }
 type BoolFullColumn struct {
 	name           string
 	values         *fbs.PrimitiveArray
-	meta           FeatherColumn
 	src            *Source
 	typE           int8
 	offset, length int64
 }
 
 // NewBoolFullColumn constructs a new BoolFullColumn given the Source and column description from flatbuffers metadata
-func NewBoolFullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) *BoolFullColumn {
+func NewBoolFullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *BoolFullColumn {
 	// TODO: typecheck for col.Values().TypE to match Bool
 	if vals.TypE() != fbs.TypEBOOL {
 		panic("Expected type bool, but found something else...")
@@ -2020,7 +1892,6 @@ func NewBoolFullColumn(src *Source, vals *fbs.PrimitiveArray, name string, meta 
 	return &BoolFullColumn{
 		name:   name,
 		values: vals,
-		meta:   meta,
 		src:    src,
 		typE:   vals.TypE(),
 		offset: vals.Offset(),
@@ -2035,7 +1906,6 @@ func (a *BoolColumn) ToFullColumn() (*BoolFullColumn, error) {
 	out := &BoolFullColumn{
 		name:   a.name,
 		values: a.values,
-		meta:   a.meta,
 		src:    a.src,
 		typE:   a.typE,
 		offset: a.offset,
@@ -2059,9 +1929,6 @@ func (a *BoolFullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
 func (a *BoolFullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
-
-// Meta returns the Metadata for this column
-func (a *BoolFullColumn) Meta() FeatherColumn { return a.meta }
 
 // NullN returns how many null values there are in the column
 func (a *BoolFullColumn) NullN() int64 { return 0 }
@@ -2258,44 +2125,44 @@ func (a *BoolFullColumn) Values() []bool {
 }
 
 //
-func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) FeatherColumn {
+func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) FeatherColumn {
 	switch vals.TypE() {
 
 	case fbs.TypEINT8:
-		return NewInt8Column(src, vals, name, meta)
+		return NewInt8Column(src, vals, name)
 
 	case fbs.TypEINT16:
-		return NewInt16Column(src, vals, name, meta)
+		return NewInt16Column(src, vals, name)
 
 	case fbs.TypEINT32:
-		return NewInt32Column(src, vals, name, meta)
+		return NewInt32Column(src, vals, name)
 
 	case fbs.TypEINT64:
-		return NewInt64Column(src, vals, name, meta)
+		return NewInt64Column(src, vals, name)
 
 	case fbs.TypEUINT8:
-		return NewUint8Column(src, vals, name, meta)
+		return NewUint8Column(src, vals, name)
 
 	case fbs.TypEUINT16:
-		return NewUint16Column(src, vals, name, meta)
+		return NewUint16Column(src, vals, name)
 
 	case fbs.TypEUINT32:
-		return NewUint32Column(src, vals, name, meta)
+		return NewUint32Column(src, vals, name)
 
 	case fbs.TypEUINT64:
-		return NewUint64Column(src, vals, name, meta)
+		return NewUint64Column(src, vals, name)
 
 	case fbs.TypEFLOAT:
-		return NewFloat32Column(src, vals, name, meta)
+		return NewFloat32Column(src, vals, name)
 
 	case fbs.TypEDOUBLE:
-		return NewFloat64Column(src, vals, name, meta)
+		return NewFloat64Column(src, vals, name)
 
 	case fbs.TypEUTF8:
-		return NewStringColumn(src, vals, name, meta)
+		return NewStringColumn(src, vals, name)
 
 	case fbs.TypEBOOL:
-		return NewBoolColumn(src, vals, name, meta)
+		return NewBoolColumn(src, vals, name)
 
 	case fbs.TypECATEGORY:
 		fmt.Println("Have TypECATEGORY")
@@ -2319,11 +2186,25 @@ func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta Fea
 func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
 	vals := col.Values(nil)
 	name := string(col.Name())
-	meta := metadataForCol(src, col)
-	return NewColumnArray(src, vals, name, meta)
+	column := NewColumnArray(src, vals, name)
+	switch col.MetadataType() {
+	case fbs.TypeMetadataNONE:
+		return column // correct behavior
+	case fbs.TypeMetadataCategoryMetadata:
+		pool := NewCategoryMetadata(src, col)
+		return DictColumn(column, pool)
+	case fbs.TypeMetadataTimestampMetadata:
+		fmt.Println("Have TypeMetadataTimestampMetadata")
+	case fbs.TypeMetadataDateMetadata:
+		fmt.Println("Have TypeMetadataDateMetadata")
+	case fbs.TypeMetadataTimeMetadata:
+		fmt.Println("Have TypeMetadataTimeMetadata")
+	}
+	// meta := metadataForCol(src, col)
+	return column
 }
 
-func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta FeatherColumn) (FeatherColumn, error) {
+func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) (FeatherColumn, error) {
 	if vals.NullCount() > 0 {
 		err := errors.New("This column has null values, use `NewColumnArray instead`")
 		return nil, err
@@ -2331,40 +2212,40 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta
 	switch vals.TypE() {
 
 	case fbs.TypEINT8:
-		return NewInt8FullColumn(src, vals, name, meta), nil
+		return NewInt8FullColumn(src, vals, name), nil
 
 	case fbs.TypEINT16:
-		return NewInt16FullColumn(src, vals, name, meta), nil
+		return NewInt16FullColumn(src, vals, name), nil
 
 	case fbs.TypEINT32:
-		return NewInt32FullColumn(src, vals, name, meta), nil
+		return NewInt32FullColumn(src, vals, name), nil
 
 	case fbs.TypEINT64:
-		return NewInt64FullColumn(src, vals, name, meta), nil
+		return NewInt64FullColumn(src, vals, name), nil
 
 	case fbs.TypEUINT8:
-		return NewUint8FullColumn(src, vals, name, meta), nil
+		return NewUint8FullColumn(src, vals, name), nil
 
 	case fbs.TypEUINT16:
-		return NewUint16FullColumn(src, vals, name, meta), nil
+		return NewUint16FullColumn(src, vals, name), nil
 
 	case fbs.TypEUINT32:
-		return NewUint32FullColumn(src, vals, name, meta), nil
+		return NewUint32FullColumn(src, vals, name), nil
 
 	case fbs.TypEUINT64:
-		return NewUint64FullColumn(src, vals, name, meta), nil
+		return NewUint64FullColumn(src, vals, name), nil
 
 	case fbs.TypEFLOAT:
-		return NewFloat32FullColumn(src, vals, name, meta), nil
+		return NewFloat32FullColumn(src, vals, name), nil
 
 	case fbs.TypEDOUBLE:
-		return NewFloat64FullColumn(src, vals, name, meta), nil
+		return NewFloat64FullColumn(src, vals, name), nil
 
 	case fbs.TypEUTF8:
-		return NewStringFullColumn(src, vals, name, meta), nil
+		return NewStringFullColumn(src, vals, name), nil
 
 	case fbs.TypEBOOL:
-		return NewBoolFullColumn(src, vals, name, meta), nil
+		return NewBoolFullColumn(src, vals, name), nil
 
 	case fbs.TypECATEGORY:
 		fmt.Println("Have TypECATEGORY")
@@ -2388,8 +2269,8 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string, meta
 func NewFullColumnFbsColumn(src *Source, col *fbs.Column) (FeatherColumn, error) {
 	vals := col.Values(nil)
 	name := string(col.Name())
-	meta := metadataForCol(src, col)
-	return NewFullColumnArray(src, vals, name, meta)
+	// meta := metadataForCol(src, col)
+	return NewFullColumnArray(src, vals, name)
 }
 
 func metadataForCol(src *Source, col *fbs.Column) FeatherColumn {
@@ -2422,7 +2303,7 @@ func NewCategoryMetadata(src *Source, col *fbs.Column) FeatherColumn {
 	var catmeta fbs.CategoryMetadata
 	catmeta.Init(_catMeta.Bytes, _catMeta.Pos)
 	lvls := catmeta.Levels(nil)
-	return NewColumnArray(src, lvls, "", nil)
+	return NewColumnArray(src, lvls, "")
 }
 
 // TODO: need to do category, timestamp, date, time, binary
