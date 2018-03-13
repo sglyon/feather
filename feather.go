@@ -14,6 +14,13 @@ import (
 
 const alignment = 8
 
+func max(a, b int64) int64 {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 func paddedlength(x int64) int64 {
 	return ((x + alignment - 1) / alignment) * alignment
 }
@@ -114,5 +121,5 @@ func Read(fn string) (*Source, error) {
 }
 
 func (src *Source) getoutputlength(x int64) int64 {
-	return getoutputlength(src.Ctable.Version(), x)
+	return getoutputlength(src.Ctable.Version(), max(x, 1))
 }
