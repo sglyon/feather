@@ -1,6 +1,7 @@
 package feather
 
 import (
+	"math"
 	"testing"
 )
 
@@ -547,6 +548,28 @@ func TestDictEncodingMissing(t *testing.T) {
 		}
 		if valids1[ix] != actualValids1[ix] || actualValids1[ix] != valid1 {
 			t.Errorf("In col 1, row %v expected valid to be %v, but found %v", ix, actualValids1[ix], valid1)
+		}
+	}
+}
+
+func TestNullIssue1(t *testing.T) {
+	src, err := Read("test_data/testnull_issue1.feather")
+	if err != nil {
+		t.Error("Couldn't open testnull_issue1.feather")
+	}
+	col1 := src.Columns[1].(*Float64Column)
+	vals1, valid1 := col1.Values()
+
+	valsWant := []float64{181.9, 1600, math.NaN(), 192.5}
+	validWant := []bool{true, true, false, true}
+
+	for ix := range vals1 {
+		if vals1[ix] != valsWant[ix] {
+			t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+		}
+
+		if valid1[ix] != validWant[ix] {
+			t.Errorf("Expected %v and found %v on row %v", validWant[ix], valid1[ix], ix)
 		}
 	}
 }
