@@ -122,6 +122,7 @@ func printSubset(src *feather.Source) {
 func describeFile(fn string) {
 	fmt.Printf("\n")
 	src, err := feather.Read(fn)
+	fmt.Printf("This is the type of src.Column[0]: %T\n", src.Columns[0])
 	if err != nil {
 		fmt.Printf("Unable to handle file %s  -- error was '%v'\n", fn, err)
 		return
