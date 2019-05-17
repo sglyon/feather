@@ -552,58 +552,40 @@ func TestDictEncodingMissing(t *testing.T) {
 	}
 }
 
-func TestNullIssue1(t *testing.T) {
-	src, err := Read("test_data/testnull_issue1.feather")
+func testFirstRowsEqualf64(t *testing.T, fn string, colnum int, valsWant []float64, validWant []bool) {
+	src, err := Read(fn)
 	if err != nil {
-		t.Error("Couldn't open testnull_issue1.feather")
+		t.Errorf("Couldn't open %v\n", fn)
 	}
-	col1 := src.Columns[1].(*Float64Column)
-	vals1, valid1 := col1.Values()
+	col := src.Columns[colnum].(*Float64Column)
+	vals, valid := col.Values()
 
-	valsWant := []float64{181.9, 1600, math.NaN(), 192.5}
-	validWant := []bool{true, true, false, true}
-
-	for ix := range vals1 {
-		if math.IsNaN(vals1[ix]) {
+	for ix := range valsWant {
+		if math.IsNaN(vals[ix]) {
 			if !math.IsNaN(valsWant[ix]) {
-				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals[ix], ix)
 			}
 		} else {
-			if vals1[ix] != valsWant[ix] {
-				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+			if vals[ix] != valsWant[ix] {
+				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals[ix], ix)
 			}
 		}
 
-		if valid1[ix] != validWant[ix] {
-			t.Errorf("Expected %v and found %v on row %v", validWant[ix], valid1[ix], ix)
+		if valid[ix] != validWant[ix] {
+			t.Errorf("Expected %v and found %v on row %v", validWant[ix], valid[ix], ix)
 		}
 	}
 }
 
-func TestNullIssue2(t *testing.T) {
-	src, err := Read("test_data/ic.feather")
-	if err != nil {
-		t.Error("Couldn't open ic.feather")
-	}
-	col1 := src.Columns[1].(*Float64Column)
-	vals1, valid1 := col1.Values()
+func TestNullIssue1(t *testing.T) {
+	valsWant := []float64{181.9, 1600, math.NaN(), 192.5}
+	validWant := []bool{true, true, false, true}
+	testFirstRowsEqualf64(t, "test_data/testnull_issue1.feather", 1, valsWant, validWant)
+}
 
+func TestNullIssue2(t *testing.T) {
 	valsWant := []float64{math.NaN(), 206631600.0}
 	validWant := []bool{false, true}
-
-	for ix := range valsWant {
-		if math.IsNaN(vals1[ix]) {
-			if !math.IsNaN(valsWant[ix]) {
-				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
-			}
-		} else {
-			if vals1[ix] != valsWant[ix] {
-				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
-			}
-		}
-
-		if valid1[ix] != validWant[ix] {
-			t.Errorf("Expected %v and found %v on row %v", validWant[ix], valid1[ix], ix)
-		}
-	}
+	testFirstRowsEqualf64(t, "test_data/ic.feather", 1, valsWant, validWant)
+	testFirstRowsEqualf64(t, "test_data/ic_round8.feather", 1, valsWant, validWant)
 }

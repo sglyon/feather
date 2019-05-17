@@ -66,7 +66,7 @@ func (a *{{.Name}}Column) Value(i int) ({{ .name }}, bool) {
         if (thebyte & BitMask[i%8]) == 0 {  // check if bit is set in byte
             return 0, false
         }
-        off += a.src.getoutputlength(a.length / 8)
+        off += a.src.getBitmaskLength()
     }
     var out {{ .name }}
     buf := make([]byte, {{.size}})
@@ -85,16 +85,16 @@ func (a *{{.Name}}Column) Value(i int) ({{ .name }}, bool) {
 func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
     off := a.offset
 
-    var outNull []bool
+    var outValid []bool
     var bitmaskLength int64
 
     if a.nNull > 0 {
-        outNull = make([]bool, a.length)
-        bitmaskLength = a.src.getoutputlength(a.length / 8)
+        outValid = make([]bool, a.length)
+        bitmaskLength = a.src.getBitmaskLength()
         thebyte := make([]byte, bitmaskLength)
         a.src.Data.ReadAt(thebyte, off)
         for i := 0; i < int(a.length); i++ {
-            outNull[i] = bitIsSet(thebyte, i)
+            outValid[i] = bitIsSet(thebyte, i)
         }
     }
 
@@ -104,7 +104,7 @@ func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
     a.src.Data.ReadAt(valbuf, off)
     outVals := arrow.{{.Name}}Traits.CastFromBytes(valbuf)
 
-    return outVals, outNull
+    return outVals, outValid
 }
 
 {{end}}
@@ -231,7 +231,7 @@ func (a *StringColumn) Value(i int) (string, bool) {
         if (bitbyte & BitMask[i%8]) == 0 {  // check if bit is set in byte
             return "", false
         }
-        off += a.src.getoutputlength(a.length/8)
+        off += a.src.getBitmaskLength()
     }
 
     // need to compute offset start and end
@@ -258,16 +258,16 @@ func (a *StringColumn) Values() ([]string, []bool) {
     length := a.length
 
     outVals := make([]string, length)
-    var outNull []bool
+    var outValid []bool
     var bitmaskLength int64
 
     if a.nNull > 0 {
-        outNull = make([]bool, length)
-        bitmaskLength = a.src.getoutputlength(length / 8)
+        outValid = make([]bool, length)
+        bitmaskLength = a.src.getBitmaskLength()
         bitmask := make([]byte, bitmaskLength)
         a.src.Data.ReadAt(bitmask, off)
         for i := 0; i < int(length); i++ {
-            outNull[i] = bitIsSet(bitmask, i)
+            outValid[i] = bitIsSet(bitmask, i)
         }
     }
     off += bitmaskLength
@@ -286,7 +286,7 @@ func (a *StringColumn) Values() ([]string, []bool) {
         a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
         outVals[i] = string(bytes)
     }
-    return outVals, outNull
+    return outVals, outValid
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -345,7 +345,7 @@ func (a *BoolColumn) Value(i int) (bool, bool) {
         if (bitbyte & BitMask[i%8]) == 0 {  // check if bit is set in byte
             return false, false
         }
-        off += a.src.getoutputlength(a.length/8)
+        off += a.src.getBitmaskLength()
     }
 
     bitbyte = a.src.Data.At(int(off) + int(uint(i)/8))  // read single byte
@@ -361,27 +361,27 @@ func (a *BoolColumn) Values() ([]bool, []bool) {
     length := a.length
 
     outVals := make([]bool, length)
-    var outNull []bool
+    var outValid []bool
     var bitmaskLength int64
 
     if a.nNull > 0 {
-        outNull = make([]bool, length)
-        bitmaskLength = a.src.getoutputlength(length / 8)
+        outValid = make([]bool, length)
+        bitmaskLength = a.src.getBitmaskLength()
         bitmask := make([]byte, bitmaskLength)
         a.src.Data.ReadAt(bitmask, off)
         for i := 0; i < int(length); i++ {
-            outNull[i] = bitIsSet(bitmask, i)
+            outValid[i] = bitIsSet(bitmask, i)
         }
     }
     off += bitmaskLength
 
-    bitmask := make([]byte, a.src.getoutputlength(length / 8))
+    bitmask := make([]byte, a.src.getBitmaskLength())
     a.src.Data.ReadAt(bitmask, off)
     for i := 0; i < int(length); i++ {
         outVals[i] = bitIsSet(bitmask, i)
     }
 
-    return outVals, outNull
+    return outVals, outValid
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -400,7 +400,7 @@ func (a *BoolFullColumn) Values() []bool {
     off := a.offset
     length := a.length
     outVals := make([]bool, length)
-    bitmask := make([]byte, a.src.getoutputlength(length / 8))
+    bitmask := make([]byte, a.src.getBitmaskLength())
     a.src.Data.ReadAt(bitmask, off)
     for i := 0; i < int(length); i++ {
         outVals[i] = bitIsSet(bitmask, i)

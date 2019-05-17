@@ -126,3 +126,12 @@ func Read(fn string) (*Source, error) {
 func (src *Source) getoutputlength(x int64) int64 {
 	return getoutputlength(src.Ctable.Version(), max(x, 1))
 }
+
+func (src *Source) getBitmaskLength() int64 {
+	nrow := int64(src.NumRows())
+	out := nrow / 8
+	if nrow%8 != 0 {
+		out++
+	}
+	return src.getoutputlength(out)
+}

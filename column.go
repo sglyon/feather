@@ -70,7 +70,7 @@ func (a *Int8Column) Value(i int) (int8, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out int8
 	buf := make([]byte, 1)
@@ -88,16 +88,16 @@ func (a *Int8Column) Value(i int) (int8, bool) {
 func (a *Int8Column) Values() ([]int8, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -107,7 +107,7 @@ func (a *Int8Column) Values() ([]int8, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Int8Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -242,7 +242,7 @@ func (a *Int16Column) Value(i int) (int16, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out int16
 	buf := make([]byte, 2)
@@ -260,16 +260,16 @@ func (a *Int16Column) Value(i int) (int16, bool) {
 func (a *Int16Column) Values() ([]int16, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -279,7 +279,7 @@ func (a *Int16Column) Values() ([]int16, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Int16Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -414,7 +414,7 @@ func (a *Int32Column) Value(i int) (int32, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out int32
 	buf := make([]byte, 4)
@@ -432,16 +432,16 @@ func (a *Int32Column) Value(i int) (int32, bool) {
 func (a *Int32Column) Values() ([]int32, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -451,7 +451,7 @@ func (a *Int32Column) Values() ([]int32, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Int32Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -586,7 +586,7 @@ func (a *Int64Column) Value(i int) (int64, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out int64
 	buf := make([]byte, 8)
@@ -604,16 +604,16 @@ func (a *Int64Column) Value(i int) (int64, bool) {
 func (a *Int64Column) Values() ([]int64, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -623,7 +623,7 @@ func (a *Int64Column) Values() ([]int64, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Int64Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -758,7 +758,7 @@ func (a *Uint8Column) Value(i int) (uint8, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out uint8
 	buf := make([]byte, 1)
@@ -776,16 +776,16 @@ func (a *Uint8Column) Value(i int) (uint8, bool) {
 func (a *Uint8Column) Values() ([]uint8, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -795,7 +795,7 @@ func (a *Uint8Column) Values() ([]uint8, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Uint8Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -930,7 +930,7 @@ func (a *Uint16Column) Value(i int) (uint16, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out uint16
 	buf := make([]byte, 2)
@@ -948,16 +948,16 @@ func (a *Uint16Column) Value(i int) (uint16, bool) {
 func (a *Uint16Column) Values() ([]uint16, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -967,7 +967,7 @@ func (a *Uint16Column) Values() ([]uint16, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Uint16Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -1102,7 +1102,7 @@ func (a *Uint32Column) Value(i int) (uint32, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out uint32
 	buf := make([]byte, 4)
@@ -1120,16 +1120,16 @@ func (a *Uint32Column) Value(i int) (uint32, bool) {
 func (a *Uint32Column) Values() ([]uint32, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1139,7 +1139,7 @@ func (a *Uint32Column) Values() ([]uint32, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Uint32Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -1274,7 +1274,7 @@ func (a *Uint64Column) Value(i int) (uint64, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out uint64
 	buf := make([]byte, 8)
@@ -1292,16 +1292,16 @@ func (a *Uint64Column) Value(i int) (uint64, bool) {
 func (a *Uint64Column) Values() ([]uint64, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1311,7 +1311,7 @@ func (a *Uint64Column) Values() ([]uint64, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Uint64Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -1446,7 +1446,7 @@ func (a *Float32Column) Value(i int) (float32, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out float32
 	buf := make([]byte, 4)
@@ -1464,16 +1464,16 @@ func (a *Float32Column) Value(i int) (float32, bool) {
 func (a *Float32Column) Values() ([]float32, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1483,7 +1483,7 @@ func (a *Float32Column) Values() ([]float32, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Float32Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -1618,7 +1618,7 @@ func (a *Float64Column) Value(i int) (float64, bool) {
 		if (thebyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return 0, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 	var out float64
 	buf := make([]byte, 8)
@@ -1636,16 +1636,16 @@ func (a *Float64Column) Value(i int) (float64, bool) {
 func (a *Float64Column) Values() ([]float64, []bool) {
 	off := a.offset
 
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, a.length)
-		bitmaskLength = a.src.getoutputlength(a.length / 8)
+		outValid = make([]bool, a.length)
+		bitmaskLength = a.src.getBitmaskLength()
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			outNull[i] = bitIsSet(thebyte, i)
+			outValid[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1655,7 +1655,7 @@ func (a *Float64Column) Values() ([]float64, []bool) {
 	a.src.Data.ReadAt(valbuf, off)
 	outVals := arrow.Float64Traits.CastFromBytes(valbuf)
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Name returns the name of the column
@@ -1972,7 +1972,7 @@ func (a *StringColumn) Value(i int) (string, bool) {
 		if (bitbyte & BitMask[i%8]) == 0 {                  // check if bit is set in byte
 			return "", false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 
 	// need to compute offset start and end
@@ -1999,16 +1999,16 @@ func (a *StringColumn) Values() ([]string, []bool) {
 	length := a.length
 
 	outVals := make([]string, length)
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, length)
-		bitmaskLength = a.src.getoutputlength(length / 8)
+		outValid = make([]bool, length)
+		bitmaskLength = a.src.getBitmaskLength()
 		bitmask := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(bitmask, off)
 		for i := 0; i < int(length); i++ {
-			outNull[i] = bitIsSet(bitmask, i)
+			outValid[i] = bitIsSet(bitmask, i)
 		}
 	}
 	off += bitmaskLength
@@ -2027,7 +2027,7 @@ func (a *StringColumn) Values() ([]string, []bool) {
 		a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
 		outVals[i] = string(bytes)
 	}
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -2086,7 +2086,7 @@ func (a *BoolColumn) Value(i int) (bool, bool) {
 		if (bitbyte & BitMask[i%8]) == 0 {                 // check if bit is set in byte
 			return false, false
 		}
-		off += a.src.getoutputlength(a.length / 8)
+		off += a.src.getBitmaskLength()
 	}
 
 	bitbyte = a.src.Data.At(int(off) + int(uint(i)/8)) // read single byte
@@ -2102,27 +2102,27 @@ func (a *BoolColumn) Values() ([]bool, []bool) {
 	length := a.length
 
 	outVals := make([]bool, length)
-	var outNull []bool
+	var outValid []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		outNull = make([]bool, length)
-		bitmaskLength = a.src.getoutputlength(length / 8)
+		outValid = make([]bool, length)
+		bitmaskLength = a.src.getBitmaskLength()
 		bitmask := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(bitmask, off)
 		for i := 0; i < int(length); i++ {
-			outNull[i] = bitIsSet(bitmask, i)
+			outValid[i] = bitIsSet(bitmask, i)
 		}
 	}
 	off += bitmaskLength
 
-	bitmask := make([]byte, a.src.getoutputlength(length/8))
+	bitmask := make([]byte, a.src.getBitmaskLength())
 	a.src.Data.ReadAt(bitmask, off)
 	for i := 0; i < int(length); i++ {
 		outVals[i] = bitIsSet(bitmask, i)
 	}
 
-	return outVals, outNull
+	return outVals, outValid
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -2141,7 +2141,7 @@ func (a *BoolFullColumn) Values() []bool {
 	off := a.offset
 	length := a.length
 	outVals := make([]bool, length)
-	bitmask := make([]byte, a.src.getoutputlength(length/8))
+	bitmask := make([]byte, a.src.getBitmaskLength())
 	a.src.Data.ReadAt(bitmask, off)
 	for i := 0; i < int(length); i++ {
 		outVals[i] = bitIsSet(bitmask, i)
