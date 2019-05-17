@@ -564,8 +564,14 @@ func TestNullIssue1(t *testing.T) {
 	validWant := []bool{true, true, false, true}
 
 	for ix := range vals1 {
-		if vals1[ix] != valsWant[ix] {
-			t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+		if math.IsNaN(vals1[ix]) {
+			if !math.IsNaN(valsWant[ix]) {
+				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+			}
+		} else {
+			if vals1[ix] != valsWant[ix] {
+				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+			}
 		}
 
 		if valid1[ix] != validWant[ix] {
