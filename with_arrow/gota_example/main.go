@@ -10,7 +10,10 @@ import (
 )
 
 func main() {
-	src := arrow_feather.Read("/Users/sglyon/Desktop/feather_go/test2.feather")
+	src, err := arrow_feather.Read("/Users/sglyon/Desktop/feather_go/test2.feather")
+	if err != nil {
+		panic(err)
+	}
 	numColumns := len(src.Columns)
 	vals := src.Columns
 	theSeries := make([]series.Series, numColumns)

@@ -201,7 +201,7 @@ func parseCol(src *Source, col *fbs.Column) array.Interface {
 	return nil
 }
 
-func arrayForPrimitive(src *Source, vals *fbs.PrimitiveArray) array.Interface { // TODO: should return array.Interface
+func arrayForPrimitive(src *Source, vals *fbs.PrimitiveArray) array.Interface {
 	length := vals.Length()
 
 	// extract bytes for null bitmap
