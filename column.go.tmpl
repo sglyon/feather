@@ -5,6 +5,8 @@ import (
 	"github.com/influxdata/arrow"
 )
 
+// FeatherColumn is an interface defining core functionality necessary for
+// reading a feather formatted column of any data type
 type FeatherColumn interface {
     Name() string
     Length() int
@@ -14,7 +16,7 @@ type FeatherColumn interface {
 }
 
 var (
-    // BitMask[i] == (1 << i)
+    // BitMask is a byte slice such that BitMask[i] == (1 << i)
 	BitMask        = [8]byte{1, 2, 4, 8, 16, 32, 64, 128}
 )
 
@@ -83,16 +85,16 @@ func (a *{{.Name}}Column) Value(i int) ({{ .name }}, bool) {
 func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
     off := a.offset
 
-    var out_null []bool
+    var outNull []bool
     var bitmaskLength int64
 
     if a.nNull > 0 {
-        out_null = make([]bool, a.length)
+        outNull = make([]bool, a.length)
         bitmaskLength = a.src.getoutputlength(a.length / 8)
         thebyte := make([]byte, bitmaskLength)
         a.src.Data.ReadAt(thebyte, off)
         for i := 0; i < int(a.length); i++ {
-            out_null[i] = bitIsSet(thebyte, i)
+            outNull[i] = bitIsSet(thebyte, i)
         }
     }
 
@@ -100,9 +102,9 @@ func (a *{{.Name}}Column) Values() ([]{{.name}}, []bool) {
 
     valbuf := make([]byte, a.length*{{.size}})
     a.src.Data.ReadAt(valbuf, off)
-    out_vals := arrow.{{.Name}}Traits.CastFromBytes(valbuf)
+    outVals := arrow.{{.Name}}Traits.CastFromBytes(valbuf)
 
-    return out_vals, out_null
+    return outVals, outNull
 }
 
 {{end}}
@@ -177,6 +179,7 @@ func (a *{{.Name}}FullColumn) Values() []{{.name}} {
 
 {{end}}
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *{{.Name}}Column) ToFullColumn() (*{{.Name}}FullColumn, error) {
     if a.nNull > 0 {
         return nil, errors.New("Nulls present, cannot convert to full column")
@@ -192,6 +195,7 @@ func (a *{{.Name}}Column) ToFullColumn() (*{{.Name}}FullColumn, error) {
     return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *{{.Name}}FullColumn) ToFullColumn() (*{{.Name}}FullColumn, error) {
     return a, nil
 }
@@ -253,17 +257,17 @@ func (a *StringColumn) Values() ([]string, []bool) {
     off := a.offset
     length := a.length
 
-    out_vals := make([]string, length)
-    var out_null []bool
+    outVals := make([]string, length)
+    var outNull []bool
     var bitmaskLength int64
 
     if a.nNull > 0 {
-        out_null = make([]bool, length)
+        outNull = make([]bool, length)
         bitmaskLength = a.src.getoutputlength(length / 8)
         bitmask := make([]byte, bitmaskLength)
         a.src.Data.ReadAt(bitmask, off)
         for i := 0; i < int(length); i++ {
-            out_null[i] = bitIsSet(bitmask, i)
+            outNull[i] = bitIsSet(bitmask, i)
         }
     }
     off += bitmaskLength
@@ -280,9 +284,9 @@ func (a *StringColumn) Values() ([]string, []bool) {
     for i := 0; i < int(length); i++ {
         bytes := make([]byte, offsets[i+1] - offsets[i])
         a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
-        out_vals[i] = string(bytes)
+        outVals[i] = string(bytes)
     }
-    return out_vals, out_null
+    return outVals, outNull
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -310,7 +314,7 @@ func (a *StringFullColumn) Values() []string {
     off := a.offset
     length := a.length
 
-    out_vals := make([]string, length)
+    outVals := make([]string, length)
 
     // read offsets
     offsetbuf := make([]byte, 4*(length+1))
@@ -325,9 +329,9 @@ func (a *StringFullColumn) Values() []string {
     for i := 0; i < int(length); i++ {
         bytes := make([]byte, offsets[i+1] - offsets[i])
         a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
-        out_vals[i] = string(bytes)
+        outVals[i] = string(bytes)
     }
-    return out_vals
+    return outVals
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -356,17 +360,17 @@ func (a *BoolColumn) Values() ([]bool, []bool) {
     off := a.offset
     length := a.length
 
-    out_vals := make([]bool, length)
-    var out_null []bool
+    outVals := make([]bool, length)
+    var outNull []bool
     var bitmaskLength int64
 
     if a.nNull > 0 {
-        out_null = make([]bool, length)
+        outNull = make([]bool, length)
         bitmaskLength = a.src.getoutputlength(length / 8)
         bitmask := make([]byte, bitmaskLength)
         a.src.Data.ReadAt(bitmask, off)
         for i := 0; i < int(length); i++ {
-            out_null[i] = bitIsSet(bitmask, i)
+            outNull[i] = bitIsSet(bitmask, i)
         }
     }
     off += bitmaskLength
@@ -374,10 +378,10 @@ func (a *BoolColumn) Values() ([]bool, []bool) {
     bitmask := make([]byte, a.src.getoutputlength(length / 8))
     a.src.Data.ReadAt(bitmask, off)
     for i := 0; i < int(length); i++ {
-        out_vals[i] = bitIsSet(bitmask, i)
+        outVals[i] = bitIsSet(bitmask, i)
     }
 
-    return out_vals, out_null
+    return outVals, outNull
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -395,17 +399,17 @@ func (a *BoolFullColumn) Value(i int) bool {
 func (a *BoolFullColumn) Values() []bool {
     off := a.offset
     length := a.length
-    out_vals := make([]bool, length)
+    outVals := make([]bool, length)
     bitmask := make([]byte, a.src.getoutputlength(length / 8))
     a.src.Data.ReadAt(bitmask, off)
     for i := 0; i < int(length); i++ {
-        out_vals[i] = bitIsSet(bitmask, i)
+        outVals[i] = bitIsSet(bitmask, i)
     }
 
-    return out_vals
+    return outVals
 }
 
-//
+// NewColumnArray constructs a FeatherColumn from a flatbuffers primitive array
 func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) FeatherColumn {
     switch vals.TypE(){
     {{range .In}}
@@ -430,7 +434,7 @@ func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) FeatherC
     }
 }
 
-// Constructor given src and Column
+// NewColumnFbsColumn constructs a FeatherColumn given src and Column
 func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
     vals := col.Values(nil)
     name := string(col.Name())
@@ -452,6 +456,8 @@ func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
     return column
 }
 
+// NewFullColumnArray constructs a FeatherColumn wihout a bitmask from a flatbuffers primitive array.
+// An error is returned if there are nulls and a length-zero bitmask would be invalid
 func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) (FeatherColumn, error) {
     if vals.NullCount() > 0 {
         err := errors.New("This column has null values, use `NewColumnArray instead`")
@@ -480,7 +486,7 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) (Fea
     }
 }
 
-// Constructor given src and Column
+// NewFullColumnFbsColumn constructs a full column given src and Column
 func NewFullColumnFbsColumn(src *Source, col *fbs.Column) (FeatherColumn, error) {
     vals := col.Values(nil)
     name := string(col.Name())
@@ -506,6 +512,7 @@ func metadataForCol(src *Source, col *fbs.Column) FeatherColumn {
 }
 
 
+// NewCategoryMetadata constructs a FeatherColumn given a flatbuffers column and a source
 func NewCategoryMetadata(src *Source, col *fbs.Column) FeatherColumn {
     if col.MetadataType() != fbs.TypeMetadataCategoryMetadata {
 		return nil

@@ -14,6 +14,8 @@ import (
 	"github.com/sglyon/feather/fbs"
 )
 
+// FeatherColumn is an interface defining core functionality necessary for
+// reading a feather formatted column of any data type
 type FeatherColumn interface {
 	Name() string
 	Length() int
@@ -23,7 +25,7 @@ type FeatherColumn interface {
 }
 
 var (
-	// BitMask[i] == (1 << i)
+	// BitMask is a byte slice such that BitMask[i] == (1 << i)
 	BitMask = [8]byte{1, 2, 4, 8, 16, 32, 64, 128}
 )
 
@@ -86,16 +88,16 @@ func (a *Int8Column) Value(i int) (int8, bool) {
 func (a *Int8Column) Values() ([]int8, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -103,9 +105,9 @@ func (a *Int8Column) Values() ([]int8, []bool) {
 
 	valbuf := make([]byte, a.length*1)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Int8Traits.CastFromBytes(valbuf)
+	outVals := arrow.Int8Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -167,6 +169,7 @@ func (a *Int8FullColumn) Values() []int8 {
 	return arrow.Int8Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int8Column) ToFullColumn() (*Int8FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -182,6 +185,7 @@ func (a *Int8Column) ToFullColumn() (*Int8FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int8FullColumn) ToFullColumn() (*Int8FullColumn, error) {
 	return a, nil
 }
@@ -256,16 +260,16 @@ func (a *Int16Column) Value(i int) (int16, bool) {
 func (a *Int16Column) Values() ([]int16, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -273,9 +277,9 @@ func (a *Int16Column) Values() ([]int16, []bool) {
 
 	valbuf := make([]byte, a.length*2)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Int16Traits.CastFromBytes(valbuf)
+	outVals := arrow.Int16Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -337,6 +341,7 @@ func (a *Int16FullColumn) Values() []int16 {
 	return arrow.Int16Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int16Column) ToFullColumn() (*Int16FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -352,6 +357,7 @@ func (a *Int16Column) ToFullColumn() (*Int16FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int16FullColumn) ToFullColumn() (*Int16FullColumn, error) {
 	return a, nil
 }
@@ -426,16 +432,16 @@ func (a *Int32Column) Value(i int) (int32, bool) {
 func (a *Int32Column) Values() ([]int32, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -443,9 +449,9 @@ func (a *Int32Column) Values() ([]int32, []bool) {
 
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Int32Traits.CastFromBytes(valbuf)
+	outVals := arrow.Int32Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -507,6 +513,7 @@ func (a *Int32FullColumn) Values() []int32 {
 	return arrow.Int32Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int32Column) ToFullColumn() (*Int32FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -522,6 +529,7 @@ func (a *Int32Column) ToFullColumn() (*Int32FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int32FullColumn) ToFullColumn() (*Int32FullColumn, error) {
 	return a, nil
 }
@@ -596,16 +604,16 @@ func (a *Int64Column) Value(i int) (int64, bool) {
 func (a *Int64Column) Values() ([]int64, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -613,9 +621,9 @@ func (a *Int64Column) Values() ([]int64, []bool) {
 
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Int64Traits.CastFromBytes(valbuf)
+	outVals := arrow.Int64Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -677,6 +685,7 @@ func (a *Int64FullColumn) Values() []int64 {
 	return arrow.Int64Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int64Column) ToFullColumn() (*Int64FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -692,6 +701,7 @@ func (a *Int64Column) ToFullColumn() (*Int64FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Int64FullColumn) ToFullColumn() (*Int64FullColumn, error) {
 	return a, nil
 }
@@ -766,16 +776,16 @@ func (a *Uint8Column) Value(i int) (uint8, bool) {
 func (a *Uint8Column) Values() ([]uint8, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -783,9 +793,9 @@ func (a *Uint8Column) Values() ([]uint8, []bool) {
 
 	valbuf := make([]byte, a.length*1)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Uint8Traits.CastFromBytes(valbuf)
+	outVals := arrow.Uint8Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -847,6 +857,7 @@ func (a *Uint8FullColumn) Values() []uint8 {
 	return arrow.Uint8Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint8Column) ToFullColumn() (*Uint8FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -862,6 +873,7 @@ func (a *Uint8Column) ToFullColumn() (*Uint8FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint8FullColumn) ToFullColumn() (*Uint8FullColumn, error) {
 	return a, nil
 }
@@ -936,16 +948,16 @@ func (a *Uint16Column) Value(i int) (uint16, bool) {
 func (a *Uint16Column) Values() ([]uint16, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -953,9 +965,9 @@ func (a *Uint16Column) Values() ([]uint16, []bool) {
 
 	valbuf := make([]byte, a.length*2)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Uint16Traits.CastFromBytes(valbuf)
+	outVals := arrow.Uint16Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -1017,6 +1029,7 @@ func (a *Uint16FullColumn) Values() []uint16 {
 	return arrow.Uint16Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint16Column) ToFullColumn() (*Uint16FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1032,6 +1045,7 @@ func (a *Uint16Column) ToFullColumn() (*Uint16FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint16FullColumn) ToFullColumn() (*Uint16FullColumn, error) {
 	return a, nil
 }
@@ -1106,16 +1120,16 @@ func (a *Uint32Column) Value(i int) (uint32, bool) {
 func (a *Uint32Column) Values() ([]uint32, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1123,9 +1137,9 @@ func (a *Uint32Column) Values() ([]uint32, []bool) {
 
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Uint32Traits.CastFromBytes(valbuf)
+	outVals := arrow.Uint32Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -1187,6 +1201,7 @@ func (a *Uint32FullColumn) Values() []uint32 {
 	return arrow.Uint32Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint32Column) ToFullColumn() (*Uint32FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1202,6 +1217,7 @@ func (a *Uint32Column) ToFullColumn() (*Uint32FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint32FullColumn) ToFullColumn() (*Uint32FullColumn, error) {
 	return a, nil
 }
@@ -1276,16 +1292,16 @@ func (a *Uint64Column) Value(i int) (uint64, bool) {
 func (a *Uint64Column) Values() ([]uint64, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1293,9 +1309,9 @@ func (a *Uint64Column) Values() ([]uint64, []bool) {
 
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Uint64Traits.CastFromBytes(valbuf)
+	outVals := arrow.Uint64Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -1357,6 +1373,7 @@ func (a *Uint64FullColumn) Values() []uint64 {
 	return arrow.Uint64Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint64Column) ToFullColumn() (*Uint64FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1372,6 +1389,7 @@ func (a *Uint64Column) ToFullColumn() (*Uint64FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Uint64FullColumn) ToFullColumn() (*Uint64FullColumn, error) {
 	return a, nil
 }
@@ -1446,16 +1464,16 @@ func (a *Float32Column) Value(i int) (float32, bool) {
 func (a *Float32Column) Values() ([]float32, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1463,9 +1481,9 @@ func (a *Float32Column) Values() ([]float32, []bool) {
 
 	valbuf := make([]byte, a.length*4)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Float32Traits.CastFromBytes(valbuf)
+	outVals := arrow.Float32Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -1527,6 +1545,7 @@ func (a *Float32FullColumn) Values() []float32 {
 	return arrow.Float32Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Float32Column) ToFullColumn() (*Float32FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1542,6 +1561,7 @@ func (a *Float32Column) ToFullColumn() (*Float32FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Float32FullColumn) ToFullColumn() (*Float32FullColumn, error) {
 	return a, nil
 }
@@ -1616,16 +1636,16 @@ func (a *Float64Column) Value(i int) (float64, bool) {
 func (a *Float64Column) Values() ([]float64, []bool) {
 	off := a.offset
 
-	var out_null []bool
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, a.length)
+		outNull = make([]bool, a.length)
 		bitmaskLength = a.src.getoutputlength(a.length / 8)
 		thebyte := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(thebyte, off)
 		for i := 0; i < int(a.length); i++ {
-			out_null[i] = bitIsSet(thebyte, i)
+			outNull[i] = bitIsSet(thebyte, i)
 		}
 	}
 
@@ -1633,9 +1653,9 @@ func (a *Float64Column) Values() ([]float64, []bool) {
 
 	valbuf := make([]byte, a.length*8)
 	a.src.Data.ReadAt(valbuf, off)
-	out_vals := arrow.Float64Traits.CastFromBytes(valbuf)
+	outVals := arrow.Float64Traits.CastFromBytes(valbuf)
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Name returns the name of the column
@@ -1697,6 +1717,7 @@ func (a *Float64FullColumn) Values() []float64 {
 	return arrow.Float64Traits.CastFromBytes(valbuf)
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Float64Column) ToFullColumn() (*Float64FullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1712,6 +1733,7 @@ func (a *Float64Column) ToFullColumn() (*Float64FullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *Float64FullColumn) ToFullColumn() (*Float64FullColumn, error) {
 	return a, nil
 }
@@ -1798,6 +1820,7 @@ func NewStringFullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *St
 	}
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *StringColumn) ToFullColumn() (*StringFullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1813,6 +1836,7 @@ func (a *StringColumn) ToFullColumn() (*StringFullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *StringFullColumn) ToFullColumn() (*StringFullColumn, error) {
 	return a, nil
 }
@@ -1899,6 +1923,7 @@ func NewBoolFullColumn(src *Source, vals *fbs.PrimitiveArray, name string) *Bool
 	}
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *BoolColumn) ToFullColumn() (*BoolFullColumn, error) {
 	if a.nNull > 0 {
 		return nil, errors.New("Nulls present, cannot convert to full column")
@@ -1914,6 +1939,7 @@ func (a *BoolColumn) ToFullColumn() (*BoolFullColumn, error) {
 	return out, nil
 }
 
+// ToFullColumn converts the Column to one without a bitmask, if possible. Will return an error if nulls are present
 func (a *BoolFullColumn) ToFullColumn() (*BoolFullColumn, error) {
 	return a, nil
 }
@@ -1972,17 +1998,17 @@ func (a *StringColumn) Values() ([]string, []bool) {
 	off := a.offset
 	length := a.length
 
-	out_vals := make([]string, length)
-	var out_null []bool
+	outVals := make([]string, length)
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, length)
+		outNull = make([]bool, length)
 		bitmaskLength = a.src.getoutputlength(length / 8)
 		bitmask := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(bitmask, off)
 		for i := 0; i < int(length); i++ {
-			out_null[i] = bitIsSet(bitmask, i)
+			outNull[i] = bitIsSet(bitmask, i)
 		}
 	}
 	off += bitmaskLength
@@ -1999,9 +2025,9 @@ func (a *StringColumn) Values() ([]string, []bool) {
 	for i := 0; i < int(length); i++ {
 		bytes := make([]byte, offsets[i+1]-offsets[i])
 		a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
-		out_vals[i] = string(bytes)
+		outVals[i] = string(bytes)
 	}
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -2029,7 +2055,7 @@ func (a *StringFullColumn) Values() []string {
 	off := a.offset
 	length := a.length
 
-	out_vals := make([]string, length)
+	outVals := make([]string, length)
 
 	// read offsets
 	offsetbuf := make([]byte, 4*(length+1))
@@ -2044,9 +2070,9 @@ func (a *StringFullColumn) Values() []string {
 	for i := 0; i < int(length); i++ {
 		bytes := make([]byte, offsets[i+1]-offsets[i])
 		a.src.Data.ReadAt(bytes, off+int64(offsets[i]))
-		out_vals[i] = string(bytes)
+		outVals[i] = string(bytes)
 	}
-	return out_vals
+	return outVals
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -2075,17 +2101,17 @@ func (a *BoolColumn) Values() ([]bool, []bool) {
 	off := a.offset
 	length := a.length
 
-	out_vals := make([]bool, length)
-	var out_null []bool
+	outVals := make([]bool, length)
+	var outNull []bool
 	var bitmaskLength int64
 
 	if a.nNull > 0 {
-		out_null = make([]bool, length)
+		outNull = make([]bool, length)
 		bitmaskLength = a.src.getoutputlength(length / 8)
 		bitmask := make([]byte, bitmaskLength)
 		a.src.Data.ReadAt(bitmask, off)
 		for i := 0; i < int(length); i++ {
-			out_null[i] = bitIsSet(bitmask, i)
+			outNull[i] = bitIsSet(bitmask, i)
 		}
 	}
 	off += bitmaskLength
@@ -2093,10 +2119,10 @@ func (a *BoolColumn) Values() ([]bool, []bool) {
 	bitmask := make([]byte, a.src.getoutputlength(length/8))
 	a.src.Data.ReadAt(bitmask, off)
 	for i := 0; i < int(length); i++ {
-		out_vals[i] = bitIsSet(bitmask, i)
+		outVals[i] = bitIsSet(bitmask, i)
 	}
 
-	return out_vals, out_null
+	return outVals, outNull
 }
 
 // Value extracts a single value from location i and whether that value is
@@ -2114,17 +2140,17 @@ func (a *BoolFullColumn) Value(i int) bool {
 func (a *BoolFullColumn) Values() []bool {
 	off := a.offset
 	length := a.length
-	out_vals := make([]bool, length)
+	outVals := make([]bool, length)
 	bitmask := make([]byte, a.src.getoutputlength(length/8))
 	a.src.Data.ReadAt(bitmask, off)
 	for i := 0; i < int(length); i++ {
-		out_vals[i] = bitIsSet(bitmask, i)
+		outVals[i] = bitIsSet(bitmask, i)
 	}
 
-	return out_vals
+	return outVals
 }
 
-//
+// NewColumnArray constructs a FeatherColumn from a flatbuffers primitive array
 func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) FeatherColumn {
 	switch vals.TypE() {
 
@@ -2182,7 +2208,7 @@ func NewColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) FeatherC
 	}
 }
 
-// Constructor given src and Column
+// NewColumnFbsColumn constructs a FeatherColumn given src and Column
 func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
 	vals := col.Values(nil)
 	name := string(col.Name())
@@ -2204,6 +2230,8 @@ func NewColumnFbsColumn(src *Source, col *fbs.Column) FeatherColumn {
 	return column
 }
 
+// NewFullColumnArray constructs a FeatherColumn wihout a bitmask from a flatbuffers primitive array.
+// An error is returned if there are nulls and a length-zero bitmask would be invalid
 func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) (FeatherColumn, error) {
 	if vals.NullCount() > 0 {
 		err := errors.New("This column has null values, use `NewColumnArray instead`")
@@ -2265,7 +2293,7 @@ func NewFullColumnArray(src *Source, vals *fbs.PrimitiveArray, name string) (Fea
 	}
 }
 
-// Constructor given src and Column
+// NewFullColumnFbsColumn constructs a full column given src and Column
 func NewFullColumnFbsColumn(src *Source, col *fbs.Column) (FeatherColumn, error) {
 	vals := col.Values(nil)
 	name := string(col.Name())
@@ -2290,6 +2318,7 @@ func metadataForCol(src *Source, col *fbs.Column) FeatherColumn {
 	return nil
 }
 
+// NewCategoryMetadata constructs a FeatherColumn given a flatbuffers column and a source
 func NewCategoryMetadata(src *Source, col *fbs.Column) FeatherColumn {
 	if col.MetadataType() != fbs.TypeMetadataCategoryMetadata {
 		return nil

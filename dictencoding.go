@@ -9,11 +9,14 @@ import (
 	"github.com/sglyon/feather/fbs"
 )
 
+// Int8Int8DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Int8
 type Int8Int8DictColumn struct {
 	refs *Int8Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Int8DictColumn
 func (a *Int8Int8DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -24,6 +27,10 @@ func (a *Int8Int8DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Int8DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -42,18 +49,29 @@ func (a *Int8Int8DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Int16DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Int16
 type Int8Int16DictColumn struct {
 	refs *Int16Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Int16DictColumn
 func (a *Int8Int16DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -64,6 +82,10 @@ func (a *Int8Int16DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Int16DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -82,18 +104,29 @@ func (a *Int8Int16DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Int32DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Int32
 type Int8Int32DictColumn struct {
 	refs *Int32Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Int32DictColumn
 func (a *Int8Int32DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -104,6 +137,10 @@ func (a *Int8Int32DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Int32DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -122,18 +159,29 @@ func (a *Int8Int32DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Int64DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Int64
 type Int8Int64DictColumn struct {
 	refs *Int64Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Int64DictColumn
 func (a *Int8Int64DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -144,6 +192,10 @@ func (a *Int8Int64DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Int64DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -162,18 +214,29 @@ func (a *Int8Int64DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Uint8
 type Int8Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Uint8DictColumn
 func (a *Int8Uint8DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -184,6 +247,10 @@ func (a *Int8Uint8DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Uint8DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -202,18 +269,29 @@ func (a *Int8Uint8DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Uint16
 type Int8Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Uint16DictColumn
 func (a *Int8Uint16DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -224,6 +302,10 @@ func (a *Int8Uint16DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Uint16DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -242,18 +324,29 @@ func (a *Int8Uint16DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Uint32
 type Int8Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Uint32DictColumn
 func (a *Int8Uint32DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -264,6 +357,10 @@ func (a *Int8Uint32DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Uint32DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -282,18 +379,29 @@ func (a *Int8Uint32DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int8Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Int8 and dict key of type Uint64
 type Int8Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Int8Column
 }
 
+// Value constructs a value of type Int8 from the Int8Uint64DictColumn
 func (a *Int8Uint64DictColumn) Value(i int) (int8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int8
@@ -304,6 +412,10 @@ func (a *Int8Uint64DictColumn) Value(i int) (int8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int8Uint64DictColumn) Values() ([]int8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int8, len(refs))
@@ -322,18 +434,29 @@ func (a *Int8Uint64DictColumn) Values() ([]int8, []bool) {
 	return out, valids
 }
 
-func (a *Int8Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Int8Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int8Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int8Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int8Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int8Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int8Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int8Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int8Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int8Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Int8DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Int8
 type Int16Int8DictColumn struct {
 	refs *Int8Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Int8DictColumn
 func (a *Int16Int8DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -344,6 +467,10 @@ func (a *Int16Int8DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Int8DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -362,18 +489,29 @@ func (a *Int16Int8DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Int16DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Int16
 type Int16Int16DictColumn struct {
 	refs *Int16Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Int16DictColumn
 func (a *Int16Int16DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -384,6 +522,10 @@ func (a *Int16Int16DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Int16DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -402,18 +544,29 @@ func (a *Int16Int16DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Int32DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Int32
 type Int16Int32DictColumn struct {
 	refs *Int32Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Int32DictColumn
 func (a *Int16Int32DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -424,6 +577,10 @@ func (a *Int16Int32DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Int32DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -442,18 +599,29 @@ func (a *Int16Int32DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Int64DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Int64
 type Int16Int64DictColumn struct {
 	refs *Int64Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Int64DictColumn
 func (a *Int16Int64DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -464,6 +632,10 @@ func (a *Int16Int64DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Int64DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -482,18 +654,29 @@ func (a *Int16Int64DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Uint8
 type Int16Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Uint8DictColumn
 func (a *Int16Uint8DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -504,6 +687,10 @@ func (a *Int16Uint8DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Uint8DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -522,18 +709,29 @@ func (a *Int16Uint8DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Uint16
 type Int16Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Uint16DictColumn
 func (a *Int16Uint16DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -544,6 +742,10 @@ func (a *Int16Uint16DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Uint16DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -562,18 +764,29 @@ func (a *Int16Uint16DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Uint32
 type Int16Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Uint32DictColumn
 func (a *Int16Uint32DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -584,6 +797,10 @@ func (a *Int16Uint32DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Uint32DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -602,18 +819,29 @@ func (a *Int16Uint32DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int16Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Int16 and dict key of type Uint64
 type Int16Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Int16Column
 }
 
+// Value constructs a value of type Int16 from the Int16Uint64DictColumn
 func (a *Int16Uint64DictColumn) Value(i int) (int16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int16
@@ -624,6 +852,10 @@ func (a *Int16Uint64DictColumn) Value(i int) (int16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int16Uint64DictColumn) Values() ([]int16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int16, len(refs))
@@ -642,18 +874,29 @@ func (a *Int16Uint64DictColumn) Values() ([]int16, []bool) {
 	return out, valids
 }
 
-func (a *Int16Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Int16Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int16Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int16Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int16Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int16Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int16Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int16Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int16Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int16Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Int8DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Int8
 type Int32Int8DictColumn struct {
 	refs *Int8Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Int8DictColumn
 func (a *Int32Int8DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -664,6 +907,10 @@ func (a *Int32Int8DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Int8DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -682,18 +929,29 @@ func (a *Int32Int8DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Int16DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Int16
 type Int32Int16DictColumn struct {
 	refs *Int16Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Int16DictColumn
 func (a *Int32Int16DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -704,6 +962,10 @@ func (a *Int32Int16DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Int16DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -722,18 +984,29 @@ func (a *Int32Int16DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Int32DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Int32
 type Int32Int32DictColumn struct {
 	refs *Int32Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Int32DictColumn
 func (a *Int32Int32DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -744,6 +1017,10 @@ func (a *Int32Int32DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Int32DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -762,18 +1039,29 @@ func (a *Int32Int32DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Int64DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Int64
 type Int32Int64DictColumn struct {
 	refs *Int64Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Int64DictColumn
 func (a *Int32Int64DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -784,6 +1072,10 @@ func (a *Int32Int64DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Int64DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -802,18 +1094,29 @@ func (a *Int32Int64DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Uint8
 type Int32Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Uint8DictColumn
 func (a *Int32Uint8DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -824,6 +1127,10 @@ func (a *Int32Uint8DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Uint8DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -842,18 +1149,29 @@ func (a *Int32Uint8DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Uint16
 type Int32Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Uint16DictColumn
 func (a *Int32Uint16DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -864,6 +1182,10 @@ func (a *Int32Uint16DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Uint16DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -882,18 +1204,29 @@ func (a *Int32Uint16DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Uint32
 type Int32Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Uint32DictColumn
 func (a *Int32Uint32DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -904,6 +1237,10 @@ func (a *Int32Uint32DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Uint32DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -922,18 +1259,29 @@ func (a *Int32Uint32DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int32Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Int32 and dict key of type Uint64
 type Int32Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Int32Column
 }
 
+// Value constructs a value of type Int32 from the Int32Uint64DictColumn
 func (a *Int32Uint64DictColumn) Value(i int) (int32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int32
@@ -944,6 +1292,10 @@ func (a *Int32Uint64DictColumn) Value(i int) (int32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int32Uint64DictColumn) Values() ([]int32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int32, len(refs))
@@ -962,18 +1314,29 @@ func (a *Int32Uint64DictColumn) Values() ([]int32, []bool) {
 	return out, valids
 }
 
-func (a *Int32Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Int32Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int32Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int32Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int32Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int32Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int32Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int32Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int32Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int32Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Int8DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Int8
 type Int64Int8DictColumn struct {
 	refs *Int8Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Int8DictColumn
 func (a *Int64Int8DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -984,6 +1347,10 @@ func (a *Int64Int8DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Int8DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1002,18 +1369,29 @@ func (a *Int64Int8DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Int16DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Int16
 type Int64Int16DictColumn struct {
 	refs *Int16Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Int16DictColumn
 func (a *Int64Int16DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1024,6 +1402,10 @@ func (a *Int64Int16DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Int16DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1042,18 +1424,29 @@ func (a *Int64Int16DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Int32DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Int32
 type Int64Int32DictColumn struct {
 	refs *Int32Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Int32DictColumn
 func (a *Int64Int32DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1064,6 +1457,10 @@ func (a *Int64Int32DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Int32DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1082,18 +1479,29 @@ func (a *Int64Int32DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Int64DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Int64
 type Int64Int64DictColumn struct {
 	refs *Int64Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Int64DictColumn
 func (a *Int64Int64DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1104,6 +1512,10 @@ func (a *Int64Int64DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Int64DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1122,18 +1534,29 @@ func (a *Int64Int64DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Uint8
 type Int64Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Uint8DictColumn
 func (a *Int64Uint8DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1144,6 +1567,10 @@ func (a *Int64Uint8DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Uint8DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1162,18 +1589,29 @@ func (a *Int64Uint8DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Uint16
 type Int64Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Uint16DictColumn
 func (a *Int64Uint16DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1184,6 +1622,10 @@ func (a *Int64Uint16DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Uint16DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1202,18 +1644,29 @@ func (a *Int64Uint16DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Uint32
 type Int64Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Uint32DictColumn
 func (a *Int64Uint32DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1224,6 +1677,10 @@ func (a *Int64Uint32DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Uint32DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1242,18 +1699,29 @@ func (a *Int64Uint32DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Int64Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Int64 and dict key of type Uint64
 type Int64Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Int64Column
 }
 
+// Value constructs a value of type Int64 from the Int64Uint64DictColumn
 func (a *Int64Uint64DictColumn) Value(i int) (int64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out int64
@@ -1264,6 +1732,10 @@ func (a *Int64Uint64DictColumn) Value(i int) (int64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Int64Uint64DictColumn) Values() ([]int64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]int64, len(refs))
@@ -1282,18 +1754,29 @@ func (a *Int64Uint64DictColumn) Values() ([]int64, []bool) {
 	return out, valids
 }
 
-func (a *Int64Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Int64Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Int64Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Int64Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Int64Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Int64Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Int64Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Int64Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Int64Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Int64Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Int8DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Int8
 type Uint8Int8DictColumn struct {
 	refs *Int8Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Int8DictColumn
 func (a *Uint8Int8DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1304,6 +1787,10 @@ func (a *Uint8Int8DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Int8DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1322,18 +1809,29 @@ func (a *Uint8Int8DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Int16DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Int16
 type Uint8Int16DictColumn struct {
 	refs *Int16Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Int16DictColumn
 func (a *Uint8Int16DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1344,6 +1842,10 @@ func (a *Uint8Int16DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Int16DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1362,18 +1864,29 @@ func (a *Uint8Int16DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Int32DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Int32
 type Uint8Int32DictColumn struct {
 	refs *Int32Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Int32DictColumn
 func (a *Uint8Int32DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1384,6 +1897,10 @@ func (a *Uint8Int32DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Int32DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1402,18 +1919,29 @@ func (a *Uint8Int32DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Int64DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Int64
 type Uint8Int64DictColumn struct {
 	refs *Int64Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Int64DictColumn
 func (a *Uint8Int64DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1424,6 +1952,10 @@ func (a *Uint8Int64DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Int64DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1442,18 +1974,29 @@ func (a *Uint8Int64DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Uint8
 type Uint8Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Uint8DictColumn
 func (a *Uint8Uint8DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1464,6 +2007,10 @@ func (a *Uint8Uint8DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Uint8DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1482,18 +2029,29 @@ func (a *Uint8Uint8DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Uint16
 type Uint8Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Uint16DictColumn
 func (a *Uint8Uint16DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1504,6 +2062,10 @@ func (a *Uint8Uint16DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Uint16DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1522,18 +2084,29 @@ func (a *Uint8Uint16DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Uint32
 type Uint8Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Uint32DictColumn
 func (a *Uint8Uint32DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1544,6 +2117,10 @@ func (a *Uint8Uint32DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Uint32DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1562,18 +2139,29 @@ func (a *Uint8Uint32DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint8Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Uint8 and dict key of type Uint64
 type Uint8Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Uint8Column
 }
 
+// Value constructs a value of type Uint8 from the Uint8Uint64DictColumn
 func (a *Uint8Uint64DictColumn) Value(i int) (uint8, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint8
@@ -1584,6 +2172,10 @@ func (a *Uint8Uint64DictColumn) Value(i int) (uint8, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint8Uint64DictColumn) Values() ([]uint8, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint8, len(refs))
@@ -1602,18 +2194,29 @@ func (a *Uint8Uint64DictColumn) Values() ([]uint8, []bool) {
 	return out, valids
 }
 
-func (a *Uint8Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint8Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint8Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint8Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint8Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint8Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint8Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint8Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint8Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint8Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Int8DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Int8
 type Uint16Int8DictColumn struct {
 	refs *Int8Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Int8DictColumn
 func (a *Uint16Int8DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1624,6 +2227,10 @@ func (a *Uint16Int8DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Int8DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1642,18 +2249,29 @@ func (a *Uint16Int8DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Int16DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Int16
 type Uint16Int16DictColumn struct {
 	refs *Int16Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Int16DictColumn
 func (a *Uint16Int16DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1664,6 +2282,10 @@ func (a *Uint16Int16DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Int16DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1682,18 +2304,29 @@ func (a *Uint16Int16DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Int32DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Int32
 type Uint16Int32DictColumn struct {
 	refs *Int32Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Int32DictColumn
 func (a *Uint16Int32DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1704,6 +2337,10 @@ func (a *Uint16Int32DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Int32DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1722,18 +2359,29 @@ func (a *Uint16Int32DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Int64DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Int64
 type Uint16Int64DictColumn struct {
 	refs *Int64Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Int64DictColumn
 func (a *Uint16Int64DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1744,6 +2392,10 @@ func (a *Uint16Int64DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Int64DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1762,18 +2414,29 @@ func (a *Uint16Int64DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Uint8
 type Uint16Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Uint8DictColumn
 func (a *Uint16Uint8DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1784,6 +2447,10 @@ func (a *Uint16Uint8DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Uint8DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1802,18 +2469,29 @@ func (a *Uint16Uint8DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Uint16
 type Uint16Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Uint16DictColumn
 func (a *Uint16Uint16DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1824,6 +2502,10 @@ func (a *Uint16Uint16DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Uint16DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1842,18 +2524,29 @@ func (a *Uint16Uint16DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Uint32
 type Uint16Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Uint32DictColumn
 func (a *Uint16Uint32DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1864,6 +2557,10 @@ func (a *Uint16Uint32DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Uint32DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1882,18 +2579,29 @@ func (a *Uint16Uint32DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint16Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Uint16 and dict key of type Uint64
 type Uint16Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Uint16Column
 }
 
+// Value constructs a value of type Uint16 from the Uint16Uint64DictColumn
 func (a *Uint16Uint64DictColumn) Value(i int) (uint16, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint16
@@ -1904,6 +2612,10 @@ func (a *Uint16Uint64DictColumn) Value(i int) (uint16, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint16Uint64DictColumn) Values() ([]uint16, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint16, len(refs))
@@ -1922,18 +2634,29 @@ func (a *Uint16Uint64DictColumn) Values() ([]uint16, []bool) {
 	return out, valids
 }
 
-func (a *Uint16Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint16Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint16Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint16Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint16Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint16Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint16Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint16Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint16Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint16Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Int8DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Int8
 type Uint32Int8DictColumn struct {
 	refs *Int8Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Int8DictColumn
 func (a *Uint32Int8DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -1944,6 +2667,10 @@ func (a *Uint32Int8DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Int8DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -1962,18 +2689,29 @@ func (a *Uint32Int8DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Int16DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Int16
 type Uint32Int16DictColumn struct {
 	refs *Int16Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Int16DictColumn
 func (a *Uint32Int16DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -1984,6 +2722,10 @@ func (a *Uint32Int16DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Int16DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2002,18 +2744,29 @@ func (a *Uint32Int16DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Int32DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Int32
 type Uint32Int32DictColumn struct {
 	refs *Int32Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Int32DictColumn
 func (a *Uint32Int32DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -2024,6 +2777,10 @@ func (a *Uint32Int32DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Int32DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2042,18 +2799,29 @@ func (a *Uint32Int32DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Int64DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Int64
 type Uint32Int64DictColumn struct {
 	refs *Int64Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Int64DictColumn
 func (a *Uint32Int64DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -2064,6 +2832,10 @@ func (a *Uint32Int64DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Int64DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2082,18 +2854,29 @@ func (a *Uint32Int64DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Uint8
 type Uint32Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Uint8DictColumn
 func (a *Uint32Uint8DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -2104,6 +2887,10 @@ func (a *Uint32Uint8DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Uint8DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2122,18 +2909,29 @@ func (a *Uint32Uint8DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Uint16
 type Uint32Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Uint16DictColumn
 func (a *Uint32Uint16DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -2144,6 +2942,10 @@ func (a *Uint32Uint16DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Uint16DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2162,18 +2964,29 @@ func (a *Uint32Uint16DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Uint32
 type Uint32Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Uint32DictColumn
 func (a *Uint32Uint32DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -2184,6 +2997,10 @@ func (a *Uint32Uint32DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Uint32DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2202,18 +3019,29 @@ func (a *Uint32Uint32DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint32Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Uint32 and dict key of type Uint64
 type Uint32Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Uint32Column
 }
 
+// Value constructs a value of type Uint32 from the Uint32Uint64DictColumn
 func (a *Uint32Uint64DictColumn) Value(i int) (uint32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint32
@@ -2224,6 +3052,10 @@ func (a *Uint32Uint64DictColumn) Value(i int) (uint32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint32Uint64DictColumn) Values() ([]uint32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint32, len(refs))
@@ -2242,18 +3074,29 @@ func (a *Uint32Uint64DictColumn) Values() ([]uint32, []bool) {
 	return out, valids
 }
 
-func (a *Uint32Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint32Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint32Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint32Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint32Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint32Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint32Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint32Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint32Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint32Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Int8DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Int8
 type Uint64Int8DictColumn struct {
 	refs *Int8Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Int8DictColumn
 func (a *Uint64Int8DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2264,6 +3107,10 @@ func (a *Uint64Int8DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Int8DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2282,18 +3129,29 @@ func (a *Uint64Int8DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Int16DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Int16
 type Uint64Int16DictColumn struct {
 	refs *Int16Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Int16DictColumn
 func (a *Uint64Int16DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2304,6 +3162,10 @@ func (a *Uint64Int16DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Int16DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2322,18 +3184,29 @@ func (a *Uint64Int16DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Int32DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Int32
 type Uint64Int32DictColumn struct {
 	refs *Int32Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Int32DictColumn
 func (a *Uint64Int32DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2344,6 +3217,10 @@ func (a *Uint64Int32DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Int32DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2362,18 +3239,29 @@ func (a *Uint64Int32DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Int64DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Int64
 type Uint64Int64DictColumn struct {
 	refs *Int64Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Int64DictColumn
 func (a *Uint64Int64DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2384,6 +3272,10 @@ func (a *Uint64Int64DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Int64DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2402,18 +3294,29 @@ func (a *Uint64Int64DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Uint8
 type Uint64Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Uint8DictColumn
 func (a *Uint64Uint8DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2424,6 +3327,10 @@ func (a *Uint64Uint8DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Uint8DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2442,18 +3349,29 @@ func (a *Uint64Uint8DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Uint16
 type Uint64Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Uint16DictColumn
 func (a *Uint64Uint16DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2464,6 +3382,10 @@ func (a *Uint64Uint16DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Uint16DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2482,18 +3404,29 @@ func (a *Uint64Uint16DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Uint32
 type Uint64Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Uint32DictColumn
 func (a *Uint64Uint32DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2504,6 +3437,10 @@ func (a *Uint64Uint32DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Uint32DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2522,18 +3459,29 @@ func (a *Uint64Uint32DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Uint64Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Uint64 and dict key of type Uint64
 type Uint64Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Uint64Column
 }
 
+// Value constructs a value of type Uint64 from the Uint64Uint64DictColumn
 func (a *Uint64Uint64DictColumn) Value(i int) (uint64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out uint64
@@ -2544,6 +3492,10 @@ func (a *Uint64Uint64DictColumn) Value(i int) (uint64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Uint64Uint64DictColumn) Values() ([]uint64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]uint64, len(refs))
@@ -2562,18 +3514,29 @@ func (a *Uint64Uint64DictColumn) Values() ([]uint64, []bool) {
 	return out, valids
 }
 
-func (a *Uint64Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Uint64Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Uint64Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Uint64Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Uint64Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Uint64Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Uint64Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Uint64Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Uint64Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Uint64Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Int8DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Int8
 type Float32Int8DictColumn struct {
 	refs *Int8Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Int8DictColumn
 func (a *Float32Int8DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2584,6 +3547,10 @@ func (a *Float32Int8DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Int8DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2602,18 +3569,29 @@ func (a *Float32Int8DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Int16DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Int16
 type Float32Int16DictColumn struct {
 	refs *Int16Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Int16DictColumn
 func (a *Float32Int16DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2624,6 +3602,10 @@ func (a *Float32Int16DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Int16DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2642,18 +3624,29 @@ func (a *Float32Int16DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Int32DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Int32
 type Float32Int32DictColumn struct {
 	refs *Int32Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Int32DictColumn
 func (a *Float32Int32DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2664,6 +3657,10 @@ func (a *Float32Int32DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Int32DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2682,18 +3679,29 @@ func (a *Float32Int32DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Int64DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Int64
 type Float32Int64DictColumn struct {
 	refs *Int64Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Int64DictColumn
 func (a *Float32Int64DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2704,6 +3712,10 @@ func (a *Float32Int64DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Int64DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2722,18 +3734,29 @@ func (a *Float32Int64DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Uint8
 type Float32Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Uint8DictColumn
 func (a *Float32Uint8DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2744,6 +3767,10 @@ func (a *Float32Uint8DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Uint8DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2762,18 +3789,29 @@ func (a *Float32Uint8DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Uint16
 type Float32Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Uint16DictColumn
 func (a *Float32Uint16DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2784,6 +3822,10 @@ func (a *Float32Uint16DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Uint16DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2802,18 +3844,29 @@ func (a *Float32Uint16DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Uint32
 type Float32Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Uint32DictColumn
 func (a *Float32Uint32DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2824,6 +3877,10 @@ func (a *Float32Uint32DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Uint32DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2842,18 +3899,29 @@ func (a *Float32Uint32DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float32Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Float32 and dict key of type Uint64
 type Float32Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Float32Column
 }
 
+// Value constructs a value of type Float32 from the Float32Uint64DictColumn
 func (a *Float32Uint64DictColumn) Value(i int) (float32, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float32
@@ -2864,6 +3932,10 @@ func (a *Float32Uint64DictColumn) Value(i int) (float32, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float32Uint64DictColumn) Values() ([]float32, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float32, len(refs))
@@ -2882,18 +3954,29 @@ func (a *Float32Uint64DictColumn) Values() ([]float32, []bool) {
 	return out, valids
 }
 
-func (a *Float32Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Float32Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float32Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float32Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float32Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float32Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float32Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float32Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float32Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float32Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Int8DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Int8
 type Float64Int8DictColumn struct {
 	refs *Int8Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Int8DictColumn
 func (a *Float64Int8DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -2904,6 +3987,10 @@ func (a *Float64Int8DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Int8DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -2922,18 +4009,29 @@ func (a *Float64Int8DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Int8DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Int8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Int8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Int8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Int8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Int8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Int8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Int8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Int8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Int16DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Int16
 type Float64Int16DictColumn struct {
 	refs *Int16Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Int16DictColumn
 func (a *Float64Int16DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -2944,6 +4042,10 @@ func (a *Float64Int16DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Int16DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -2962,18 +4064,29 @@ func (a *Float64Int16DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Int16DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Int16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Int16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Int16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Int16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Int16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Int16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Int16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Int16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Int32DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Int32
 type Float64Int32DictColumn struct {
 	refs *Int32Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Int32DictColumn
 func (a *Float64Int32DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -2984,6 +4097,10 @@ func (a *Float64Int32DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Int32DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -3002,18 +4119,29 @@ func (a *Float64Int32DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Int32DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Int32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Int32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Int32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Int32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Int32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Int32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Int32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Int32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Int64DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Int64
 type Float64Int64DictColumn struct {
 	refs *Int64Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Int64DictColumn
 func (a *Float64Int64DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -3024,6 +4152,10 @@ func (a *Float64Int64DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Int64DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -3042,18 +4174,29 @@ func (a *Float64Int64DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Int64DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Int64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Int64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Int64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Int64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Int64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Int64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Int64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Int64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Uint8DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Uint8
 type Float64Uint8DictColumn struct {
 	refs *Uint8Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Uint8DictColumn
 func (a *Float64Uint8DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -3064,6 +4207,10 @@ func (a *Float64Uint8DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Uint8DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -3082,18 +4229,29 @@ func (a *Float64Uint8DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Uint8DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Uint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Uint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Uint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Uint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Uint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Uint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Uint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Uint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Uint16DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Uint16
 type Float64Uint16DictColumn struct {
 	refs *Uint16Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Uint16DictColumn
 func (a *Float64Uint16DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -3104,6 +4262,10 @@ func (a *Float64Uint16DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Uint16DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -3122,18 +4284,29 @@ func (a *Float64Uint16DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Uint16DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Uint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Uint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Uint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Uint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Uint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Uint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Uint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Uint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Uint32DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Uint32
 type Float64Uint32DictColumn struct {
 	refs *Uint32Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Uint32DictColumn
 func (a *Float64Uint32DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -3144,6 +4317,10 @@ func (a *Float64Uint32DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Uint32DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -3162,18 +4339,29 @@ func (a *Float64Uint32DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Uint32DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Uint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Uint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Uint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Uint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Uint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Uint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Uint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Uint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// Float64Uint64DictColumn represents a dict-encoded column with underlying data of type
+// Float64 and dict key of type Uint64
 type Float64Uint64DictColumn struct {
 	refs *Uint64Column
 	pool *Float64Column
 }
 
+// Value constructs a value of type Float64 from the Float64Uint64DictColumn
 func (a *Float64Uint64DictColumn) Value(i int) (float64, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out float64
@@ -3184,6 +4372,10 @@ func (a *Float64Uint64DictColumn) Value(i int) (float64, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *Float64Uint64DictColumn) Values() ([]float64, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]float64, len(refs))
@@ -3202,18 +4394,29 @@ func (a *Float64Uint64DictColumn) Values() ([]float64, []bool) {
 	return out, valids
 }
 
-func (a *Float64Uint64DictColumn) Name() string        { return a.refs.name }
-func (a *Float64Uint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *Float64Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *Float64Uint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *Float64Uint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *Float64Uint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *Float64Uint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *Float64Uint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *Float64Uint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *Float64Uint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringInt8DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Int8
 type StringInt8DictColumn struct {
 	refs *Int8Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringInt8DictColumn
 func (a *StringInt8DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3224,6 +4427,10 @@ func (a *StringInt8DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringInt8DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3242,18 +4449,29 @@ func (a *StringInt8DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringInt8DictColumn) Name() string        { return a.refs.name }
-func (a *StringInt8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringInt8DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringInt8DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringInt8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringInt8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringInt8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringInt8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringInt8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringInt8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringInt16DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Int16
 type StringInt16DictColumn struct {
 	refs *Int16Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringInt16DictColumn
 func (a *StringInt16DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3264,6 +4482,10 @@ func (a *StringInt16DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringInt16DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3282,18 +4504,29 @@ func (a *StringInt16DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringInt16DictColumn) Name() string        { return a.refs.name }
-func (a *StringInt16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringInt16DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringInt16DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringInt16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringInt16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringInt16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringInt16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringInt16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringInt16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringInt32DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Int32
 type StringInt32DictColumn struct {
 	refs *Int32Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringInt32DictColumn
 func (a *StringInt32DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3304,6 +4537,10 @@ func (a *StringInt32DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringInt32DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3322,18 +4559,29 @@ func (a *StringInt32DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringInt32DictColumn) Name() string        { return a.refs.name }
-func (a *StringInt32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringInt32DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringInt32DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringInt32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringInt32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringInt32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringInt32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringInt32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringInt32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringInt64DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Int64
 type StringInt64DictColumn struct {
 	refs *Int64Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringInt64DictColumn
 func (a *StringInt64DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3344,6 +4592,10 @@ func (a *StringInt64DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringInt64DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3362,18 +4614,29 @@ func (a *StringInt64DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringInt64DictColumn) Name() string        { return a.refs.name }
-func (a *StringInt64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringInt64DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringInt64DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringInt64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringInt64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringInt64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringInt64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringInt64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringInt64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringUint8DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Uint8
 type StringUint8DictColumn struct {
 	refs *Uint8Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringUint8DictColumn
 func (a *StringUint8DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3384,6 +4647,10 @@ func (a *StringUint8DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringUint8DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3402,18 +4669,29 @@ func (a *StringUint8DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringUint8DictColumn) Name() string        { return a.refs.name }
-func (a *StringUint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringUint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringUint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringUint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringUint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringUint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringUint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringUint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringUint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringUint16DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Uint16
 type StringUint16DictColumn struct {
 	refs *Uint16Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringUint16DictColumn
 func (a *StringUint16DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3424,6 +4702,10 @@ func (a *StringUint16DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringUint16DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3442,18 +4724,29 @@ func (a *StringUint16DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringUint16DictColumn) Name() string        { return a.refs.name }
-func (a *StringUint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringUint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringUint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringUint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringUint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringUint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringUint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringUint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringUint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringUint32DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Uint32
 type StringUint32DictColumn struct {
 	refs *Uint32Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringUint32DictColumn
 func (a *StringUint32DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3464,6 +4757,10 @@ func (a *StringUint32DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringUint32DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3482,18 +4779,29 @@ func (a *StringUint32DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringUint32DictColumn) Name() string        { return a.refs.name }
-func (a *StringUint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringUint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringUint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringUint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringUint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringUint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringUint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringUint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringUint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// StringUint64DictColumn represents a dict-encoded column with underlying data of type
+// String and dict key of type Uint64
 type StringUint64DictColumn struct {
 	refs *Uint64Column
 	pool *StringColumn
 }
 
+// Value constructs a value of type String from the StringUint64DictColumn
 func (a *StringUint64DictColumn) Value(i int) (string, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out string
@@ -3504,6 +4812,10 @@ func (a *StringUint64DictColumn) Value(i int) (string, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *StringUint64DictColumn) Values() ([]string, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]string, len(refs))
@@ -3522,18 +4834,29 @@ func (a *StringUint64DictColumn) Values() ([]string, []bool) {
 	return out, valids
 }
 
-func (a *StringUint64DictColumn) Name() string        { return a.refs.name }
-func (a *StringUint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *StringUint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *StringUint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *StringUint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *StringUint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *StringUint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *StringUint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *StringUint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *StringUint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolInt8DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Int8
 type BoolInt8DictColumn struct {
 	refs *Int8Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolInt8DictColumn
 func (a *BoolInt8DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3544,6 +4867,10 @@ func (a *BoolInt8DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolInt8DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3562,18 +4889,29 @@ func (a *BoolInt8DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolInt8DictColumn) Name() string        { return a.refs.name }
-func (a *BoolInt8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolInt8DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolInt8DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolInt8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolInt8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolInt8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolInt8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolInt8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolInt8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolInt16DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Int16
 type BoolInt16DictColumn struct {
 	refs *Int16Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolInt16DictColumn
 func (a *BoolInt16DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3584,6 +4922,10 @@ func (a *BoolInt16DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolInt16DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3602,18 +4944,29 @@ func (a *BoolInt16DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolInt16DictColumn) Name() string        { return a.refs.name }
-func (a *BoolInt16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolInt16DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolInt16DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolInt16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolInt16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolInt16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolInt16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolInt16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolInt16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolInt32DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Int32
 type BoolInt32DictColumn struct {
 	refs *Int32Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolInt32DictColumn
 func (a *BoolInt32DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3624,6 +4977,10 @@ func (a *BoolInt32DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolInt32DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3642,18 +4999,29 @@ func (a *BoolInt32DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolInt32DictColumn) Name() string        { return a.refs.name }
-func (a *BoolInt32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolInt32DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolInt32DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolInt32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolInt32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolInt32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolInt32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolInt32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolInt32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolInt64DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Int64
 type BoolInt64DictColumn struct {
 	refs *Int64Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolInt64DictColumn
 func (a *BoolInt64DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3664,6 +5032,10 @@ func (a *BoolInt64DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolInt64DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3682,18 +5054,29 @@ func (a *BoolInt64DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolInt64DictColumn) Name() string        { return a.refs.name }
-func (a *BoolInt64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolInt64DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolInt64DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolInt64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolInt64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolInt64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolInt64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolInt64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolInt64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolUint8DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Uint8
 type BoolUint8DictColumn struct {
 	refs *Uint8Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolUint8DictColumn
 func (a *BoolUint8DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3704,6 +5087,10 @@ func (a *BoolUint8DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolUint8DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3722,18 +5109,29 @@ func (a *BoolUint8DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolUint8DictColumn) Name() string        { return a.refs.name }
-func (a *BoolUint8DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolUint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolUint8DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolUint8DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolUint8DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolUint8DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolUint8DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolUint8DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolUint8DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolUint16DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Uint16
 type BoolUint16DictColumn struct {
 	refs *Uint16Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolUint16DictColumn
 func (a *BoolUint16DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3744,6 +5142,10 @@ func (a *BoolUint16DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolUint16DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3762,18 +5164,29 @@ func (a *BoolUint16DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolUint16DictColumn) Name() string        { return a.refs.name }
-func (a *BoolUint16DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolUint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolUint16DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolUint16DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolUint16DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolUint16DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolUint16DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolUint16DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolUint16DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolUint32DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Uint32
 type BoolUint32DictColumn struct {
 	refs *Uint32Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolUint32DictColumn
 func (a *BoolUint32DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3784,6 +5197,10 @@ func (a *BoolUint32DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolUint32DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3802,18 +5219,29 @@ func (a *BoolUint32DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolUint32DictColumn) Name() string        { return a.refs.name }
-func (a *BoolUint32DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolUint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolUint32DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolUint32DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolUint32DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolUint32DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolUint32DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolUint32DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolUint32DictColumn) NullN() int64 { return a.refs.nNull }
+
+// BoolUint64DictColumn represents a dict-encoded column with underlying data of type
+// Bool and dict key of type Uint64
 type BoolUint64DictColumn struct {
 	refs *Uint64Column
 	pool *BoolColumn
 }
 
+// Value constructs a value of type Bool from the BoolUint64DictColumn
 func (a *BoolUint64DictColumn) Value(i int) (bool, bool) {
 	ref, isValid := a.refs.Value(i)
 	var out bool
@@ -3824,6 +5252,10 @@ func (a *BoolUint64DictColumn) Value(i int) (bool, bool) {
 	return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *BoolUint64DictColumn) Values() ([]bool, []bool) {
 	refs, valids := a.refs.Values()
 	out := make([]bool, len(refs))
@@ -3842,13 +5274,22 @@ func (a *BoolUint64DictColumn) Values() ([]bool, []bool) {
 	return out, valids
 }
 
-func (a *BoolUint64DictColumn) Name() string        { return a.refs.name }
-func (a *BoolUint64DictColumn) Length() int         { return int(a.refs.length) }
-func (a *BoolUint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *BoolUint64DictColumn) Meta() FeatherColumn { return nil }
-func (a *BoolUint64DictColumn) NullN() int64        { return a.refs.nNull }
+// Name returns the name of the column
+func (a *BoolUint64DictColumn) Name() string { return a.refs.name }
 
+// Length returns the number of rows in the column
+func (a *BoolUint64DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
+func (a *BoolUint64DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
+func (a *BoolUint64DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
+
+// NullN returns how many null values there are in the column
+func (a *BoolUint64DictColumn) NullN() int64 { return a.refs.nNull }
+
+// DictColumn constructs a well-typed dict encoded column from the FeatherColumn
 func DictColumn(refs, pool FeatherColumn) FeatherColumn {
 	switch refs.Type() {
 

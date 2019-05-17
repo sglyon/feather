@@ -579,3 +579,31 @@ func TestNullIssue1(t *testing.T) {
 		}
 	}
 }
+
+func TestNullIssue2(t *testing.T) {
+	src, err := Read("test_data/ic.feather")
+	if err != nil {
+		t.Error("Couldn't open ic.feather")
+	}
+	col1 := src.Columns[1].(*Float64Column)
+	vals1, valid1 := col1.Values()
+
+	valsWant := []float64{math.NaN(), 206631600.0}
+	validWant := []bool{false, true}
+
+	for ix := range valsWant {
+		if math.IsNaN(vals1[ix]) {
+			if !math.IsNaN(valsWant[ix]) {
+				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+			}
+		} else {
+			if vals1[ix] != valsWant[ix] {
+				t.Errorf("Expected %v and found %v on row %v", valsWant[ix], vals1[ix], ix)
+			}
+		}
+
+		if valid1[ix] != validWant[ix] {
+			t.Errorf("Expected %v and found %v on row %v", validWant[ix], valid1[ix], ix)
+		}
+	}
+}

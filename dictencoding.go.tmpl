@@ -6,13 +6,15 @@ package feather
 {{range $ref := $input}}
 {{if $ref.canBeRef}}
 
+// {{$pool.Name}}{{$ref.Name}}DictColumn represents a dict-encoded column with underlying data of type
+// {{$pool.Name}} and dict key of type {{$ref.Name}}
 type {{$pool.Name}}{{$ref.Name}}DictColumn struct {
     refs *{{$ref.Name}}Column
     pool *{{$pool.Name}}Column
 }
 
 
-
+// Value constructs a value of type {{$pool.Name}} from the {{$pool.Name}}{{$ref.Name}}DictColumn
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Value(i int) ({{ $pool.name }}, bool) {
     ref, isValid := a.refs.Value(i)
     var out {{ $pool.name }}
@@ -23,6 +25,10 @@ func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Value(i int) ({{ $pool.name }}, 
     return out, false
 }
 
+// Values extracts slices of all values as well as a []bool indicating validity
+// of all elements. If there are no null values, then the second slice will be
+// nil. An entry of false in the second slice indicates that the corresponding
+// value is null
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Values() ([]{{ $pool.name }}, []bool) {
     refs, valids := a.refs.Values()
     out := make([]{{$pool.name}}, len(refs))
@@ -41,17 +47,26 @@ func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Values() ([]{{ $pool.name }}, []
     return out, valids
 }
 
+// Name returns the name of the column
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Name() string { return a.refs.name }
+
+// Length returns the number of rows in the column
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Length() int { return int(a.refs.length) }
+
+// Type returns an integer specifying the data typed contained by the column
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Type() int8 { return a.pool.typE }
+
+// TypeString returns a string describing the data typed contained by the column
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
-func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Meta() FeatherColumn { return nil }
+
+// NullN returns how many null values there are in the column
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) NullN() int64 { return a.refs.nNull }
 
 {{end}}
 {{end}}
 {{end}}
 
+// DictColumn constructs a well-typed dict encoded column from the FeatherColumn
 func DictColumn(refs, pool FeatherColumn) FeatherColumn {
     switch refs.Type() {
     {{range $ref := $input}}

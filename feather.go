@@ -40,12 +40,13 @@ type DictEncoding struct {
 	refs, pool interface{}
 }
 
+// Column holds all information necessary to construct slices of values from Feather formatted columns
 type Column struct {
-	Name      string
-	Values    *fbs.PrimitiveArray
-	Meta      FeatherColumn
-	User_meta string
-	TypE      int8
+	Name     string
+	Values   *fbs.PrimitiveArray
+	Meta     FeatherColumn
+	UserMeta string
+	TypE     int8
 }
 
 // Source holds the source for the feather file
@@ -59,10 +60,12 @@ func (src Source) String() string {
 	return fmt.Sprintf("Feather file with %d rows and %d columns", src.NumRows(), src.NumCols())
 }
 
+// NumRows returns the number of rows in the feather file
 func (src *Source) NumRows() int {
 	return int(src.Ctable.NumRows())
 }
 
+// NumCols returns the number of columns in the feather file
 func (src *Source) NumCols() int {
 	return src.Ctable.ColumnsLength()
 }
