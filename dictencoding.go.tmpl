@@ -44,7 +44,7 @@ func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Values() ([]{{ $pool.name }}, []
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Name() string { return a.refs.name }
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Length() int { return int(a.refs.length) }
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Type() int8 { return a.pool.typE }
-func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) Meta() FeatherColumn { return nil }
 func (a *{{$pool.Name}}{{$ref.Name}}DictColumn) NullN() int64 { return a.refs.nNull }
 

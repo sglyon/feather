@@ -45,7 +45,7 @@ func (a *Int8Int8DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -85,7 +85,7 @@ func (a *Int8Int16DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -125,7 +125,7 @@ func (a *Int8Int32DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -165,7 +165,7 @@ func (a *Int8Int64DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -205,7 +205,7 @@ func (a *Int8Uint8DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -245,7 +245,7 @@ func (a *Int8Uint16DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -285,7 +285,7 @@ func (a *Int8Uint32DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -325,7 +325,7 @@ func (a *Int8Uint64DictColumn) Values() ([]int8, []bool) {
 func (a *Int8Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Int8Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int8Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int8Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int8Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int8Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int8Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -365,7 +365,7 @@ func (a *Int16Int8DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -405,7 +405,7 @@ func (a *Int16Int16DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -445,7 +445,7 @@ func (a *Int16Int32DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -485,7 +485,7 @@ func (a *Int16Int64DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -525,7 +525,7 @@ func (a *Int16Uint8DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -565,7 +565,7 @@ func (a *Int16Uint16DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -605,7 +605,7 @@ func (a *Int16Uint32DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -645,7 +645,7 @@ func (a *Int16Uint64DictColumn) Values() ([]int16, []bool) {
 func (a *Int16Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Int16Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int16Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int16Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int16Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int16Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int16Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -685,7 +685,7 @@ func (a *Int32Int8DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -725,7 +725,7 @@ func (a *Int32Int16DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -765,7 +765,7 @@ func (a *Int32Int32DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -805,7 +805,7 @@ func (a *Int32Int64DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -845,7 +845,7 @@ func (a *Int32Uint8DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -885,7 +885,7 @@ func (a *Int32Uint16DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -925,7 +925,7 @@ func (a *Int32Uint32DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -965,7 +965,7 @@ func (a *Int32Uint64DictColumn) Values() ([]int32, []bool) {
 func (a *Int32Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Int32Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int32Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int32Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int32Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1005,7 +1005,7 @@ func (a *Int64Int8DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1045,7 +1045,7 @@ func (a *Int64Int16DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1085,7 +1085,7 @@ func (a *Int64Int32DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1125,7 +1125,7 @@ func (a *Int64Int64DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1165,7 +1165,7 @@ func (a *Int64Uint8DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1205,7 +1205,7 @@ func (a *Int64Uint16DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1245,7 +1245,7 @@ func (a *Int64Uint32DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1285,7 +1285,7 @@ func (a *Int64Uint64DictColumn) Values() ([]int64, []bool) {
 func (a *Int64Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Int64Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Int64Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Int64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Int64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Int64Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Int64Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1325,7 +1325,7 @@ func (a *Uint8Int8DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1365,7 +1365,7 @@ func (a *Uint8Int16DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1405,7 +1405,7 @@ func (a *Uint8Int32DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1445,7 +1445,7 @@ func (a *Uint8Int64DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1485,7 +1485,7 @@ func (a *Uint8Uint8DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1525,7 +1525,7 @@ func (a *Uint8Uint16DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1565,7 +1565,7 @@ func (a *Uint8Uint32DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1605,7 +1605,7 @@ func (a *Uint8Uint64DictColumn) Values() ([]uint8, []bool) {
 func (a *Uint8Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint8Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint8Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint8Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint8Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint8Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint8Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1645,7 +1645,7 @@ func (a *Uint16Int8DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1685,7 +1685,7 @@ func (a *Uint16Int16DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1725,7 +1725,7 @@ func (a *Uint16Int32DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1765,7 +1765,7 @@ func (a *Uint16Int64DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1805,7 +1805,7 @@ func (a *Uint16Uint8DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1845,7 +1845,7 @@ func (a *Uint16Uint16DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1885,7 +1885,7 @@ func (a *Uint16Uint32DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1925,7 +1925,7 @@ func (a *Uint16Uint64DictColumn) Values() ([]uint16, []bool) {
 func (a *Uint16Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint16Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint16Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint16Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint16Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint16Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint16Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -1965,7 +1965,7 @@ func (a *Uint32Int8DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2005,7 +2005,7 @@ func (a *Uint32Int16DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2045,7 +2045,7 @@ func (a *Uint32Int32DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2085,7 +2085,7 @@ func (a *Uint32Int64DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2125,7 +2125,7 @@ func (a *Uint32Uint8DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2165,7 +2165,7 @@ func (a *Uint32Uint16DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2205,7 +2205,7 @@ func (a *Uint32Uint32DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2245,7 +2245,7 @@ func (a *Uint32Uint64DictColumn) Values() ([]uint32, []bool) {
 func (a *Uint32Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint32Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint32Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint32Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint32Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2285,7 +2285,7 @@ func (a *Uint64Int8DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2325,7 +2325,7 @@ func (a *Uint64Int16DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2365,7 +2365,7 @@ func (a *Uint64Int32DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2405,7 +2405,7 @@ func (a *Uint64Int64DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2445,7 +2445,7 @@ func (a *Uint64Uint8DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2485,7 +2485,7 @@ func (a *Uint64Uint16DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2525,7 +2525,7 @@ func (a *Uint64Uint32DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2565,7 +2565,7 @@ func (a *Uint64Uint64DictColumn) Values() ([]uint64, []bool) {
 func (a *Uint64Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Uint64Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Uint64Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Uint64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Uint64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Uint64Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Uint64Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2605,7 +2605,7 @@ func (a *Float32Int8DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2645,7 +2645,7 @@ func (a *Float32Int16DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2685,7 +2685,7 @@ func (a *Float32Int32DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2725,7 +2725,7 @@ func (a *Float32Int64DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2765,7 +2765,7 @@ func (a *Float32Uint8DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2805,7 +2805,7 @@ func (a *Float32Uint16DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2845,7 +2845,7 @@ func (a *Float32Uint32DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2885,7 +2885,7 @@ func (a *Float32Uint64DictColumn) Values() ([]float32, []bool) {
 func (a *Float32Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Float32Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float32Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float32Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float32Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float32Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2925,7 +2925,7 @@ func (a *Float64Int8DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Int8DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Int8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Int8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Int8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Int8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Int8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -2965,7 +2965,7 @@ func (a *Float64Int16DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Int16DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Int16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Int16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Int16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Int16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Int16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3005,7 +3005,7 @@ func (a *Float64Int32DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Int32DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Int32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Int32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Int32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Int32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Int32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3045,7 +3045,7 @@ func (a *Float64Int64DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Int64DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Int64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Int64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Int64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Int64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Int64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3085,7 +3085,7 @@ func (a *Float64Uint8DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Uint8DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Uint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Uint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Uint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Uint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Uint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3125,7 +3125,7 @@ func (a *Float64Uint16DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Uint16DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Uint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Uint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Uint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Uint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Uint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3165,7 +3165,7 @@ func (a *Float64Uint32DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Uint32DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Uint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Uint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Uint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Uint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Uint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3205,7 +3205,7 @@ func (a *Float64Uint64DictColumn) Values() ([]float64, []bool) {
 func (a *Float64Uint64DictColumn) Name() string        { return a.refs.name }
 func (a *Float64Uint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *Float64Uint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *Float64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *Float64Uint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *Float64Uint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *Float64Uint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3245,7 +3245,7 @@ func (a *StringInt8DictColumn) Values() ([]string, []bool) {
 func (a *StringInt8DictColumn) Name() string        { return a.refs.name }
 func (a *StringInt8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringInt8DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringInt8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringInt8DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringInt8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3285,7 +3285,7 @@ func (a *StringInt16DictColumn) Values() ([]string, []bool) {
 func (a *StringInt16DictColumn) Name() string        { return a.refs.name }
 func (a *StringInt16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringInt16DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringInt16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringInt16DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringInt16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3325,7 +3325,7 @@ func (a *StringInt32DictColumn) Values() ([]string, []bool) {
 func (a *StringInt32DictColumn) Name() string        { return a.refs.name }
 func (a *StringInt32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringInt32DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringInt32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringInt32DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringInt32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3365,7 +3365,7 @@ func (a *StringInt64DictColumn) Values() ([]string, []bool) {
 func (a *StringInt64DictColumn) Name() string        { return a.refs.name }
 func (a *StringInt64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringInt64DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringInt64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringInt64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringInt64DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringInt64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3405,7 +3405,7 @@ func (a *StringUint8DictColumn) Values() ([]string, []bool) {
 func (a *StringUint8DictColumn) Name() string        { return a.refs.name }
 func (a *StringUint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringUint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringUint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringUint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringUint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3445,7 +3445,7 @@ func (a *StringUint16DictColumn) Values() ([]string, []bool) {
 func (a *StringUint16DictColumn) Name() string        { return a.refs.name }
 func (a *StringUint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringUint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringUint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringUint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringUint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3485,7 +3485,7 @@ func (a *StringUint32DictColumn) Values() ([]string, []bool) {
 func (a *StringUint32DictColumn) Name() string        { return a.refs.name }
 func (a *StringUint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringUint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringUint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringUint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringUint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3525,7 +3525,7 @@ func (a *StringUint64DictColumn) Values() ([]string, []bool) {
 func (a *StringUint64DictColumn) Name() string        { return a.refs.name }
 func (a *StringUint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *StringUint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *StringUint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *StringUint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *StringUint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *StringUint64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3565,7 +3565,7 @@ func (a *BoolInt8DictColumn) Values() ([]bool, []bool) {
 func (a *BoolInt8DictColumn) Name() string        { return a.refs.name }
 func (a *BoolInt8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolInt8DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolInt8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolInt8DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolInt8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3605,7 +3605,7 @@ func (a *BoolInt16DictColumn) Values() ([]bool, []bool) {
 func (a *BoolInt16DictColumn) Name() string        { return a.refs.name }
 func (a *BoolInt16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolInt16DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolInt16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolInt16DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolInt16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3645,7 +3645,7 @@ func (a *BoolInt32DictColumn) Values() ([]bool, []bool) {
 func (a *BoolInt32DictColumn) Name() string        { return a.refs.name }
 func (a *BoolInt32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolInt32DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolInt32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolInt32DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolInt32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3685,7 +3685,7 @@ func (a *BoolInt64DictColumn) Values() ([]bool, []bool) {
 func (a *BoolInt64DictColumn) Name() string        { return a.refs.name }
 func (a *BoolInt64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolInt64DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolInt64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolInt64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolInt64DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolInt64DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3725,7 +3725,7 @@ func (a *BoolUint8DictColumn) Values() ([]bool, []bool) {
 func (a *BoolUint8DictColumn) Name() string        { return a.refs.name }
 func (a *BoolUint8DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolUint8DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolUint8DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolUint8DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolUint8DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3765,7 +3765,7 @@ func (a *BoolUint16DictColumn) Values() ([]bool, []bool) {
 func (a *BoolUint16DictColumn) Name() string        { return a.refs.name }
 func (a *BoolUint16DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolUint16DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolUint16DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolUint16DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolUint16DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3805,7 +3805,7 @@ func (a *BoolUint32DictColumn) Values() ([]bool, []bool) {
 func (a *BoolUint32DictColumn) Name() string        { return a.refs.name }
 func (a *BoolUint32DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolUint32DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolUint32DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolUint32DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolUint32DictColumn) NullN() int64        { return a.refs.nNull }
 
@@ -3845,7 +3845,7 @@ func (a *BoolUint64DictColumn) Values() ([]bool, []bool) {
 func (a *BoolUint64DictColumn) Name() string        { return a.refs.name }
 func (a *BoolUint64DictColumn) Length() int         { return int(a.refs.length) }
 func (a *BoolUint64DictColumn) Type() int8          { return a.pool.typE }
-func (a *BoolUint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int(a.pool.typE)] }
+func (a *BoolUint64DictColumn) TypeString() string  { return fbs.EnumNamesTypE[int8(a.pool.typE)] }
 func (a *BoolUint64DictColumn) Meta() FeatherColumn { return nil }
 func (a *BoolUint64DictColumn) NullN() int64        { return a.refs.nNull }
 

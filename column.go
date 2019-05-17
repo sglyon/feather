@@ -118,7 +118,7 @@ func (a *Int8Column) Length() int { return int(a.length) }
 func (a *Int8Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int8Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int8Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int8Column) NullN() int64 { return a.nNull }
@@ -196,7 +196,7 @@ func (a *Int8FullColumn) Length() int { return int(a.length) }
 func (a *Int8FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int8FullColumn) NullN() int64 { return 0 }
@@ -288,7 +288,7 @@ func (a *Int16Column) Length() int { return int(a.length) }
 func (a *Int16Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int16Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int16Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int16Column) NullN() int64 { return a.nNull }
@@ -366,7 +366,7 @@ func (a *Int16FullColumn) Length() int { return int(a.length) }
 func (a *Int16FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int16FullColumn) NullN() int64 { return 0 }
@@ -458,7 +458,7 @@ func (a *Int32Column) Length() int { return int(a.length) }
 func (a *Int32Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int32Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int32Column) NullN() int64 { return a.nNull }
@@ -536,7 +536,7 @@ func (a *Int32FullColumn) Length() int { return int(a.length) }
 func (a *Int32FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int32FullColumn) NullN() int64 { return 0 }
@@ -628,7 +628,7 @@ func (a *Int64Column) Length() int { return int(a.length) }
 func (a *Int64Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int64Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int64Column) NullN() int64 { return a.nNull }
@@ -706,7 +706,7 @@ func (a *Int64FullColumn) Length() int { return int(a.length) }
 func (a *Int64FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Int64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Int64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Int64FullColumn) NullN() int64 { return 0 }
@@ -798,7 +798,7 @@ func (a *Uint8Column) Length() int { return int(a.length) }
 func (a *Uint8Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint8Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint8Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint8Column) NullN() int64 { return a.nNull }
@@ -876,7 +876,7 @@ func (a *Uint8FullColumn) Length() int { return int(a.length) }
 func (a *Uint8FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint8FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint8FullColumn) NullN() int64 { return 0 }
@@ -968,7 +968,7 @@ func (a *Uint16Column) Length() int { return int(a.length) }
 func (a *Uint16Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint16Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint16Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint16Column) NullN() int64 { return a.nNull }
@@ -1046,7 +1046,7 @@ func (a *Uint16FullColumn) Length() int { return int(a.length) }
 func (a *Uint16FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint16FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint16FullColumn) NullN() int64 { return 0 }
@@ -1138,7 +1138,7 @@ func (a *Uint32Column) Length() int { return int(a.length) }
 func (a *Uint32Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint32Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint32Column) NullN() int64 { return a.nNull }
@@ -1216,7 +1216,7 @@ func (a *Uint32FullColumn) Length() int { return int(a.length) }
 func (a *Uint32FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint32FullColumn) NullN() int64 { return 0 }
@@ -1308,7 +1308,7 @@ func (a *Uint64Column) Length() int { return int(a.length) }
 func (a *Uint64Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint64Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint64Column) NullN() int64 { return a.nNull }
@@ -1386,7 +1386,7 @@ func (a *Uint64FullColumn) Length() int { return int(a.length) }
 func (a *Uint64FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Uint64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Uint64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Uint64FullColumn) NullN() int64 { return 0 }
@@ -1478,7 +1478,7 @@ func (a *Float32Column) Length() int { return int(a.length) }
 func (a *Float32Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Float32Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Float32Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Float32Column) NullN() int64 { return a.nNull }
@@ -1556,7 +1556,7 @@ func (a *Float32FullColumn) Length() int { return int(a.length) }
 func (a *Float32FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Float32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Float32FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Float32FullColumn) NullN() int64 { return 0 }
@@ -1648,7 +1648,7 @@ func (a *Float64Column) Length() int { return int(a.length) }
 func (a *Float64Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Float64Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Float64Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Float64Column) NullN() int64 { return a.nNull }
@@ -1726,7 +1726,7 @@ func (a *Float64FullColumn) Length() int { return int(a.length) }
 func (a *Float64FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *Float64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *Float64FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *Float64FullColumn) NullN() int64 { return 0 }
@@ -1768,7 +1768,7 @@ func (a *StringColumn) Length() int { return int(a.length) }
 func (a *StringColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *StringColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *StringColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *StringColumn) NullN() int64 { return a.nNull }
@@ -1827,7 +1827,7 @@ func (a *StringFullColumn) Length() int { return int(a.length) }
 func (a *StringFullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *StringFullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *StringFullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *StringFullColumn) NullN() int64 { return 0 }
@@ -1869,7 +1869,7 @@ func (a *BoolColumn) Length() int { return int(a.length) }
 func (a *BoolColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *BoolColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *BoolColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *BoolColumn) NullN() int64 { return a.nNull }
@@ -1928,7 +1928,7 @@ func (a *BoolFullColumn) Length() int { return int(a.length) }
 func (a *BoolFullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *BoolFullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *BoolFullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *BoolFullColumn) NullN() int64 { return 0 }

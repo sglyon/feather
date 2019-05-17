@@ -117,7 +117,7 @@ func (a *{{.Name}}Column) Length() int { return int(a.length) }
 func (a *{{.Name}}Column) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *{{.Name}}Column) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *{{.Name}}Column) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *{{.Name}}Column) NullN() int64 { return a.nNull }
@@ -206,7 +206,7 @@ func (a *{{.Name}}FullColumn) Length() int { return int(a.length) }
 func (a *{{.Name}}FullColumn) Type() int8 { return a.typE }
 
 // TypeString returns a string describing the data typed contained by the column
-func (a *{{.Name}}FullColumn) TypeString() string { return fbs.EnumNamesTypE[int(a.typE)] }
+func (a *{{.Name}}FullColumn) TypeString() string { return fbs.EnumNamesTypE[int8(a.typE)] }
 
 // NullN returns how many null values there are in the column
 func (a *{{.Name}}FullColumn) NullN() int64 { return 0 }
